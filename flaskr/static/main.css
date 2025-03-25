@@ -33,6 +33,335 @@ body {
     text-transform: capitalize;
   }
 
+.background {
+  	position: absolute;
+  	top: 0px;
+  	left: 0px;
+  	border-radius: 10px;
+  	background: linear-gradient(0deg, #08392e 9%, #41b271);
+  	width: 1414.6px;
+  	height: 610px;
+}
+.background-shape-1 {
+  	position: absolute;
+  	top: 285px;
+  	left: 0px;
+  	width: 1415px;
+  	height: 325px;
+}
+.insert-text-here {
+  	position: absolute;
+  	top: 92px;
+  	left: 0px;
+  	text-transform: capitalize;
+  	display: inline-block;
+  	width: 949px;
+  	height: 76px;
+}
+.highlited-text-home-child {
+  	position: absolute;
+  	top: 6px;
+  	left: 0px;
+  	border-radius: 15px;
+  	background-color: #01eeb8;
+  	width: 290px;
+  	height: 70px;
+}
+.key-point {
+  	position: absolute;
+  	top: 0px;
+  	left: 14px;
+  	text-transform: capitalize;
+  	display: inline-block;
+  	font-weight: 600;
+  	width: 283px;
+  	height: 63px;
+}
+.highlited-text-home {
+  	position: absolute;
+  	top: 0px;
+  	left: 0px;
+  	width: 297px;
+  	height: 76px;
+  	color: #000;
+  	font-family: 'Source Serif Pro';
+}
+.here-insert-text {
+  	position: absolute;
+  	top: 154px;
+  	left: 0px;
+  	text-transform: capitalize;
+  	display: inline-block;
+  	width: 843px;
+  	height: 153px;
+}
+.cut-reporting-time {
+  	margin: 0;
+}
+.cut-reporting-time-container {
+  	position: absolute;
+  	top: 323px;
+  	left: 0px;
+  	font-size: 24px;
+  	text-transform: capitalize;
+  	display: inline-block;
+  	width: 417px;
+  	height: 171px;
+}
+.num-people-use-container {
+  	position: absolute;
+  	top: 413px;
+  	left: 695px;
+  	font-size: 24px;
+  	text-transform: capitalize;
+  	display: inline-block;
+  	font-family: 'Source Serif Pro';
+  	width: 437px;
+  	height: 78px;
+}
+.text {
+  	position: absolute;
+  	top: 45px;
+  	left: 26px;
+  	width: 1132px;
+  	height: 494px;
+  	color: #fff;
+  	font-family: Inter;
+}
+.book-a-demo {
+  	position: absolute;
+  	top: 0.46px;
+  	left: 0px;
+  	border-radius: 0px 0px 10px 10px;
+  	background-color: #fff;
+  	width: 240px;
+  	height: 526px;
+}
+.client-logo-here {
+  	position: absolute;
+  	top: 388.46px;
+  	left: 25px;
+  	text-transform: capitalize;
+  	display: inline-block;
+  	font-weight: 600;
+  	width: 189px;
+  	height: 20.9px;
+}
+.client-logo-here1 {
+  	position: absolute;
+  	top: 467.46px;
+  	left: 25px;
+  	text-transform: capitalize;
+  	display: inline-block;
+  	font-weight: 600;
+  	width: 189px;
+  	height: 20.9px;
+}
+.client-logo-here2 {
+  	position: absolute;
+  	top: 309.14px;
+  	left: 25px;
+  	text-transform: capitalize;
+  	display: inline-block;
+  	font-weight: 600;
+  	width: 189px;
+  	height: 20.9px;
+}
+.client-logo-here3 {
+  	position: absolute;
+  	top: 230.11px;
+  	left: 25px;
+  	text-transform: capitalize;
+  	display: inline-block;
+  	font-weight: 600;
+  	width: 189px;
+  	height: 20.9px;
+}
+.client-logo-here4 {
+  	position: absolute;
+  	top: 158.05px;
+  	left: 25px;
+  	text-transform: capitalize;
+  	display: inline-block;
+  	font-weight: 600;
+  	width: 189px;
+  	height: 20.9px;
+}
+.client-logo-here5 {
+  	position: absolute;
+  	top: 79.03px;
+  	left: 25px;
+  	text-transform: capitalize;
+  	display: inline-block;
+  	font-weight: 600;
+  	width: 189px;
+  	height: 20.9px;
+}
+.client-logo-here6 {
+  	position: absolute;
+  	top: 0px;
+  	left: 25px;
+  	text-transform: capitalize;
+  	display: inline-block;
+  	font-weight: 600;
+  	width: 189px;
+  	height: 20.9px;
+}
+.client-list-child {
+  	position: absolute;
+  	top: 352.07px;
+  	left: 217.5px;
+  	max-width: 100%;
+  	overflow: hidden;
+  	height: 135.9px;
+  	object-fit: contain;
+}
+.client-list-item {
+  	position: absolute;
+  	top: 115.77px;
+  	left: 218px;
+  	max-width: 100%;
+  	overflow: hidden;
+  	height: 135.9px;
+  	object-fit: contain;
+}
+.scroll {
+  	position: absolute;
+  	top: 345.46px;
+  	left: 205px;
+  	text-transform: capitalize;
+  	display: inline-block;
+  	font-weight: 600;
+  	width: 72px;
+  	height: 26px;
+  	transform:  rotate(-90deg);
+  	transform-origin: 0 0;
+}
+.client-list {
+  	position: absolute;
+  	top: 32.54px;
+  	left: 1143px;
+  	width: 240px;
+  	height: 526.5px;
+  	text-align: center;
+  	font-size: 20px;
+}
+.intallations1 {
+  	position: absolute;
+  	top: 0px;
+  	left: 0px;
+  	box-shadow: 1px 4px 4px rgba(0, 0, 0, 0.25);
+  	border-radius: 10px 0px 10px 0px;
+  	background-color: #fff;
+  	border: 0.5px solid rgba(0, 0, 0, 0.5);
+  	box-sizing: border-box;
+  	width: 377.5px;
+  	height: 167.5px;
+}
+.we-have-installed {
+  	position: absolute;
+  	top: 9px;
+  	left: 9px;
+  	text-transform: capitalize;
+  	white-space: pre-wrap;
+  	display: inline-block;
+  	width: 272px;
+  	height: 59px;
+}
+.solar-panels-and {
+  	position: absolute;
+  	top: 119px;
+  	left: 9px;
+  	text-transform: capitalize;
+  	display: inline-block;
+  	width: 453px;
+  	height: 37px;
+}
+.div {
+  	position: absolute;
+  	top: 59px;
+  	left: 4px;
+  	font-size: 48px;
+  	text-transform: capitalize;
+  	color: #ee5666;
+  	display: inline-block;
+  	width: 269px;
+  	height: 70px;
+}
+.intallations {
+  	position: absolute;
+  	top: 0px;
+  	left: 0px;
+  	width: 462px;
+  	height: 167px;
+}
+.carbon1 {
+  	position: absolute;
+  	top: 0px;
+  	left: 0px;
+  	box-shadow: 1px 4px 4px rgba(0, 0, 0, 0.25);
+  	border-radius: 10px 0px 10px 0px;
+  	background-color: #fff;
+  	border: 0.5px solid rgba(0, 0, 0, 0.5);
+  	box-sizing: border-box;
+  	width: 427.5px;
+  	height: 167.5px;
+}
+.our-customers-have {
+  	position: absolute;
+  	top: 8px;
+  	left: 12px;
+  	text-transform: capitalize;
+  	display: inline-block;
+  	width: 415px;
+  	height: 29px;
+}
+.tons-of-carbon {
+  	position: absolute;
+  	top: 129px;
+  	left: 19px;
+  	font-size: 24px;
+  	text-transform: capitalize;
+  	display: inline-block;
+  	width: 262px;
+  	height: 37px;
+}
+.div1 {
+  	position: absolute;
+  	top: 59px;
+  	left: 12px;
+  	font-size: 48px;
+  	text-transform: capitalize;
+  	color: #ee5666;
+  	display: inline-block;
+  	width: 269px;
+  	height: 70px;
+}
+.carbon {
+  	position: absolute;
+  	top: 0px;
+  	left: 393px;
+  	width: 427px;
+  	height: 167px;
+}
+.stats {
+  	position: absolute;
+  	top: 585px;
+  	left: 585px;
+  	width: 820px;
+  	height: 167px;
+  	font-size: 32px;
+}
+.into-body {
+  	width: 100%;
+  	position: relative;
+  	height: 752px;
+  	text-align: left;
+  	font-size: 64px;
+  	color: #000;
+  	font-family: 'Source Serif Pro';
+}
+
 
 /* highlited-text */
 
