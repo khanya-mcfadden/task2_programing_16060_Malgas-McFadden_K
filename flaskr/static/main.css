@@ -1,0 +1,122 @@
+
+  body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Inter', sans-serif;
+    background-color: #f5f5f5;
+  }
+
+
+/* into content */ 
+
+.intro-body {
+    border-left: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 1414px;
+    height: 610px;
+    flex-shrink: 0;
+    background: linear-gradient(0deg, #08392e 9%, #41b271 100%);
+    border-radius: 10px;
+    margin: 0 auto; /* Add this line to center the element */
+}
+  .intro-text {
+    color: #ffffff;
+    font-family: Inter;
+    text-align: left;
+    font-size: 64px;
+    margin-top: 1px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    text-transform: capitalize;
+  }
+
+
+/* highlited-text */
+
+  .highlited-text-home {
+    width: 100%; height: 100%; position: relative; border-radius: 15px
+  }
+  .highlited-text {
+    width: 283px;
+    height: 63px;
+    left: 14px;
+    top: 0px;
+    position: absolute;
+    color: black;
+    font-size: 64px;
+    font-family: Source Serif Pro;
+    font-style: italic;
+    font-weight: 600;
+    text-transform: capitalize;
+    word-wrap: break-word"
+  }
+  .highlited-text-background {
+    width: 290px;
+    height: 70px;
+    left: 0px;
+    top: 6px;
+    bottom: 20px;
+    position:absolute;
+    background: #01eeb8;
+    border-radius: 15px;
+    margin-bottom: 10px;
+  }
+
+
+  .highlited-book-a-demo {
+    width: 100%; height: 100%; position: relative; border-radius: 15px
+  }
+  .book-a-demo {
+    width: 300px;
+    height: 63px;
+    left: 5px;
+    top: 0px;
+    position: absolute;
+    color: black;
+    font-size: 50px;
+    font-family: Source Serif Pro;
+    font-style: italic;
+    font-weight: 600;
+    text-transform: capitalize;
+    word-wrap: break-word"
+  }
+  .book-a-demo-background {
+    margin-left: 30px;
+    width: 300px;
+    height: 70px;
+    left: 0px;
+    top: 6px;
+    bottom: 20px;
+    position:absolute;
+    background: #01eeb8;
+    border-radius: 15px;
+    margin-bottom: 10px;
+  }
+
+
+
+/* nav links */
+.nav-links {
+   text-decoration: none; margin-left: 20px;
+}
+.right-nav-links {
+ text-decoration: none; float: right;
+}
+.left-nav-links {
+    text-decoration: none; float: left;
+   }
+
+/* footer */
+.footer {
+    margin-top: 10px;
+    left: 0;
+    bottom: 0;
+    width: 1440px;
+    justify-content: center;
+    background-color: #fff;
+    color: white;
+
+  }
