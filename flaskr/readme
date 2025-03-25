@@ -1,0 +1,48 @@
+2025 rosa technolagies exam prototype program
+
+
+Project Description
+
+this program is for a carbon footprint, energy calculator and booking website for the hyperthitcal company rosa technolagies, this is a prototype based on the breif that was given.
+
+
+how to install and run the project
+
+1. download the the folder for the project
+2. unzip the folder into desired location 
+3. open the folder in your perfered code editor
+4. go to the main.py file and run the file 
+5. got to the output and follow the local host link
+6. the webiste should now be displayed
+
+useage of the program
+
+this is meant to be a prototype for rosa technolagies its primary functions are:
+- to be able to be able to book a consultation and installations
+- to be able to input carbon or energy useage infomation to be calculated
+- to have a registration and login system to allow for accounts
+
+
+credits and licenses
+
+MIT License
+
+Copyright (c) [2025] [khanya Malgas-Mcfadden]
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.

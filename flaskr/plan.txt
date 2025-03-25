@@ -1,0 +1,47 @@
+#what to do next#
+
+[] finish folder set up 
+[] start development of main.py file 
+[] start development of index.html file
+[] creat a test log
+
+
+# what needs to be done#
+-must be done-
+home page 
+    [] 1. development of front end 
+    [] 2. creation of navigation system
+    [] 3. development of functinality of home page 
+    [] 4. testing of home page functinality and checking for errors
+calculations page 
+    [] 1. development of front end 
+    [] 2. allow for users to choose what they want to calculations they want 
+    [] 3. intergrations of calculations Api's
+    [] 4. testing of page functinality and checking for errors
+    [] 4. testing of functinality with the rest of program
+
+booking page 
+    [] 1. development of front end 
+    [] 2. creation of booking backed(database) system
+    [] 3. development of functinality of booking page page 
+    [] 4. testing of booking page functinality and checking for errors
+    [] 5. testing of functinality with the rest of program
+
+policy and terms and conditions pages
+    [] 1. development of front end
+    [] 2. write out the neccercerry policys and terms and conditions on the page 
+    [] 3.check against legal documentations that all of the writen policys and terms and conditions are correct
+    [] 4. testing of functinality with the rest of program
+    [] 5. testing of functinality with the rest of program
+
+-extras/less important-
+infomation page 
+    [] 1. development of front end 
+    [] 2. creation of navigation system
+    [] 3. development of functinality of home page 
+    [] 4. testing of home page functinality and checking for errors
+projects page 
+    [] 1. development of front end 
+    [] 2. creation of card info system
+    [] 3. development of functinality of projects page 
+    [] 4. testing of functinality with the rest of program
