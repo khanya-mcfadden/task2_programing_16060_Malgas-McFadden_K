@@ -5,43 +5,31 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <link rel="stylesheet" type="text/css" href="/static/main.css" />
 </head>
-
-
-
 <body>
- <!-- title -->
-<div class="nav" style="display: flex; align-items: center;"></div>
-    <div class="nav-title">
-    <img src="/static/logo.svg" alt="logo" style="width: 239px; height: 112px; display: flex; align-items: center;"/>
+  <!-- title -->
+  <div class="nav" style="display: flex; align-items: center"></div>
+  <div class="nav-title">
+    <img
+      src="/static/logo.svg"
+      alt="logo"
+      style="width: 239px; height: 112px; display: flex; align-items: center"
+    />
+  </div>
+  <!-- nav -->
+  <nav class="nav">
+    <div class="nav-left"></div>
+    <a href="/">Home</a>
+    <a href="/about">About</a>
+    <a href="/courses">Courses</a>
+    <a href="/weather_page">Weather</a>
+    <a href="/Orderingpage">Ordering</a>
+    <a href="/BookingPage">Booking</a>
+    <a href="/Sign-Up" style="float: right; font-size: 20px">Sign Up</a>
+    <a href="/login" style="float: right; font-size: 20px">Login</a>
+    <a href="/profile" style="float: right; font-size: 20px">Profile</a>
+  </nav>
 
-    <!-- nav -->
-    <div class="left-nav"></div>
-    <nav style="display: flex; align-items: center; width: 955px; height: 80px; font-size: 60px; margin-bottom: 30px;">
-        <a href="/" style="text-decoration: none;">
-        <img src="/static/home.png" alt="home logo" style="width: 80px; height: 80px; vertical-align: middle;"> 
-        </a>
-        <a class="nav-links" href="/booking" >booking</a>
-        <a class="nav-links" href="/contact" >pricing</a>
-        <a class="nav-links" href="/" >solutions</a>
-        <a class="nav-links" href="/" >recources</a>
-
-
-
-
-        <a class="nav-links" href="/login" >login</a>
-        <!-- demo booking link -->
-        <div class="highlited-book-a-demo">
-            <div class="book-a-demo-background">
-            <a class="book-a-demo" href="/booking-demo" >book a demo</a>
-            </div>
-        </div>
-
-
-    </nav>
-</div>
-
-
-<!-- intro body -->
+  <!-- intro body -->
   <div class="intro-body">
     <div class="highlited-text-home">
       <div class="highlited-text-background"></div>
@@ -55,23 +43,29 @@
 </body>
 <!-- footer -->
 <footer>
-  <div class="footer">
-    <div class="footer-seperator"></div>
-    
-    <div class="footer-content">
-
-      <div class="footer-text">
-        <p>here insert text</p>
-      </div>
-      
-      <!-- footer-newsletter -->
-        <div class="footer-newsletter-background"></div>
-        <div class="footer-newsletter-text">newsletter</div>
-
-      <div class="footer-links">
-        <a href="/contact" >contact</a>
-        <a href="/" >about</a>
-        <a href="/" >terms</a>
-        <a href="/" >privacy</a>
-      </div>
+  <div class="footer-container">
+    <div class="background"></div>
+    <div class="shadow-box"></div>
+    <div class="gradient-box"></div>
+    <div class="subscribe-text">Subscribe to our Newsletters</div>
+    <div class="email-box"></div>
+    <div class="email-placeholder">Enter your email</div>
+    <div class="subscribe-button">
+      <div class="button-background"></div>
+      <div class="button-text">Subscribe Now</div>
     </div>
+    <div class="footer-text">© 2025 Rosa tech. All rights reserved</div>
+    <div class="footer-links">Terms of Service Privacy Policy</div>
+    <div class="footer-line"></div>
+    <div class="footer-menu">
+      <div class="menu-item">Discover</div>
+      <div class="menu-item">About us</div>
+      <div class="menu-item">Explore</div>
+      <div class="menu-item">Books</div>
+    </div>
+    <div class="social-icon"></div>
+    <div class="social-icon"></div>
+    <img class="social-image" src="https://placehold.co/22x22" />
+    <div class="top-bar"></div>
+  </div>
+</footer>
