@@ -71,32 +71,87 @@
     border-radius: 15px;
     margin-bottom: 10px;
   }
+
+
+  .highlited-book-a-demo {
+    width: 100%; height: 100%; position: relative; border-radius: 15px
+  }
+  .book-a-demo {
+    width: 300px;
+    height: 63px;
+    left: 5px;
+    top: 0px;
+    position: absolute;
+    color: black;
+    font-size: 50px;
+    font-family: Source Serif Pro;
+    font-style: italic;
+    font-weight: 600;
+    text-transform: capitalize;
+    word-wrap: break-word"
+  }
+  .book-a-demo-background {
+    margin-left: 30px;
+    width: 300px;
+    height: 70px;
+    left: 0px;
+    top: 6px;
+    bottom: 20px;
+    position:absolute;
+    background: #01eeb8;
+    border-radius: 15px;
+    margin-bottom: 10px;
+  }
 </style>
 
 <!-- nav title -->
 <style>
 .nav-links {
-    vertical-align: middle;  text-decoration: none;
+   text-decoration: none; margin-left: 20px;
 }
-    
+.right-nav-links {
+ text-decoration: none; float: right;
+}
+.left-nav-links {
+    text-decoration: none; float: left;
+   }
 </style>
+
+
+
 <body>
-<!-- navigaion and title-->
  <!-- title -->
-  <div class="nav">
-    <div class="nav-title"></div>
-    <img src="/static/logo.svg" alt="logo" style="width: 48px; height: 47px; "/>
-    <img src="/static/Rosa-technologies.svg" alt="title text saying Rosa technologies"/>
-    <br>
+<div class="nav" style="display: flex; align-items: center;"></div>
+    <div class="nav-title">
+    <img src="/static/logo.svg" alt="logo" style="width: 239px; height: 112px; display: flex; align-items: center;"/>
+
     <!-- nav -->
-    <nav style="display: inline-block; width: 955px; height: 80px; font-size: 60px; margin-bottom: 30px; vertical-align: middle;">
-      <a href="/" style="vertical-align: middle;  text-decoration: none;">
-        <img src="/static/home.png" alt="home logo" style="width: 80px; height: 80px; vertical-align: middle;"> 
-      </a>
-      <a class ="nav-links" href="/booking">About</a>
-      <a href="/contact" >Contact</a>
+    <div class="left-nav"></div>
+    <nav style="display: flex; align-items: center; width: 955px; height: 80px; font-size: 60px; margin-bottom: 30px;">
+        <a href="/" style="text-decoration: none;">
+            <img src="/static/home.png" alt="home logo" style="width: 80px; height: 80px; vertical-align: middle;"> 
+        </a>
+        <a class="nav-links" href="/booking" >booking</a>
+        <a class="nav-links" href="/contact" >pricing</a>
+        <a class="nav-links" href="/" >solutions</a>
+        <a class="nav-links" href="/" >recources</a>
+
+
+
+
+        <a class="nav-links" href="/login" >login</a>
+        <!-- demo booking link -->
+        <div class="highlited-book-a-demo">
+            <div class="book-a-demo-background">
+            <a class="book-a-demo" href="/booking-demo" >book a demo</a>
+            </div>
+        </div>
+
+
     </nav>
-  </div>
+</div>
+
+
 <!-- intro body -->
   <div class="intro-body">
     <div class="highlited-text-home">
