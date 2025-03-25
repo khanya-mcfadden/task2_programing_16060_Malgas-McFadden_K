@@ -10,12 +10,10 @@
     width: 1440px;
     height: 2308px;
     flex-shrink: 0;
-  }
-  nav {
-    display: flex;
     justify-content: center;
-    margin-top: 20px;
+    align-items: center;
   }
+
 </style>
 <!-- into content -->
 <style>
@@ -75,28 +73,31 @@
   }
 </style>
 
+<!-- nav title -->
+<style>
+.nav-links {
+    vertical-align: middle;  text-decoration: none;
+}
+    
+</style>
 <body>
-  <h1>Index</h1>
+<!-- navigaion and title-->
+ <!-- title -->
   <div class="nav">
     <div class="nav-title"></div>
-    <img
-      src="/static/logo.png"
-      alt="logo"
-      style="
-        width: 48.547px;
-        height: 47.22px;
-        flex-shrink: 0;
-        aspect-ratio: 48.55/47.22;
-      "
-    />
-
-    <nav>
-      <a href="/">Home</a>
-      <a href="/about">About</a>
-      <a href="/contact">Contact</a>
+    <img src="/static/logo.svg" alt="logo" style="width: 48px; height: 47px; "/>
+    <img src="/static/Rosa-technologies.svg" alt="title text saying Rosa technologies"/>
+    <br>
+    <!-- nav -->
+    <nav style="display: inline-block; width: 955px; height: 80px; font-size: 60px; margin-bottom: 30px; vertical-align: middle;">
+      <a href="/" style="vertical-align: middle;  text-decoration: none;">
+        <img src="/static/home.png" alt="home logo" style="width: 80px; height: 80px; vertical-align: middle;"> 
+      </a>
+      <a class ="nav-links" href="/booking">About</a>
+      <a href="/contact" >Contact</a>
     </nav>
   </div>
-
+<!-- intro body -->
   <div class="intro-body">
     <div class="highlited-text-home">
       <div class="highlited-text-background"></div>
