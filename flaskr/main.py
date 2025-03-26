@@ -16,7 +16,7 @@ def services():
 
 
 
-@app.route("booking-choice")
+@app.route("/booking-choice")
 def booking_choice():
     return render_template('booking-choice.html')
 

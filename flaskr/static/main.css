@@ -1,5 +1,3 @@
-
-
 /* into content */
 
 .card-1 {
@@ -126,4 +124,67 @@
 	overflow: hidden;
 	margin-left: 0px;
 	margin-right: 2px
+}
+
+
+/* register */
+.register-container {
+	background: linear-gradient(0deg, #08392E 17%, #41B271 100%);
+	border-radius: 5px;
+	box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+	color: #333333;
+	margin: auto;
+	margin-bottom: 200px;
+	margin-top: 20px;
+	max-width: 100rem;
+	padding: 20px;
+	align-content: column;
+}
+.register-container h1{
+	text-align: center;
+	color: #00FFC5;
+	font-size: 64px;
+	font-family: Source Serif Pro;
+	font-style: bold;
+	font-weight: 600;
+	text-transform: capitalize;
+	text-decoration: underline;
+}
+.inputbox {
+	color: #ffffff;
+	border: none;
+	padding: 10px 20px;
+	border-radius: 5px;
+	cursor: pointer;
+	width: 100%;
+	box-sizing: border-box;
+	font-size: 64px;
+	font-family: Source Serif Pro;
+	font-style: italic;
+	font-weight: 600;
+	text-decoration: underline;
+	text-transform: capitalize;
+	text-decoration: none;
+	word-wrap: break-word;
+	
+}
+
+input {
+	color: #00FFC5;
+	background-color: #004a009a;
+	margin-bottom: 15px;
+	border: none;
+	padding: 10px 20px;
+	border-radius: 5px;
+	cursor: pointer;
+	box-sizing: border-box;
+	margin-bottom: 15px;
+}
+
+.register-background {
+	background-image: url(/flaskr/static/images/home.png);
+	background-size: cover;
+	background-repeat: no-repeat;
+	background-position: center;
+	height: 100vh;
 }
