@@ -1,8 +1,6 @@
+
+
 /* into content */
-/* .scroll-background {
-
-} */
-
 
 .card-1 {
 	width: 377px;
@@ -97,6 +95,7 @@
 	font-weight: 400;
 	text-transform: capitalize;
 	margin-right: auto;
+	margin-left: auto;
 
 }
 
