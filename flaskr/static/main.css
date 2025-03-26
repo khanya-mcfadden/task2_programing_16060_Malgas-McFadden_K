@@ -126,7 +126,6 @@
 	margin-right: 2px
 }
 
-
 /* register */
 .register-container {
 	background: linear-gradient(0deg, #08392E 17%, #41B271 100%);
@@ -140,7 +139,7 @@
 	padding: 20px;
 	align-content: column;
 }
-.register-container h1{
+.register-container h1 {
 	text-align: center;
 	color: #00FFC5;
 	font-size: 64px;
@@ -151,12 +150,12 @@
 	text-decoration: underline;
 }
 .inputbox {
+	display: block;
 	color: #ffffff;
 	border: none;
 	padding: 10px 20px;
 	border-radius: 5px;
 	cursor: pointer;
-	width: 100%;
 	box-sizing: border-box;
 	font-size: 64px;
 	font-family: Source Serif Pro;
@@ -166,19 +165,22 @@
 	text-transform: capitalize;
 	text-decoration: none;
 	word-wrap: break-word;
+	margin-bottom: 15px;
 	
 }
 
 input {
+	display: flex;
+	flex-direction: column;
 	color: #00FFC5;
-	background-color: #004a009a;
-	margin-bottom: 15px;
+	background-color: #ebf3fb;
+	margin: 0 auto;
 	border: none;
+	text-align: center;
 	padding: 10px 20px;
 	border-radius: 5px;
 	cursor: pointer;
 	box-sizing: border-box;
-	margin-bottom: 15px;
 }
 
 .register-background {
