@@ -1,0 +1,16 @@
+<svg width="76" height="102" viewBox="0 0 76 102" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g id="warenty icon">
+<g id="body">
+<rect id="Rectangle 24" x="1.25" y="1.25" width="73.5" height="79.5" rx="8.75" stroke="black" stroke-width="2.5"/>
+<rect id="Rectangle 25" x="6" y="4.7981" width="64" height="6.71717" rx="3.35859" fill="#01EEB8"/>
+<rect id="Rectangle 26" x="6" y="16.3132" width="64" height="6.71717" rx="3.35859" fill="#01EEB8"/>
+<rect id="Rectangle 27" x="6" y="27.8284" width="64" height="6.71717" rx="3.35859" fill="#01EEB8"/>
+<rect id="Rectangle 28" x="6" y="41.2627" width="32" height="6.71717" rx="3.35859" fill="#01EEB8"/>
+</g>
+<g id="badge">
+<path id="Rectangle 24_2" d="M50 68.75C48.7574 68.75 47.75 69.7574 47.75 71V98.3458C47.75 100.038 49.5474 101.124 51.0456 100.338L58.7451 96.2972L66.9688 100.386C68.4804 101.138 70.2505 100.019 70.2201 98.3308L69.7269 70.9595C69.7048 69.7328 68.7042 68.75 67.4773 68.75H50ZM58.6307 96.2404L58.6311 96.2406L58.6307 96.2404Z" fill="white" stroke="black" stroke-width="2.5"/>
+<circle id="Ellipse 1" cx="58.5" cy="75.5" r="12.25" fill="white" stroke="black" stroke-width="2.5"/>
+<path id="Vector" d="M52 75.9118L56.9116 81L65 68" stroke="#01EEB8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+</g>
+</g>
+</svg>
