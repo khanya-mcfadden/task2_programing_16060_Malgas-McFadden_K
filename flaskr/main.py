@@ -17,9 +17,12 @@ from werkzeug.security import generate_password_hash, check_password_hash
 import re
 app = Flask(__name__, template_folder='Templates')
 
+# page link structure
 
 
-
+# @app.rout("/")
+# def _page():
+#     return render_template('.html')
 
 # database creation
 def database_creation():
@@ -118,37 +121,43 @@ def database_creation():
 
 # non funtinality page routes (pages that do not require backend functionality)
 @app.route("/")
-def hello_world():
+def index_page():
     return render_template('index.html')
 @app.route("/about")
-def about():
+def about_page():
     return render_template('about.html')
 
 @app.route("/services")
-def services():
+def services_page():
     return render_template('services.html')
 
 @app.rout("/infomation-page")
+def information_page():
+    return render_template('information-page.html')
+
+@app.rout("/projects-page")
+def projects_page():
+    return render_template('projects-page.html')
 
 # funtinality page routes(pages that have backend functionality)
 
 @app.route("/booking-choice")
-def booking_choice():
+def booking_choice_page():
     return render_template('booking-choice.html')
 
 @app.route("/booking-installation")
-def booking_installation():
+def booking_installation_page():
     return render_template('booking-installation.html')
 
 
 @app.route("/booking-consultation")
-def booking():
+def booking_page():
     return render_template('booking-consultation.html')
 
 
 
 @app.route("/register" , methods=["GET", "POST"])
-def register():
+def register_page():
         if request.method == 'POST':
             username = request.form['username']
             email = request.form['email']
@@ -213,9 +222,22 @@ def register():
 
 
 
+@app.route("/calculations-choice")
+def booking_choice_page():
+    return render_template('booking-choice.html')
+
+@app.route("/calculations-carbon")
+def calculations_carbon_page():
+    return render_template('calculations-carbon.html')
+
+
+@app.route("/calculations-energy")
+def calculations_energy_page():
+    return render_template('calculations-energy.html')
+
 
 @app.route("/login" , methods=["GET", "POST"])
-def login():
+def login_page():
     
     if request.method == 'POST':
         username = request.form['username']

@@ -23,14 +23,16 @@ this is meant to be a prototype for rosa technolagies its primary functions are:
 - to have a registration and login system to allow for accounts
 
 ## syntax for project 
-    #multi word variable names are separated by underscores
-    #variable names are all lowercase
-    #variables are named be function e.g. database_creation
-    #function names are all lowercase
-    # """ is used for multi line comments
-    # double quotes are always used when needed
-    # - are used to separate words in file names
-    # all files are named in lowercase
+    multi word variable names are separated by underscores
+    variable names are all lowercase
+    variables are named be function e.g. database_creation
+    function names are all lowercase
+    """ is used for multi line comments
+    double quotes are always used when needed
+    - are used to separate words in file names
+    all files are named in lowercase
+    page function names have {name of page}_page()
+    keep function types together e.g. api calls and rulls in one section , login and registration in another etc
 
 ## credits and licenses
 
