@@ -221,7 +221,7 @@ def register_page():
 
 @app.route("/calculations-choice")
 def calculations_choice_page():
-    return render_template('booking-choice.html')
+    return render_template('calulations-choice.html')
 
 @app.route("/calculations-carbon")
 def calculations_carbon_page():

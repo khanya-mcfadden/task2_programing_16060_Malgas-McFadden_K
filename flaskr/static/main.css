@@ -216,3 +216,52 @@
 	border-radius: 10px;
 	font-size: 64px;
 }
+
+/* .calculations-choice-page */
+.calculations-choice-title {
+
+	color: #08392E;
+	position: relative;
+	text-align: center;
+	font-family: "Source Serif Pro";
+	font-size: 64px;
+	font-style: normal;
+	font-weight: 400;
+	line-height: normal;
+	text-decoration-line: underline;
+	text-decoration-style: solid;
+	text-decoration-skip-ink: auto;
+	text-decoration-thickness: auto;
+	text-underline-offset: auto;
+	text-underline-position: from-font;
+	text-transform: capitalize;
+}
+
+.calculations-choice-energy {
+	left: 80%;
+	top: 0px;
+	position: absolute;
+	text-align: center;
+	color: #08392E;
+	font-size: 80px;
+	font-family: Source Serif Pro;
+	font-weight: 400;
+	text-decoration: underline;
+	text-transform: capitalize;
+	word-wrap: break-word
+}
+
+.calculations-choice-carbon {
+	left: 5%;
+	top: 0px;
+	position: absolute;
+	text-align: center;
+	color: #08392E;
+	font-size: 80px;
+	font-family: Source Serif Pro;
+	font-weight: 400;
+	text-decoration: underline;
+	text-transform: capitalize;
+	word-wrap: break-word"
+
+}
