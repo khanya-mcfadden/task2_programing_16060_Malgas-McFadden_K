@@ -70,31 +70,44 @@ def register():
             
             # email validation
             if (
-                not re.match("^[a-zA-Z0-9@._!;#$%&'()*+,-./:;<=>?@[\]^_`{|}~]+$", username)
-                or not re.match("^[a-zA-Z0-9@._!;#$%&'()*+,-./:;<=>?@[\]^_`{|}~]+$", email)
-                or not re.match(
-                    "^[a-zA-Z0-9@._!;#$%&'()*+,-./:;<=>?@[\]^_`{|}~]+$", password
-                )
+              not re.match("^[a-zA-Z0-9@._!;#$%&'()*+,-./:;<=>?@[\]^_`{|}~]+$", email)
             ):
-                return "Invalid characters in username, email or password", 400
-
+                return "Invalid characters in email ", 400
+            
+            # password validation
+            if not re.match(
+                r"^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&*()_\-+=<>?.,]).{8,}$",
+                password,
+            ):
+                return (
+                "Password must contain at least 8 characters, including uppercase, lowercase, digits, and special characters.",
+                400,
+                )
+            # generate password hash and input into database
             password_hash = generate_password_hash(password)
             connection = sqlite3.connect('users.db')
             cursor = connection.cursor()
             cursor.execute(
                 "select * from users where username = ? or email = ?", (username, email)
             )
+            # checks if user already exists
             exsiting_user = cursor.fetchone()
             if exsiting_user:
                 return "Username or email already exists", 400
-            else:
+            
+            
+            try:
                 cursor.execute(
                     "insert into users (username, email, password) values (?, ?, ?)",
                     (username, email, password_hash),
                 )
-        
+                connection.commit()
+            except sqlite3.IntegrityError:
+                return "Username or email already is registered", 400
+            finally:
+                connection.close()
     
-            return render_template('register.html')
+        return render_template('register.html')
 
 
 
