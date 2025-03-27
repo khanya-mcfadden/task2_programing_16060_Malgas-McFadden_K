@@ -1,4 +1,4 @@
-2025 rosa technolagies exam prototype program
+# 2025 rosa technolagies exam prototype program
 
 
 Project Description
@@ -6,28 +6,37 @@ Project Description
 this program is for a carbon footprint, energy calculator and booking website for the hyperthitcal company rosa technolagies, this is a prototype based on the breif that was given.
 
 
-how to install and run the project
+## how to install and run the project
 
-1. download the the folder for the project
-2. unzip the folder into desired location 
-3. open the folder in your perfered code editor
-4. go to the main.py file and run the file 
-5. got to the output and follow the local host link
-6. the webiste should now be displayed
+    1.  download the the folder for the project
+    2.      unzip the folder into desired location 
+    3.          open the folder in your perfered code editor
+    4.              go to the main.py file and run the file 
+    5.                  got to the output and follow the local host link
+    6.                      the webiste should now be displayed
 
-useage of the program
+## useage of the program
 
 this is meant to be a prototype for rosa technolagies its primary functions are:
 - to be able to be able to book a consultation and installations
 - to be able to input carbon or energy useage infomation to be calculated
 - to have a registration and login system to allow for accounts
 
+## syntax for project 
+    #multi word variable names are separated by underscores
+    #variable names are all lowercase
+    #variables are named be function e.g. database_creation
+    #function names are all lowercase
+    # """ is used for multi line comments
+    # double quotes are always used when needed
+    # - are used to separate words in file names
+    # all files are named in lowercase
 
-credits and licenses
+## credits and licenses
 
-MIT License
+### MIT License
 
-Copyright (c) [2025] [khanya Malgas-Mcfadden]
+Copyright (c) 2025 khanya Malgas-Mcfadden
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal

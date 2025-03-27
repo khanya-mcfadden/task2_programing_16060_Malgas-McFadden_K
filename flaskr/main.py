@@ -18,6 +18,9 @@ import re
 app = Flask(__name__, template_folder='Templates')
 
 
+
+
+
 # database creation
 def database_creation():
     connection = sqlite3.connect('users.db')
@@ -113,7 +116,7 @@ def database_creation():
     connection.close()
 
 
-
+# non funtinality page routes (pages that do not require backend functionality)
 @app.route("/")
 def hello_world():
     return render_template('index.html')
@@ -125,8 +128,9 @@ def about():
 def services():
     return render_template('services.html')
 
+@app.rout("/infomation-page")
 
-
+# funtinality page routes(pages that have backend functionality)
 
 @app.route("/booking-choice")
 def booking_choice():
@@ -140,6 +144,8 @@ def booking_installation():
 @app.route("/booking-consultation")
 def booking():
     return render_template('booking-consultation.html')
+
+
 
 @app.route("/register" , methods=["GET", "POST"])
 def register():
