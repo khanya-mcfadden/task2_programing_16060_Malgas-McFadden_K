@@ -20,7 +20,7 @@ app = Flask(__name__, template_folder='Templates')
 # page link structure
 
 
-# @app.rout("/")
+# @app.route("/")
 # def _page():
 #     return render_template('.html')
 
@@ -127,15 +127,12 @@ def index_page():
 def about_page():
     return render_template('about.html')
 
-@app.route("/services")
-def services_page():
-    return render_template('services.html')
 
-@app.rout("/infomation-page")
+@app.route("/infomation-page")
 def information_page():
     return render_template('information-page.html')
 
-@app.rout("/projects-page")
+@app.route("/projects-page")
 def projects_page():
     return render_template('projects-page.html')
 
@@ -223,7 +220,7 @@ def register_page():
 
 
 @app.route("/calculations-choice")
-def booking_choice_page():
+def calculations_choice_page():
     return render_template('booking-choice.html')
 
 @app.route("/calculations-carbon")
