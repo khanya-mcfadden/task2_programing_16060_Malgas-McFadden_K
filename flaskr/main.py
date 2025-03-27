@@ -17,6 +17,103 @@ from werkzeug.security import generate_password_hash, check_password_hash
 import re
 app = Flask(__name__, template_folder='Templates')
 
+
+# database creation
+def database_creation():
+    connection = sqlite3.connect('users.db')
+    cursor = connection.cursor()
+
+    # Create users table
+    cursor.execute("""
+    CREATE TABLE IF NOT EXISTS users (
+        id INTEGER PRIMARY KEY,
+        username VARCHAR NOT NULL,
+        FirstName VARCHAR,
+        LastName VARCHAR,
+        Email VARCHAR NOT NULL,
+        Password VARCHAR(20) NOT NULL,
+        PaymentDetails INTEGER,
+        AddressId INTEGER,
+        admin BOOLEAN DEFAULT 0,
+        FOREIGN KEY (PaymentDetails) REFERENCES PaymentDetails(PaymentId),
+        FOREIGN KEY (AddressId) REFERENCES AllowedAddresses(AddressId)
+    )
+    """)
+
+    # Create PaymentDetails table
+    cursor.execute("""
+    CREATE TABLE IF NOT EXISTS PaymentDetails (
+        PaymentId INTEGER PRIMARY KEY,
+        CardNumber INTEGER NOT NULL,
+        ExpiryDate INTEGER NOT NULL
+    )
+    """)
+
+    # Create ConsultationBookings table
+    cursor.execute("""
+    CREATE TABLE IF NOT EXISTS ConsultationBookings (
+        ConsultationBookId INTEGER PRIMARY KEY,
+        UserId INTEGER NOT NULL,
+        Time INTEGER NOT NULL,
+        Date INTEGER NOT NULL,
+        StaffId INTEGER NOT NULL,
+        IsBooked BOOLEAN NOT NULL,
+        FOREIGN KEY (UserId) REFERENCES users(id),
+        FOREIGN KEY (StaffId) REFERENCES Staff(StaffId)
+    )
+    """)
+
+    # Create InstallationBookings table
+    cursor.execute("""
+    CREATE TABLE IF NOT EXISTS InstallationBookings (
+        InstaBookId INTEGER PRIMARY KEY,
+        UserId INTEGER NOT NULL,
+        Time INTEGER NOT NULL,
+        Date INTEGER NOT NULL,
+        StaffId INTEGER NOT NULL,
+        IsBooked BOOLEAN NOT NULL,
+        FOREIGN KEY (UserId) REFERENCES users(id),
+        FOREIGN KEY (StaffId) REFERENCES Staff(StaffId)
+    )
+    """)
+
+
+    # Create InfoCards table
+    cursor.execute("""
+    CREATE TABLE IF NOT EXISTS InfoCards (
+        InfoID INTEGER PRIMARY KEY,
+        Title VARCHAR,
+        SubHeading VARCHAR,
+        Body VARCHAR
+    )
+    """)
+
+    # Create Staff table
+    cursor.execute("""
+    CREATE TABLE IF NOT EXISTS Staff (
+        StaffId INTEGER PRIMARY KEY,
+        FirstName VARCHAR NOT NULL,
+        LastName VARCHAR NOT NULL,
+        role VARCHAR NOT NULL,
+        IsAdmin BOOLEAN NOT NULL,
+        IsBooked BOOLEAN NOT NULL
+    )
+    """)
+
+    # Create AllowedAddresses table
+    cursor.execute("""
+    CREATE TABLE IF NOT EXISTS AllowedAddresses (
+        AddressId INTEGER PRIMARY KEY,
+        AdressNum INTEGER,
+        AdressName VARCHAR
+    )
+    """)
+
+    connection.commit()
+    connection.close()
+
+
+
 @app.route("/")
 def hello_world():
     return render_template('index.html')
@@ -44,7 +141,7 @@ def booking_installation():
 def booking():
     return render_template('booking-consultation.html')
 
-@app.route("/register")
+@app.route("/register" , methods=["GET", "POST"])
 def register():
         if request.method == 'POST':
             username = request.form['username']
@@ -59,8 +156,7 @@ def register():
             # input length validation
             if len(username) > 200 or len(password) > 200 or len(email) > 200:
                 return "Input exceeds character limit", 400
-            if len(username) < 4 or len(password) < 10:
-                return "Username and password must be at least 4 characters", 400
+
             
             
             
@@ -112,7 +208,7 @@ def register():
 
 
 
-@app.route("/login")
+@app.route("/login" , methods=["GET", "POST"])
 def login():
     
     if request.method == 'POST':

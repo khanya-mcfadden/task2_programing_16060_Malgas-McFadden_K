@@ -1,41 +1,11 @@
 <!DOCTYPE html>
-<head>
-  <title>index</title>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=0" />
-  <link rel="stylesheet" type="text/css" href="/static/main.css" />
-</head>
+<html lang="en">
 
-<!-- nav bar -->
+{% extends "index.html" %}
+{% block title %}Sign Up{% endblock %}
+{% block content %}
 
-<div style="background: white;width: 1432.63px; justify-content: flex-start; align-items: left; gap: 50px; display: inline-flex; ">
-  <!-- logo-->
-    <img style="width: 100%; height: 112px; display: flex; align-items: center"   src="/static/images/logo.svg" />
-    
-    <!-- nav -->
-    <a href="/" ><img style="width: 103px; height: 103px;" src="/static/images/home.png" /></a>
-    <div class ="drop-down-icon" >
-      <img class="down-arrow"  src="/static/images/Caret_Down_MD.svg" />
-    </div>
-
-    <div class = "navbar">
-      <a href="/login" class="nav-text">recources</a>
-
-        <!-- drop down icon-->
-
-            <div class ="drop-down-icon" >
-          <img class="down-arrow"  src="/static/images/Caret_Down_MD.svg" />
-        </div>
-        <a href="/login" class="nav-text">solutions</a>
-      
-
-        <a href="/login" class="nav-text" >booking</a>
-        <a href="/login" class="nav-text" >login</a>
-
-      </div>
-</div>
-<div class="nav-divider" style=></div>
-
+<body>
   
   <!-- form-->
   <div class="register-container" style="text-align: center;">
@@ -59,49 +29,5 @@
     </form>
   </div>
 
-
-<!-- footer -->
-<footer>
-    <!-- light gradient -->
-    <div style="width: 100%; height: 361.87px; left: 0px; top: 2693.20px; position: absolute; opacity: 0.05; background: #41B271"></div>
-      <!-- news letter-->
-    <div style="width: 1440px; height: 214.76px; left: 192.88px; top: 2798.18px; position: absolute; background: linear-gradient(0deg, #08392E 0%, #41B271 100%); border-radius: 10px"></div>
-      
-      <!-- Newsletter text-->
-      <div style=" width: 408px; height: 42.95px; left: 220.88px; top: 2883.01px; position: absolute; color: white; font-size: 32px; font-family: Source Serif Pro; font-weight: 400; word-wrap: break-word">Subscribe to our Newsletters</div>
-      
-      
-      <!--input background-->
-      <div style="width: 510px; height: 77.31px; left: 653.88px; top: 2866.91px; position: absolute; background: white; border-radius: 4px"></div>
-      <!--input text-->
-      <div style="width: 120px; height: 21.48px; left: 677.88px; top: 2895.90px; position: absolute; opacity: 0.50; color: #2B3D51; font-size: 16px; font-family: Source Serif Pro; font-weight: 400; word-wrap: break-word">Enter your email</div>
-      <div style="width: 180px; height: 60.13px; left: 975.88px; top: 2875.50px; position: absolute; overflow: hidden">
-    
-    
-        <!--button background-->
-      <div style="width: 180px; height: 60.13px; left: 0px; top: 0px; position: absolute; background: #01EEB8; border-radius: 4px"></div>
-      <!--button text-->
-      <div style="width: 115px; left: 33px; top: 20px; position: absolute; text-align: center; color: black; font-size: 20px; font-family: Source Serif Pro; font-style: italic; font-weight: 400; word-wrap: break-word">Subcribe Now</div>
-      </div>
-
-     <!--footer lower text styling-->
-    <div style="width: 468px; height: 19.33px; left: 197.08px; top: 3052.96px; position: absolute; overflow: hidden">
-    <div style="width: 57px; left: 145px; top: 1px; position: absolute; color: #0A142F; font-size: 16px; font-family: Helvetica Neue; font-weight: 400; word-wrap: break-word">Discover</div>
-    <div style="width: 60px; left: 0px; top: 1px; position: absolute; color: #0A142F; font-size: 16px; font-family: Helvetica Neue; font-weight: 400; word-wrap: break-word">About us</div>
-    <div style="width: 51px; left: 288px; top: 1px; position: absolute; color: #0A142F; font-size: 16px; font-family: Helvetica Neue; font-weight: 400; word-wrap: break-word">Explore</div>
-    <div style="width: 39px; left: 422px; top: 1px; position: absolute; color: #0A142F; font-size: 16px; font-family: Helvetica Neue; font-weight: 400; word-wrap: break-word">Books</div>
-    </div>
-      <!-- social media-->
-    <div style="width: 24px; height: 25.77px; left: 1160.08px; top: 3046.52px; position: absolute; background: #0A142F"></div>
-    <div style="width: 24px; height: 21.48px; left: 1224.08px; top: 3048.67px; position: absolute; background: #0A142F"></div>
-    <img style="width: 22.62px; height: 22.62px; left: 1191.77px; top: 3048.10px; position: absolute" src="https://placehold.co/23x23" />
-
-      <!-- page split top-->
-    <div style="width: 100%; height: 21.28px; top: 2607px; position: absolute; opacity: 0.50; background: #008A00"></div>
-    <!-- page split bottom-->
-    <div style="width: 100%; height: 1.07px;  top: 3127.06px; position: absolute; opacity: 0.20; background: #0A142F; outline: 1px #2B3D51 solid; outline-offset: -0.50px"></div>    
-
-    <!-- under line text-->
-    <div style="width: 253.54px; height: 19.16px; left: 197.08px; top: 3179.55px; position: absolute; opacity: 0.75; color: #0A142F; font-size: 14px; font-family: Source Serif Pro; font-weight: 400; word-wrap: break-word">© 2025 Rosa tech. All rights reservec</div>
-    <div style="width: 208px; height: 19.33px; left: 1040.08px; top: 3179.67px; position: absolute; color: #0A142F; font-size: 14px; font-family: Helvetica Neue; font-weight: 400; word-wrap: break-word">Terms of Service Privacy Policy</div>
-</footer>
+  {% endblock %}
+</body>
