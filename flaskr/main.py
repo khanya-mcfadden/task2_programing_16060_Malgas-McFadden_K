@@ -30,15 +30,7 @@ app.secret_key = os.urandom(24)  # Set a unique and secret key for session manag
 connection = sqlite3.connect('users.db')
 cursor = connection.cursor()
 
-@app.context_processor
-def inject_user():
-    return {
-        "authenticated": "username" in session,
-        "admin": session.get("admin", False),
-    }
-    
-def inject_user():
-    return {"is_authenticated": "username" in session}
+
 # Create users table
 cursor.execute("""
 CREATE TABLE IF NOT EXISTS users (
@@ -56,64 +48,46 @@ CREATE TABLE IF NOT EXISTS users (
 )
 """)
 
-# Create PaymentDetails table
-cursor.execute("""
-CREATE TABLE IF NOT EXISTS PaymentDetails (
-    PaymentId INTEGER PRIMARY KEY,
-    CardNumber INTEGER NOT NULL,
-    ExpiryDate INTEGER NOT NULL
-)
-""")
-
 # Create Bookings table
 
 cursor.execute("""
 CREATE TABLE IF NOT EXISTS Bookings (
-        first_name
-        last_name 
-        email
-        phone
-        postcode
-        message
-        date
-        time
+        bookign_id INTEGER PRIMARY KEY,
+        first_name VARCHAR NOT NULL,
+        last_name varchar NOT NULL,
+        email VARCHAR NOT NULL,
+        phone VARCHAR NOT NULL,
+        postcode VARCHAR NOT NULL,
+        message VARCHAR,
+        date DATE NOT NULL,
+        time TIME NOT NULL
 )
 """)
 
 
-# Create InfoCards table
-cursor.execute("""
-CREATE TABLE IF NOT EXISTS InfoCards (
-    InfoID INTEGER PRIMARY KEY,
-    Title VARCHAR,
-    SubHeading VARCHAR,
-    Body VARCHAR
-)
-""")
 
-# Create Staff table
-cursor.execute("""
-CREATE TABLE IF NOT EXISTS Staff (
-    StaffId INTEGER PRIMARY KEY,
-    FirstName VARCHAR NOT NULL,
-    LastName VARCHAR NOT NULL,
-    role VARCHAR NOT NULL,
-    IsAdmin BOOLEAN NOT NULL,
-    IsBooked BOOLEAN NOT NULL
-)
-""")
 
-# Create AllowedAddresses table
-cursor.execute("""
-CREATE TABLE IF NOT EXISTS AllowedAddresses (
-    AddressId INTEGER PRIMARY KEY,
-    AdressNum INTEGER,
-    AdressName VARCHAR
-)
-""")
 
-connection.commit()
-connection.close()
+
+
+@app.context_processor
+def inject_user():
+    return {
+        "authenticated": "username" in session,
+        "admin": session.get("admin", False),
+    }
+    
+def inject_user():
+    return {"is_authenticated": "username" in session}
+
+
+
+
+
+
+
+
+
 
 # non funtinality page routes (pages that do not require backend functionality)
 @app.route("/")
