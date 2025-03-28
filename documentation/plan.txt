@@ -10,7 +10,13 @@
 [done] finish backend for the login system
 [done] test the registraion system
 [done] test the login system
-[] remove styleing form everything but the nave and footer
+
+28/03/2025 
+[done] remove styleing form everything but the nave and footer
+[] added auth features for when a user is loged in
+
+
+
 need to redo all the css (apart form on the login and registraion), do functinality only now
 
 # what needs to be done#

@@ -1,0 +1,25 @@
+<div style="width: 100%; height: 100%; position: relative">
+    <div style="width: 1440px; height: 361.87px; left: 0px; top: 86.20px; position: absolute; opacity: 0.05; background: #41B271"></div>
+    <div style="width: 1100px; height: 42.95px; left: 181.88px; top: 375.87px; position: absolute; background: rgba(0, 0, 0, 0.50); box-shadow: 54.36563491821289px 54.36563491821289px 54.36563491821289px; border-radius: 2px; filter: blur(27.18px)"></div>
+    <div style="width: 1074px; height: 214.76px; left: 192.88px; top: 191.18px; position: absolute; background: linear-gradient(0deg, #08392E 0%, #41B271 100%); border-radius: 10px"></div>
+    <div style="width: 408px; height: 42.95px; left: 220.88px; top: 276.01px; position: absolute; color: white; font-size: 32px; font-family: Source Serif Pro; font-weight: 400; word-wrap: break-word">Subscribe to our Newsletters</div>
+    <div style="width: 510px; height: 77.31px; left: 653.88px; top: 259.91px; position: absolute; background: white; border-radius: 4px"></div>
+    <div style="width: 120px; height: 21.48px; left: 677.88px; top: 288.90px; position: absolute; opacity: 0.50; color: #2B3D51; font-size: 16px; font-family: Source Serif Pro; font-weight: 400; word-wrap: break-word">Enter your email</div>
+    <div style="width: 180px; height: 60.13px; left: 975.88px; top: 268.50px; position: absolute; overflow: hidden">
+        <div style="width: 180px; height: 60.13px; left: 0px; top: 0px; position: absolute; background: #01EEB8; border-radius: 4px"></div>
+        <div style="width: 115px; left: 33px; top: 20px; position: absolute; text-align: center; color: black; font-size: 20px; font-family: Source Serif Pro; font-style: italic; font-weight: 400; word-wrap: break-word">Subcribe Now</div>
+    </div>
+    <div style="width: 253.54px; height: 19.16px; left: 197.08px; top: 572.55px; position: absolute; opacity: 0.75; color: #0A142F; font-size: 14px; font-family: Source Serif Pro; font-weight: 400; word-wrap: break-word">© 2025 Rosa tech. All rights reservec</div>
+    <div style="width: 208px; height: 19.33px; left: 1040.08px; top: 572.67px; position: absolute; color: #0A142F; font-size: 14px; font-family: Helvetica Neue; font-weight: 400; word-wrap: break-word">Terms of Service          Privacy Policy</div>
+    <div style="width: 1073px; height: 1.07px; left: 198.08px; top: 520.06px; position: absolute; opacity: 0.20; background: #0A142F; outline: 1px #2B3D51 solid; outline-offset: -0.50px"></div>
+    <div style="width: 468px; height: 19.33px; left: 197.08px; top: 445.96px; position: absolute; overflow: hidden">
+        <div style="width: 57px; left: 145px; top: 1px; position: absolute; color: #0A142F; font-size: 16px; font-family: Helvetica Neue; font-weight: 400; word-wrap: break-word">Discover</div>
+        <div style="width: 60px; left: 0px; top: 1px; position: absolute; color: #0A142F; font-size: 16px; font-family: Helvetica Neue; font-weight: 400; word-wrap: break-word">About us</div>
+        <div style="width: 51px; left: 288px; top: 1px; position: absolute; color: #0A142F; font-size: 16px; font-family: Helvetica Neue; font-weight: 400; word-wrap: break-word">Explore</div>
+        <div style="width: 39px; left: 422px; top: 1px; position: absolute; color: #0A142F; font-size: 16px; font-family: Helvetica Neue; font-weight: 400; word-wrap: break-word">Books</div>
+    </div>
+    <div style="width: 24px; height: 25.77px; left: 1160.08px; top: 439.52px; position: absolute; background: #0A142F"></div>
+    <div style="width: 24px; height: 21.48px; left: 1224.08px; top: 441.67px; position: absolute; background: #0A142F"></div>
+    <img style="width: 22.62px; height: 22.62px; left: 1191.77px; top: 441.10px; position: absolute" src="https://placehold.co/23x23" />
+    <div style="width: 1426.13px; height: 21.28px; left: 6.93px; top: 0px; position: absolute; opacity: 0.50; background: #008A00"></div>
+</div>

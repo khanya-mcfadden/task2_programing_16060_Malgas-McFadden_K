@@ -110,8 +110,9 @@ def projects_page():
 
 @app.route("/booking", methods=["GET", "POST"])
 def booking_choice_page():
-
-
+    if "username" not in session:
+        return redirect(url_for("login_page"))
+    
     if request.method == "POST":
         first_name = request.form.get("first_name")
         last_name = request.form.get("last_name")
@@ -229,16 +230,15 @@ def calculations_energy_page():
     return render_template('/calculations-energy.html')
 
 
-@app.route("/login" , methods=["GET", "POST"])
+@app.route("/login", methods=["GET", "POST"])
 def login_page():
-    
     if request.method == 'POST':
         username = request.form['username']
         email = request.form['email']
         password = request.form['password']
         if len(username) > 200 or len(password) > 200 or len(email) > 200:
             return "Input exceeds character limit", 400
-        
+
         connection = sqlite3.connect('users.db')
         cursor = connection.cursor()
         cursor.execute(
@@ -247,6 +247,10 @@ def login_page():
         )
         user = cursor.fetchone()
         connection.close()
+
+        if user is None:
+            return "Invalid username or password", 400
+
         if check_password_hash(user[1], password):
             session["username"] = username
             session["admin"] = False
@@ -256,7 +260,10 @@ def login_page():
 
     return render_template("login.html")
 
-
+@app.route("/logout", methods=["GET", "POST"])
+def logout():
+    session.clear()
+    return redirect(url_for("login_page"))
 
 @app.errorhandler(404)
 def page_not_found(_):

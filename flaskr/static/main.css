@@ -1,38 +1,5 @@
 /* into content */
-html, body {
-    height: 100%;
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
 
-.card-1 {
-	width: 377px;
-	height: 167px;
-	left: 585px;
-	top: 700px;
-	position: relative;
-	background: white;
-	box-shadow: 1px 4px 4px rgba(0, 0, 0, 0.25);
-	border-top-left-radius: 10px;
-	border-bottom-right-radius: 10px;
-	outline: 0.50px rgba(0, 0, 0, 0.50) solid;
-	outline-offset: -0.25px
-}
-
-.card-2 {
-	width: 427px;
-	height: 167px;
-	left: 978px;
-	top: 700px;
-	position: relative;
-	background: white;
-	box-shadow: 1px 4px 4px rgba(0, 0, 0, 0.25);
-	border-top-left-radius: 10px;
-	border-bottom-right-radius: 10px;
-	outline: 0.50px rgba(0, 0, 0, 0.50) solid;
-	outline-offset: -0.25px
-}
 
 /* highlited-text */
 
@@ -87,28 +54,30 @@ html, body {
 	border-bottom: 10px;
 }
 
-
-
-/* nav links */
-.nav-text {
-	width: 167px;
-	height: 44px;
-	color: black;
-	font-size: 36px;
-	font-family: Source Serif Pro;
-	font-weight: 400;
-	text-transform: capitalize;
+.info-cards {
+	width: 650px;
+	border-top-left-radius: 10px;
+	border-bottom-right-radius: 10px;
 	margin-right: auto;
-	margin-left: auto;
-
+	margin-top: auto;
 }
 
-.nav-bar {
-	width: 1432.63px;
-	justify-content: flex-start;
-	align-items: center;
-	gap: 15.63px;
-	display: inline-flex
+.home-background {
+	background: linear-gradient(0deg, #08392E 9%, #41B271 100%);
+
+	width: fit-content;
+	height: fit-content;
+	position: relative;
+	margin: 0 auto;
+	padding: 20px;
+	top: 20px;
+	border-radius: 10px;
+}
+
+/* nav links */
+.nav-link {
+	color: black;
+	font-family: Source Serif Pro;
 }
 
 .nav-divider {
@@ -214,11 +183,13 @@ html, body {
 }
 
 footer {
-    position: absolute;
-    bottom: 0;
-    width: 100%;
-    margin-top: 0; /* Remove any extra margin */
+	position: absolute;
+	bottom: 0;
+	width: 100%;
+	margin-top: 0;
+	/* Remove any extra margin */
 }
+
 .subscribe-button {
 	width: 180px;
 	height: 60.13px;
@@ -226,5 +197,3 @@ footer {
 	top: 2875.50px;
 	position: absolute;
 }
-
-
