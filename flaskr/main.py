@@ -26,91 +26,85 @@ app.secret_key = os.urandom(24)  # Set a unique and secret key for session manag
 #     return render_template('.html')
 
 # database creation
-def database_creation():
-    connection = sqlite3.connect('users.db')
-    cursor = connection.cursor()
 
-    # Create users table
-    cursor.execute("""
-    CREATE TABLE IF NOT EXISTS users (
-        id INTEGER PRIMARY KEY,
-        username VARCHAR NOT NULL,
-        FirstName VARCHAR,
-        LastName VARCHAR,
-        Email VARCHAR NOT NULL,
-        Password VARCHAR(20) NOT NULL,
-        PaymentDetails INTEGER,
-        AddressId INTEGER,
-        admin BOOLEAN DEFAULT 0,
-        FOREIGN KEY (PaymentDetails) REFERENCES PaymentDetails(PaymentId),
-        FOREIGN KEY (AddressId) REFERENCES AllowedAddresses(AddressId)
-    )
-    """)
+connection = sqlite3.connect('users.db')
+cursor = connection.cursor()
 
-    # Create PaymentDetails table
-    cursor.execute("""
-    CREATE TABLE IF NOT EXISTS PaymentDetails (
-        PaymentId INTEGER PRIMARY KEY,
-        CardNumber INTEGER NOT NULL,
-        ExpiryDate INTEGER NOT NULL
-    )
-    """)
+# Create users table
+cursor.execute("""
+CREATE TABLE IF NOT EXISTS users (
+    id INTEGER PRIMARY KEY,
+    username VARCHAR NOT NULL,
+    FirstName VARCHAR,
+    LastName VARCHAR,
+    Email VARCHAR NOT NULL,
+    Password VARCHAR(20) NOT NULL,
+    PaymentDetails INTEGER,
+    AddressId INTEGER,
+    admin BOOLEAN DEFAULT 0,
+    FOREIGN KEY (PaymentDetails) REFERENCES PaymentDetails(PaymentId),
+    FOREIGN KEY (AddressId) REFERENCES AllowedAddresses(AddressId)
+)
+""")
 
-    # Create Bookings table
-    cursor.execute("""
-    CREATE TABLE IF NOT EXISTS Bookings (
-        BookId INTEGER PRIMARY KEY,
-        is paid BOOLEAN NOT NULL,
-        is instalation BOOLEAN NOT NULL,
-        number_of_instalations INTEGER,
-        is solar BOOLEAN NOT NULL,
-        UserId INTEGER NOT NULL,
-        Time INTEGER NOT NULL,
-        Date INTEGER NOT NULL,
-        StaffId INTEGER NOT NULL,
-        IsBooked BOOLEAN NOT NULL,
-        message VARCHAR,
-        FOREIGN KEY (UserId) REFERENCES users(id),
-        FOREIGN KEY (StaffId) REFERENCES Staff(StaffId)
-    )
-    """)
+# Create PaymentDetails table
+cursor.execute("""
+CREATE TABLE IF NOT EXISTS PaymentDetails (
+    PaymentId INTEGER PRIMARY KEY,
+    CardNumber INTEGER NOT NULL,
+    ExpiryDate INTEGER NOT NULL
+)
+""")
+
+# Create Bookings table
+
+cursor.execute("""
+CREATE TABLE IF NOT EXISTS Bookings (
+        first_name
+        last_name 
+        email
+        phone
+        postcode
+        message
+        date
+        time
+)
+""")
 
 
+# Create InfoCards table
+cursor.execute("""
+CREATE TABLE IF NOT EXISTS InfoCards (
+    InfoID INTEGER PRIMARY KEY,
+    Title VARCHAR,
+    SubHeading VARCHAR,
+    Body VARCHAR
+)
+""")
 
-    # Create InfoCards table
-    cursor.execute("""
-    CREATE TABLE IF NOT EXISTS InfoCards (
-        InfoID INTEGER PRIMARY KEY,
-        Title VARCHAR,
-        SubHeading VARCHAR,
-        Body VARCHAR
-    )
-    """)
+# Create Staff table
+cursor.execute("""
+CREATE TABLE IF NOT EXISTS Staff (
+    StaffId INTEGER PRIMARY KEY,
+    FirstName VARCHAR NOT NULL,
+    LastName VARCHAR NOT NULL,
+    role VARCHAR NOT NULL,
+    IsAdmin BOOLEAN NOT NULL,
+    IsBooked BOOLEAN NOT NULL
+)
+""")
 
-    # Create Staff table
-    cursor.execute("""
-    CREATE TABLE IF NOT EXISTS Staff (
-        StaffId INTEGER PRIMARY KEY,
-        FirstName VARCHAR NOT NULL,
-        LastName VARCHAR NOT NULL,
-        role VARCHAR NOT NULL,
-        IsAdmin BOOLEAN NOT NULL,
-        IsBooked BOOLEAN NOT NULL
-    )
-    """)
+# Create AllowedAddresses table
+cursor.execute("""
+CREATE TABLE IF NOT EXISTS AllowedAddresses (
+    AddressId INTEGER PRIMARY KEY,
+    AdressNum INTEGER,
+    AdressName VARCHAR
+)
+""")
 
-    # Create AllowedAddresses table
-    cursor.execute("""
-    CREATE TABLE IF NOT EXISTS AllowedAddresses (
-        AddressId INTEGER PRIMARY KEY,
-        AdressNum INTEGER,
-        AdressName VARCHAR
-    )
-    """)
-
-    connection.commit()
-    connection.close()
-
+connection.commit()
+connection.close()
 
 # non funtinality page routes (pages that do not require backend functionality)
 @app.route("/")
@@ -154,8 +148,8 @@ def booking_choice_page():
         try:
             # Insert the booking
             cursor.execute(
-                "INSERT INTO bookings (first_name, last_name, email, phone, postcode, message, date, time, username) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)",
-                (first_name, last_name, email, phone, postcode, message, date, time, session.get("username")),
+                "INSERT INTO Bookings (first_name, last_name, email, phone, postcode, message, date, time) VALUES (?, ?, ?, ?, ?, ?, ?, ?)",
+                (first_name, last_name, email, phone, postcode, message, date, time),
             )
             connection.commit()
             return redirect("/booking_confirm")

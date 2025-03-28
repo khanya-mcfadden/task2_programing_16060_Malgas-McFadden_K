@@ -8,8 +8,7 @@
 </head>
 
 <body>
-    <form method="POST" action="/BookingPage">
-        <h1>Book a course!</h1>
+    <form method="POST" action="/booking">
         <p>Welcome to our booking page! Please select a course and date to make a reservation:</p>
         <ul style="list-style: none; padding: 0;">
             <li>
@@ -60,39 +59,6 @@
         <button type="submit">Book Now</button>
     </form>
 
-    <script>
-        const form = document.querySelector('form');
-
-        if (form) {
-            form.addEventListener('submit', async (e) => {
-                e.preventDefault();
-                const course = document.getElementById('courses').value;
-                const date = document.getElementById('date').value;
-
-                if (!course || !date) {
-                    alert('Please fill in all fields before submitting.');
-                    return;
-                }
-
-                const formAction = form.getAttribute('action');
-                const response = await fetch(formAction, {
-                    method: 'POST',
-                    body: new FormData(form)
-                });
-
-                if (!response.ok) {
-                    const message = await response.text();
-                    const overlay = document.createElement('div');
-                    overlay.style.cssText = 'position:fixed; top:20px; left:50%; transform:translateX(-50%); background:rgba(255,0,0,0.8); color:white; padding:15px; border-radius:5px; z-index:1000;';
-                    overlay.textContent = message;
-                    document.body.appendChild(overlay);
-                    setTimeout(() => overlay.remove(), 3000);
-                } else {
-                    window.location.href = '/booking_confirm';
-                }
-            });
-        }
-    </script>
 </body>
 
 </html>
