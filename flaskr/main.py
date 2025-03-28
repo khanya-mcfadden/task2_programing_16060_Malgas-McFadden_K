@@ -30,6 +30,15 @@ app.secret_key = os.urandom(24)  # Set a unique and secret key for session manag
 connection = sqlite3.connect('users.db')
 cursor = connection.cursor()
 
+@app.context_processor
+def inject_user():
+    return {
+        "authenticated": "username" in session,
+        "admin": session.get("admin", False),
+    }
+    
+def inject_user():
+    return {"is_authenticated": "username" in session}
 # Create users table
 cursor.execute("""
 CREATE TABLE IF NOT EXISTS users (
@@ -275,7 +284,10 @@ def login_page():
 
 
 
-
+@app.errorhandler(404)
+def page_not_found(_):
+    app.logger.error(f"Page not found: {request.url}")
+    return render_template("404.html"), 404
 
 
 
