@@ -221,7 +221,7 @@ def register_page():
 
 @app.route("/calculations-choice")
 def calculations_choice_page():
-    return render_template('calulations-choice.html')
+    return render_template('calculations-choice.html')
 
 @app.route("/calculations-carbon")
 def calculations_carbon_page():
@@ -230,7 +230,7 @@ def calculations_carbon_page():
 
 @app.route("/calculations-energy")
 def calculations_energy_page():
-    return render_template('calculations-energy.html')
+    return render_template('/calculations-energy.html')
 
 
 @app.route("/login" , methods=["GET", "POST"])
