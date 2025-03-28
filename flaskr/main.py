@@ -16,6 +16,7 @@ import requests
 from werkzeug.security import generate_password_hash, check_password_hash
 import re
 app = Flask(__name__, template_folder='Templates')
+app.secret_key = os.urandom(24)  # Set a unique and secret key for session management
 
 # page link structure
 
@@ -138,19 +139,9 @@ def projects_page():
 
 # funtinality page routes(pages that have backend functionality)
 
-@app.route("/booking-choice")
+@app.route("/booking")
 def booking_choice_page():
-    return render_template('booking-choice.html')
-
-@app.route("/booking-installation")
-def booking_installation_page():
-    return render_template('booking-installation.html')
-
-
-@app.route("/booking-consultation")
-def booking_page():
-    return render_template('booking-consultation.html')
-
+    return render_template('booking.html')
 
 
 @app.route("/register" , methods=["GET", "POST"])
@@ -254,7 +245,7 @@ def login_page():
         if check_password_hash(user[1], password):
             session["username"] = username
             session["admin"] = False
-            return redirect(url_for("profile"))
+            return redirect(url_for("index_page"))
         else:
             return "Invalid username or password", 400
 

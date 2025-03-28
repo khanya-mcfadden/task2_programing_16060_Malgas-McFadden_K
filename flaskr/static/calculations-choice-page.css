@@ -1,0 +1,53 @@
+.calculations-choice-title {
+
+	color: #08392E;
+	position: relative;
+	text-align: center;
+	font-family: "Source Serif Pro";
+	font-size: 64px;
+	font-style: normal;
+	font-weight: 400;
+	line-height: normal;
+	text-decoration-line: underline;
+	text-decoration-style: solid;
+	text-decoration-skip-ink: auto;
+	text-decoration-thickness: auto;
+	text-underline-offset: auto;
+	text-underline-position: from-font;
+	text-transform: capitalize;
+}
+
+.calculations-choice-energy {
+	left: 80%;
+	top: 0px;
+	position: relative;
+	text-align: right;
+	color: #08392E;
+	font-size: 80px;
+	font-family: Source Serif Pro;
+	font-weight: 400;
+	text-decoration: underline;
+	text-transform: capitalize;
+	word-wrap: break-word
+}
+
+.calculations-choice-carbon {
+	left: 5%;
+	top: 5%;
+	text-align: left;
+	color: #08392E;
+	font-size: 80px;
+	font-family: Source Serif Pro;
+	font-weight: 400;
+	text-decoration: underline;
+	text-transform: capitalize;
+	word-wrap: break-word;
+}
+
+.choice-button {
+	width: 594px;
+	height: 132px;
+	flex-shrink: 0;
+	transform: scale(0.5);
+	transform: translateY(100%);
+}

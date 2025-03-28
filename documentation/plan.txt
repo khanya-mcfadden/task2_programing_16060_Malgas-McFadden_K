@@ -6,12 +6,13 @@
 [done] creat a test log
 
 27/03/2025 
-[] finish backend for the registraion system
+[done] finish backend for the registraion system
 [] finish backend for the login system
 [] test the registraion system
 [] test the login system
 [] try fix styling issues in home page and add background to login/registraion
 
+need to redo all the css , do functinality only now
 
 # what needs to be done#
 -must be done-

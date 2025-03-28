@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+  {% extends "index.html" %} {% block title %}booking page{% endblock %} {%
+  block content %}
+  <body>
+    <form method="post" action="/submit-form">
+      <!-- Background -->
+      <div></div>
+      <div></div>
+      <div></div>
+      <!-- inputs -->
+      <label for="first_name">
+        <span>First Name *</span>
+      </label>
+      <input type="text" id="first_name" name="first_name" required />
+
+      <label for="last_name">
+        <span>Last Name *</span>
+      </label>
+      <input type="text" id="last_name" name="last_name" required />
+
+      <label for="email">
+        <span>Email Address *</span>
+      </label>
+      <input type="email" id="email" name="email" required />
+
+      <label for="phone">
+        <span>Phone Number *</span>
+      </label>
+      <input type="tel" id="phone" name="phone" required />
+
+      <label for="postcode">
+        <span>Post Code *</span>
+      </label>
+      <input type="text" id="postcode" name="postcode" required />
+      <!-- Messages -->
+      <label for="message">
+        <span>Add a Message</span>
+      </label>
+      <textarea id="message" name="message"></textarea>
+
+      <div>
+        <input type="checkbox" id="agree" name="agree" required />
+        <label for="agree"
+          >By clicking this box you agree to be contacted by the Rose
+          Technologies company</label
+        >
+      </div>
+
+      <button type="submit">
+        <span>Submit</span>
+      </button>
+    </form>
+
+    {% endblock %}
+  </body>
+</html>
