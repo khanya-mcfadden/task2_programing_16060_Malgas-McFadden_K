@@ -56,33 +56,25 @@ def database_creation():
     )
     """)
 
-    # Create ConsultationBookings table
+    # Create Bookings table
     cursor.execute("""
-    CREATE TABLE IF NOT EXISTS ConsultationBookings (
-        ConsultationBookId INTEGER PRIMARY KEY,
+    CREATE TABLE IF NOT EXISTS Bookings (
+        BookId INTEGER PRIMARY KEY,
+        is paid BOOLEAN NOT NULL,
+        is instalation BOOLEAN NOT NULL,
+        number_of_instalations INTEGER,
+        is solar BOOLEAN NOT NULL,
         UserId INTEGER NOT NULL,
         Time INTEGER NOT NULL,
         Date INTEGER NOT NULL,
         StaffId INTEGER NOT NULL,
         IsBooked BOOLEAN NOT NULL,
+        message VARCHAR,
         FOREIGN KEY (UserId) REFERENCES users(id),
         FOREIGN KEY (StaffId) REFERENCES Staff(StaffId)
     )
     """)
 
-    # Create InstallationBookings table
-    cursor.execute("""
-    CREATE TABLE IF NOT EXISTS InstallationBookings (
-        InstaBookId INTEGER PRIMARY KEY,
-        UserId INTEGER NOT NULL,
-        Time INTEGER NOT NULL,
-        Date INTEGER NOT NULL,
-        StaffId INTEGER NOT NULL,
-        IsBooked BOOLEAN NOT NULL,
-        FOREIGN KEY (UserId) REFERENCES users(id),
-        FOREIGN KEY (StaffId) REFERENCES Staff(StaffId)
-    )
-    """)
 
 
     # Create InfoCards table
@@ -139,9 +131,45 @@ def projects_page():
 
 # funtinality page routes(pages that have backend functionality)
 
-@app.route("/booking")
+@app.route("/booking", methods=["GET", "POST"])
 def booking_choice_page():
-    return render_template('booking.html')
+
+
+    if request.method == "POST":
+        first_name = request.form.get("first_name")
+        last_name = request.form.get("last_name")
+        email = request.form.get("email")
+        phone = request.form.get("phone")
+        postcode = request.form.get("postcode")
+        message = request.form.get("message")
+        date = request.form.get("date")
+        time = request.form.get("time")
+
+        if not first_name or not last_name or not email or not phone or not postcode:
+            return "Please fill out all fields", 400
+
+        connection = sqlite3.connect("users.db")
+        cursor = connection.cursor()
+
+        try:
+            # Insert the booking
+            cursor.execute(
+                "INSERT INTO bookings (first_name, last_name, email, phone, postcode, message, date, time, username) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)",
+                (first_name, last_name, email, phone, postcode, message, date, time, session.get("username")),
+            )
+            connection.commit()
+            return redirect("/booking_confirm")
+        except sqlite3.Error as e:
+            return f"Booking failed: {e}", 500
+        finally:
+            connection.close()
+
+    return render_template("booking.html")
+
+
+@app.route("/booking_confirm")
+def booking_confirm_page():
+    return render_template('booking_confirm.html')
 
 
 @app.route("/register" , methods=["GET", "POST"])

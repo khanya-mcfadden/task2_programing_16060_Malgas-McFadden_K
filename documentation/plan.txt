@@ -7,11 +7,10 @@
 
 27/03/2025 
 [done] finish backend for the registraion system
-[] finish backend for the login system
-[] test the registraion system
-[] test the login system
-[] try fix styling issues in home page and add background to login/registraion
-
+[done] finish backend for the login system
+[done] test the registraion system
+[done] test the login system
+[] remove styleing form everything but the nave and footer
 need to redo all the css , do functinality only now
 
 # what needs to be done#

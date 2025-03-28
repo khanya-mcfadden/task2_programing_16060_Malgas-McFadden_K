@@ -1,57 +1,99 @@
 <!DOCTYPE html>
 <html lang="en">
-  {% extends "index.html" %} {% block title %}booking page{% endblock %} {%
-  block content %}
-  <body>
-    <form method="post" action="/submit-form">
-      <!-- Background -->
-      <div></div>
-      <div></div>
-      <div></div>
-      <!-- inputs -->
-      <label for="first_name">
-        <span>First Name *</span>
-      </label>
-      <input type="text" id="first_name" name="first_name" required />
+{% extends "index.html" %} {% block title %}Booking Page{% endblock %} 
+{% block content %}
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
 
-      <label for="last_name">
-        <span>Last Name *</span>
-      </label>
-      <input type="text" id="last_name" name="last_name" required />
+<body>
+    <form method="POST" action="/BookingPage">
+        <h1>Book a course!</h1>
+        <p>Welcome to our booking page! Please select a course and date to make a reservation:</p>
+        <ul style="list-style: none; padding: 0;">
+            <li>
+                <label for="date">Select a date:</label>
+                <input type="date" id="date" name="date" required>
+                <input type="time" id="time" name="time" required>
+            </li>
+        </ul>
 
-      <label for="email">
-        <span>Email Address *</span>
-      </label>
-      <input type="email" id="email" name="email" required />
+        <!-- Additional Inputs -->
+        <label for="first_name">
+            <span>First Name *</span>
+        </label>
+        <input type="text" id="first_name" name="first_name" required />
 
-      <label for="phone">
-        <span>Phone Number *</span>
-      </label>
-      <input type="tel" id="phone" name="phone" required />
+        <label for="last_name">
+            <span>Last Name *</span>
+        </label>
+        <input type="text" id="last_name" name="last_name" required />
 
-      <label for="postcode">
-        <span>Post Code *</span>
-      </label>
-      <input type="text" id="postcode" name="postcode" required />
-      <!-- Messages -->
-      <label for="message">
-        <span>Add a Message</span>
-      </label>
-      <textarea id="message" name="message"></textarea>
+        <label for="email">
+            <span>Email Address *</span>
+        </label>
+        <input type="email" id="email" name="email" required />
 
-      <div>
-        <input type="checkbox" id="agree" name="agree" required />
-        <label for="agree"
-          >By clicking this box you agree to be contacted by the Rose
-          Technologies company</label
-        >
-      </div>
+        <label for="phone">
+            <span>Phone Number *</span>
+        </label>
+        <input type="tel" id="phone" name="phone" required />
 
-      <button type="submit">
-        <span>Submit</span>
-      </button>
+        <label for="postcode">
+            <span>Post Code *</span>
+        </label>
+        <input type="text" id="postcode" name="postcode" required />
+
+        <label for="message">
+            <span>Add a Message</span>
+        </label>
+        <textarea id="message" name="message"></textarea>
+
+        <div>
+            <input type="checkbox" id="agree" name="agree" required />
+            <label for="agree">
+                By clicking this box you agree to be contacted by the Rose Technologies company
+            </label>
+        </div>
+
+        <button type="submit">Book Now</button>
     </form>
 
-    {% endblock %}
-  </body>
+    <script>
+        const form = document.querySelector('form');
+
+        if (form) {
+            form.addEventListener('submit', async (e) => {
+                e.preventDefault();
+                const course = document.getElementById('courses').value;
+                const date = document.getElementById('date').value;
+
+                if (!course || !date) {
+                    alert('Please fill in all fields before submitting.');
+                    return;
+                }
+
+                const formAction = form.getAttribute('action');
+                const response = await fetch(formAction, {
+                    method: 'POST',
+                    body: new FormData(form)
+                });
+
+                if (!response.ok) {
+                    const message = await response.text();
+                    const overlay = document.createElement('div');
+                    overlay.style.cssText = 'position:fixed; top:20px; left:50%; transform:translateX(-50%); background:rgba(255,0,0,0.8); color:white; padding:15px; border-radius:5px; z-index:1000;';
+                    overlay.textContent = message;
+                    document.body.appendChild(overlay);
+                    setTimeout(() => overlay.remove(), 3000);
+                } else {
+                    window.location.href = '/booking_confirm';
+                }
+            });
+        }
+    </script>
+</body>
+
 </html>
+{% endblock %}
