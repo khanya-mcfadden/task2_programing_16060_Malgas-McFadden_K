@@ -11,7 +11,7 @@
 [done] test the registraion system
 [done] test the login system
 [] remove styleing form everything but the nave and footer
-need to redo all the css , do functinality only now
+need to redo all the css (apart form on the login and registraion), do functinality only now
 
 # what needs to be done#
 -must be done-
