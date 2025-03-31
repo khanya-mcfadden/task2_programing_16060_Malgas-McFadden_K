@@ -52,15 +52,24 @@ CREATE TABLE IF NOT EXISTS users (
 
 cursor.execute("""
 CREATE TABLE IF NOT EXISTS Bookings (
-        bookign_id INTEGER PRIMARY KEY,
-        first_name VARCHAR NOT NULL,
-        last_name varchar NOT NULL,
-        email VARCHAR NOT NULL,
-        phone VARCHAR NOT NULL,
-        postcode VARCHAR NOT NULL,
-        message VARCHAR,
-        date DATE NOT NULL,
-        time TIME NOT NULL
+    booking_id INTEGER PRIMARY KEY,
+    is_active BOOLEAN DEFAULT 1,
+    is_confirmed BOOLEAN DEFAULT 0,
+    is_cancelled BOOLEAN DEFAULT 0,
+    is_completed BOOLEAN DEFAULT 0,
+    is_paid BOOLEAN DEFAULT 0,
+    is_installation BOOLEAN DEFAULT 0,
+    installation_choice VARCHAR,
+    installation_number INTEGER,
+    installation_details TEXT,
+    first_name VARCHAR NOT NULL,
+    last_name VARCHAR NOT NULL,
+    email VARCHAR NOT NULL,
+    phone VARCHAR NOT NULL,
+    postcode VARCHAR NOT NULL,
+    message TEXT,
+    date DATE NOT NULL,
+    time TIME NOT NULL
 )
 """)
 
@@ -98,9 +107,14 @@ def about_page():
     return render_template('about.html')
 
 
-@app.route("/infomation-page")
+@app.route("/infomation-page-pricing")
 def information_page():
-    return render_template('information-page.html')
+    return render_template('information-pricing.html')
+
+@app.route("/information-page-article")
+def information_page_article():
+    return render_template('information-article.html')
+
 
 @app.route("/projects-page")
 def projects_page():
@@ -116,6 +130,10 @@ def booking_choice_page():
     if request.method == "POST":
         first_name = request.form.get("first_name")
         last_name = request.form.get("last_name")
+        is_installation = request.form.get("is_installation", "")
+        installation_choice = request.form.get("installation_choice", "")
+        installation_number = request.form.get("installation_number", 0)
+        installation_details = request.form.get("installation_details", "")
         email = request.form.get("email")
         phone = request.form.get("phone")
         postcode = request.form.get("postcode")
@@ -132,8 +150,7 @@ def booking_choice_page():
         try:
             # Insert the booking
             cursor.execute(
-                "INSERT INTO Bookings (first_name, last_name, email, phone, postcode, message, date, time) VALUES (?, ?, ?, ?, ?, ?, ?, ?)",
-                (first_name, last_name, email, phone, postcode, message, date, time),
+                "INSERT INTO Bookings (is_installation, installation_choice, installation_number, installation_details, first_name, last_name, email, phone, postcode, message, date, time) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
             )
             connection.commit()
             return redirect("/booking_confirm")
