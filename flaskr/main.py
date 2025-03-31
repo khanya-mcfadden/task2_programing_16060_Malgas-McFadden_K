@@ -122,6 +122,8 @@ def projects_page():
 
 # funtinality page routes(pages that have backend functionality)
 
+
+# booking
 @app.route("/booking", methods=["GET", "POST"])
 def booking_choice_page():
     if "username" not in session:
@@ -224,6 +226,92 @@ def booking_confirm_page():
     return render_template('booking_confirm.html')
 
 
+# calculations
+@app.route("/calculations-choice")
+def calculations_choice_page():
+    return render_template('calculations-choice.html')
+
+
+# carbon
+
+@app.route("/calculations-carbon")
+def calculations_carbon_page():
+    return render_template('calculations-carbon.html')
+
+# energy
+
+
+@app.route("/calculations-energy", methods=["GET", "POST"])
+def calculations_energy_page():
+    if request.method == 'POST':
+        try:
+            home_kwh = float(request.form['energy'])  # Avg hourly kWh use
+            energy_rates = float(request.form['cost']) / 100  # Convert pence to pounds
+            time_frame = float(request.form['time'])  # Months
+            
+            avg_days_month = 30  # Assumed average month length
+            
+            # Calculate total energy usage over the given months
+            total_energy = home_kwh * 24 * avg_days_month * time_frame  
+            
+            # Calculate total cost (round to two digits )
+            total_cost = total_energy * energy_rates  
+
+            if total_cost < 0 or total_energy < 0:
+                return "Invalid input", 400
+            else:
+                return redirect(url_for('calculations_results_energy_page', total_cost=total_cost, total_use=total_energy))
+        except (ValueError, KeyError):
+            return "Invalid input data", 400
+    return render_template('calculations-energy.html')
+
+
+
+
+@app.route("/calculations-results-energy")
+def calculations_results_energy_page():
+    total_use = request.args.get('total_use', type=float)
+    total_cost = request.args.get('total_cost', type=float)
+    return render_template('calculations-results-energy.html', total_cost=total_cost, total_use=total_use)
+
+
+
+
+# login, logout and register
+
+@app.route("/login", methods=["GET", "POST"])
+def login_page():
+    if request.method == 'POST':
+        username = request.form['username']
+        email = request.form['email']
+        password = request.form['password']
+        if len(username) > 200 or len(password) > 200 or len(email) > 200:
+            return "Input exceeds character limit", 400
+
+        connection = sqlite3.connect('users.db')
+        cursor = connection.cursor()
+        cursor.execute(
+            "SELECT username, password, email, admin FROM users WHERE username = ?",
+            (username,),
+        )
+        user = cursor.fetchone()
+        connection.close()
+
+        if user is None:
+            return "Invalid username or password", 400
+
+        if check_password_hash(user[1], password):
+            session["username"] = username
+            session["admin"] = False
+            return redirect(url_for("index_page"))
+        else:
+            return "Invalid username or password", 400
+
+    return render_template("login.html")
+
+
+
+
 @app.route("/register" , methods=["GET", "POST"])
 def register_page():
         if request.method == 'POST':
@@ -287,58 +375,14 @@ def register_page():
                 connection.close()
     
         return render_template('register.html')
-
-
-
-@app.route("/calculations-choice")
-def calculations_choice_page():
-    return render_template('calculations-choice.html')
-
-@app.route("/calculations-carbon")
-def calculations_carbon_page():
-    return render_template('calculations-carbon.html')
-
-
-@app.route("/calculations-energy")
-def calculations_energy_page():
-    return render_template('/calculations-energy.html')
-
-
-@app.route("/login", methods=["GET", "POST"])
-def login_page():
-    if request.method == 'POST':
-        username = request.form['username']
-        email = request.form['email']
-        password = request.form['password']
-        if len(username) > 200 or len(password) > 200 or len(email) > 200:
-            return "Input exceeds character limit", 400
-
-        connection = sqlite3.connect('users.db')
-        cursor = connection.cursor()
-        cursor.execute(
-            "SELECT username, password, email, admin FROM users WHERE username = ?",
-            (username,),
-        )
-        user = cursor.fetchone()
-        connection.close()
-
-        if user is None:
-            return "Invalid username or password", 400
-
-        if check_password_hash(user[1], password):
-            session["username"] = username
-            session["admin"] = False
-            return redirect(url_for("index_page"))
-        else:
-            return "Invalid username or password", 400
-
-    return render_template("login.html")
-
+    
 @app.route("/logout", methods=["GET", "POST"])
 def logout():
     session.clear()
     return redirect(url_for("login_page"))
 
+
+# error handling
 @app.errorhandler(404)
 def page_not_found(_):
     app.logger.error(f"Page not found: {request.url}")
