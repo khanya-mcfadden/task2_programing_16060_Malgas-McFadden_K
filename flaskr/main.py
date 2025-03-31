@@ -141,7 +141,64 @@ def booking_choice_page():
         date = request.form.get("date")
         time = request.form.get("time")
 
-        if not first_name or not last_name or not email or not phone or not postcode:
+        if not first_name or not last_name or not email or not phone or not postcode or not date or not time or not is_installation:
+            return "Please fill out all fields", 400
+
+        connection = sqlite3.connect("users.db")
+        cursor = connection.cursor()
+
+        try:
+            # Insert the booking
+            cursor.execute(
+                """
+                INSERT INTO Bookings (
+                    is_installation, installation_choice, installation_number, 
+                    installation_details, first_name, last_name, email, phone, 
+                    postcode, message, date, time
+                ) 
+                VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+                """,
+                (
+                    is_installation == "installation",  # Convert to boolean
+                    installation_choice,
+                    installation_number,
+                    installation_details,
+                    first_name,
+                    last_name,
+                    email,
+                    phone,
+                    postcode,
+                    message,
+                    date,
+                    time,
+                ),
+            )
+            connection.commit()
+            return redirect("/booking_confirm")
+        except sqlite3.Error as e:
+            return f"Booking failed: {e}", 500
+        finally:
+            connection.close()
+
+    return render_template("booking.html")
+    if "username" not in session:
+        return redirect(url_for("login_page"))
+    
+    if request.method == "POST":
+        first_name = request.form.get("first_name")
+        last_name = request.form.get("last_name")
+        is_installation = request.form.get("is_installation", "")
+        installation_choice = request.form.get("installation_choice", "")
+        installation_number = request.form.get("installation_number", 0)
+        installation_details = request.form.get("installation_details", "")
+        email = request.form.get("email")
+        phone = request.form.get("phone")
+        postcode = request.form.get("postcode")
+        message = request.form.get("message")
+        date = request.form.get("date")
+        time = request.form.get("time")
+
+        if not first_name or not last_name or not email or not phone or not postcode or not date or not time or not is_installation or not installation_choice or not installation_number:
             return "Please fill out all fields", 400
 
         connection = sqlite3.connect("users.db")

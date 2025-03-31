@@ -30,7 +30,7 @@
           <!-- installation Selection -->
           <div class="mb-3">
             <label for="installation" class="form-label">do you want a consultation or installation?</label>
-            <select id="installation" name="installation" class="form-select" required>
+            <select id="installation" name="is_installation" class="form-select" required>
               <option value="consultation">consultation</option>
               <option value="installation">installation</option>
             </select>
@@ -111,17 +111,6 @@
         })
       </script>
 
-      <!-- number limit for installation -->
-      <script>
-        document.getElementById('installation-choice').addEventListener('change', function () {
-          const installationNumber = document.getElementById('installation-number')
-          if (this.value === 'ev chargers') {
-            installationNumber.max = 5
-          } else {
-            installationNumber.removeAttribute('max')
-          }
-        })
-      </script>
       <!-- number limit for installation -->
     <script>
       document.getElementById('installation-choice').addEventListener('change', function () {
