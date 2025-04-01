@@ -1,0 +1,27 @@
+{
+    "name": "Auth",
+    "request": {
+        "auth": {
+            "type": "bearer",
+            "bearer": [
+                {
+                    "key": "token",
+                    "value": "{{API_KEY}}",
+                    "type": "string"
+                }
+            ]
+        },
+        "method": "GET",
+        "header": [],
+        "url": {
+            "raw": "{{URL}}/auth",
+            "host": [
+                "{{URL}}"
+            ],
+            "path": [
+                "auth"
+            ]
+        }
+    },
+    "response": []
+}

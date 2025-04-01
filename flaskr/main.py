@@ -238,6 +238,15 @@ def calculations_choice_page():
 def calculations_carbon_page():
     return render_template('calculations-carbon.html')
 
+
+@app.route("/carbon-interface", methods=["GET", "POST"])
+def carbon_interface():
+    curl = "https://www.carboninterface.com/api/v1/auth"
+    -H = "Authorization: Bearer API_KEY"
+    {
+    "message": "auth successful"
+    }
+
 # energy
 
 
