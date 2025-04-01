@@ -7,16 +7,24 @@
 {% block content %}
 
 <body>
-    <h1>Choose what you want to Calculation</h1>
-    <div>
-        <div>energy usage <br/>assessment</div>
-        <div></div>
-    </div>
+    <h1 class="text-center">Choose what you want to Calculation</h1>
 
-    <div>
-        <div>carbon assessment</div>
-            <img src="/static/images/icons/book-now-button.png" alt="Book Now" style="height:100px"/>
+
+    <div class="container mt-5">
+        <div class="row">
+            <div class="col-md-6 assessment-section text-left">
+                <h2>Carbon Assessment</h2>
+                <a href="#" class="btn btn-primary">Book NOW</a>
+            </div>
+            <div class="col-md-6 assessment-section text-right">
+                <h2>Energy Usage Assessment</h2>
+                <a href="#" class="btn btn-primary">Book NOW</a>
+            </div>
+        </div>
     </div>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
 {% endblock %}
 </body>
