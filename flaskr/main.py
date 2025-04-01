@@ -204,7 +204,7 @@ def calculations_carbon_page():
         try:
             # Collect inputs from the form
             home_size = float(request.form.get('home-size', 0))  # Home size in ft²
-            heating_type = request.form.get('heating-type', 'Other')  # Heating type
+            heating_type = request.form.get('heating-type', 'Gas')  # Heating type
             
             num_appliances = int(request.form.get('appliances', 0))  # Number of appliances
             num_laptops = int(request.form.get('laptops', 0))  # Number of laptops
@@ -219,7 +219,7 @@ def calculations_carbon_page():
             train_long_journeys = request.form.get('train-duration', 'no') == 'yes'
             
             uses_bus = request.form.get('bus', 'no') == 'yes'  # Do you travel by bus?
-            bus_travel_count = int(request.form.get('bus-frequency', 0)) if uses_bus == 'yes' else 0
+            bus_travel_count = int(request.form.get('bus-frequency', 0)) if uses_bus else 0
             bus_long_journeys = request.form.get('bus-duration', 'no') == 'yes'
             
             # Corrected carbon emission factors (kg CO₂ per unit)
@@ -242,26 +242,27 @@ def calculations_carbon_page():
             # Calculate total carbon usage for a year
             total_carbon = 0
             # home
-            home_carbon += home_size * heating_factors.get(heating_type, 1.0)
-            appliance_carbon += num_appliances * appliance_factor
+            home_carbon = home_size * heating_factors.get(heating_type, 1.0)
+            appliance_carbon = num_appliances * appliance_factor
             # appliances
-            laptop_carbon += num_laptops * laptop_factor
-            desktop_carbon += num_desktops * desktop_factor
+            laptop_carbon = num_laptops * laptop_factor
+            desktop_carbon = num_desktops * desktop_factor
             # transport
-            car_5_carbon += car_travel_5_miles * car_5_miles_factor * 12  # Adjusted to monthly trips
+            car_5_carbon = car_travel_5_miles * car_5_miles_factor 
             
-            car_10_carbon += car_travel_10_miles * car_10_miles_factor * 12  # Adjusted to monthly trips
+            car_10_carbon = car_travel_10_miles * car_10_miles_factor 
             
-            train_carbon += train_travel_count * (train_long_factor if train_long_journeys else train_short_factor) * 12 # per year
+            train_carbon = train_travel_count * (train_long_factor if train_long_journeys else train_short_factor) 
             
-            bus_carbon += bus_travel_count * (bus_long_factor if bus_long_journeys else bus_short_factor) * 12 #per year
+            bus_carbon = bus_travel_count * (bus_long_factor if bus_long_journeys else bus_short_factor) 
 
             # Convert total carbon usage to metric tons
-            total_carbon = home_carbon + appliance_carbon + laptop_carbon + desktop_carbon + car_5_carbon + car_10_carbon + train_carbon + bus_carbon
-            total_carbon / 1000  # Convert kg to tons
+            total_carbon =( home_carbon + appliance_carbon + laptop_carbon + desktop_carbon + car_5_carbon + car_10_carbon + train_carbon + bus_carbon) *12
+            total_carbon = total_carbon / 1000  # Convert kg to tons
             total_carbon_use = total_carbon
+
             # Redirect to results page with calculated carbon usage
-            return redirect(url_for('calculations_results_carbon_page', total_carbon_use=total_carbon))
+            return redirect(url_for('calculations_results_carbon_page', total_carbon_use=total_carbon_use))
         except (ValueError, KeyError):
             return "Invalid input data", 400
     return render_template('calculations-carbon.html')
@@ -271,8 +272,7 @@ def calculations_carbon_page():
 @app.route("/calculations-results-carbon")
 def calculations_results_carbon_page():
     total_carbon_use = request.args.get('total_carbon_use', type=float)
-    total_carbon_cost = request.args.get('total_carbon_cost', type=float)
-    return render_template('calculations-results-carbon.html', total_carbon_cost=total_carbon_cost, total_carbon_use=total_carbon_use)
+    return render_template('calculations-results-carbon.html', total_carbon_use=total_carbon_use)
 
 
 

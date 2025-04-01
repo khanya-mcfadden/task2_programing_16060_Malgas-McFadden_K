@@ -16,13 +16,13 @@
       <form method="POST" action="/calculations-carbon" class="needs-validation" style="font-size: 50px;" novalidate>
         <div class="mb-3">
           <label for="home-size" class="form-label">how large is your home or office in ft:</label>
-          <input type="number" min="0" value="0" id="home-size" name="home-size" class="form-control" required />
+          <input type="number" min="0"  id="home-size" name="home-size" class="form-control" required />
         </div>
 
         <div class="mb-3 d-none" id="step-2">
           <label for="heating-type" class="form-label">how do you heat your home or office:</label>
           <select id="heating-type" name="heating-type" class="form-select" required>
-            <option value="gas">Gas</option>
+            <option value="Gas">Gas</option>
             <option value="Oil">Oil</option>
             <option value="Wood">Wood</option>
           </select>
@@ -31,17 +31,17 @@
         <!-- appliances -->
         <div class="mb-3 d-none" id="step-3">
           <label for="appliances" class="form-label">How many appliances does your home or office have?</label>
-          <input type="number" min="0" value="0" id="appliances" name="appliances" class="form-control" required />
+          <input type="number" min="0"  id="appliances" name="appliances" class="form-control" required />
         </div>
 
         <div class="mb-3 d-none" id="step-4">
           <label for="laptops" class="form-label">How many laptops does your home or office have?</label>
-          <input type="number" min="0" value="0" id="laptops" name="laptops" class="form-control" required />
+          <input type="number" min="0"  id="laptops" name="laptops" class="form-control" required />
         </div>
 
         <div class="mb-3 d-none" id="step-5">
           <label for="desktops" class="form-label">How many desktops does your home or office have?</label>
-          <input type="number" min="0" value="0" id="desktops" name="desktops" class="form-control" required />
+          <input type="number" min="0"  id="desktops" name="desktops" class="form-control" required />
         </div>
         <!-- car -->
         <div class="mb-3 d-none" id="step-6">
@@ -54,12 +54,12 @@
 
         <div class="mb-3 d-none" id="step-7">
           <label for="travel-over-5" class="form-label">When using your car, how often do you travel over 5 miles in a month?</label>
-          <input type="number" min="0" value="0" id="travel-over-5" name="travel-over-5" class="form-control" required />
+          <input type="number" min="0"  id="travel-over-5" name="travel-over-5" class="form-control" required />
         </div>
 
         <div class="mb-3 d-none" id="step-8">
           <label for="travel-over-10" class="form-label">When using your car, how often do you travel over 10 miles in a month?</label>
-          <input type="number" min="0" value="0" id="travel-over-10" name="travel-over-10" class="form-control" required />
+          <input type="number" min="0"  id="travel-over-10" name="travel-over-10" class="form-control" required />
         </div>
         <!-- train -->
         <div class="mb-3 d-none" id="step-9">
@@ -72,7 +72,7 @@
 
         <div class="mb-3 d-none" id="step-10">
           <label for="train-frequency" class="form-label">How often do you travel by train in a month?</label>
-          <input type="number" min="0" value="0" id="train-frequency" name="train-frequency" class="form-control" required />
+          <input type="number" min="0"  id="train-frequency" name="train-frequency" class="form-control" required />
         </div>
 
         <div class="mb-3 d-none" id="step-11">
@@ -95,7 +95,7 @@
 
         <div class="mb-3 d-none" id="step-14">
           <label for="bus-frequency" class="form-label">How often do you travel by bus in a month?</label>
-          <input type="number" min="0" value="0" id="bus-frequency" name="bus-frequency" class="form-control" required />
+          <input type="number" min="0"  id="bus-frequency" name="bus-frequency" class="form-control" required />
         </div>
 
         <div class="mb-3 d-none" id="step-15">
@@ -151,7 +151,7 @@
         updateButtons()
       })
     </script>
-
+    <!-- form validation -->
     <script>
       document.addEventListener('DOMContentLoaded', function () {
         // Track if any form values have been changed
@@ -176,6 +176,31 @@
           }
         })
       })
+    </script>
+
+
+    <script>
+      document.addEventListener('DOMContentLoaded', function () {
+        const form = document.querySelector('form');
+        form.addEventListener('submit', function (event) {
+          const requiredFields = form.querySelectorAll('input[required], select[required]');
+          let allValid = true;
+
+          requiredFields.forEach(field => {
+            if (!field.value || (field.tagName === 'SELECT' && field.selectedIndex === 0)) {
+              allValid = false;
+              field.classList.add('is-invalid'); // Add a visual indicator for invalid fields
+            } else {
+              field.classList.remove('is-invalid');
+            }
+          });
+
+          if (!allValid) {
+            event.preventDefault(); // Prevent form submission
+            alert("Please fill in all the required fields correctly.");
+          }
+        });
+      });
     </script>
   {% endblock %}
 </html>
