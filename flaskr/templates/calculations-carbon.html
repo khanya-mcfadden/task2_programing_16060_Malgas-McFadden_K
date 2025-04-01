@@ -6,65 +6,114 @@
   {% endblock %}
 
   {% block content %}
-    <div class="container bg-success text-white text-center py-4" style="height: 100%; background: linear-gradient(0deg, rgba(0, 138, 0, 0.5) 0%, rgba(1, 238, 184, 0.5) 100%);">
-      <h1>Energy Calculation</h1>
-      <p>Calculate the energy consumption of your home</p>
+    <div class="container bg-success text-white text-center py-4" style="align-content: center;height: auto; background: linear-gradient(0deg, rgba(0, 138, 0, 0.5) 0%, rgba(1, 238, 184, 0.5) 100%);">
+      <div class="title" style="margin-bottom: 9%;">
+        <p style="font-size: 50px;">Carbon Calculation</p>
+        <p style="font-size: 30px;">this is a long form, please fill in all the fields</p>
+        <h2>if you anwsered no to any question you can skip the following questions that relate</h2>
+      </div>
       <!-- building questions -->
-      <form method="POST" action="/calculations-energy" class="needs-validation" novalidate>
+      <form method="POST" action="/calculations-carbon" class="needs-validation" style="font-size: 50px;" novalidate>
         <div class="mb-3">
           <label for="home-size" class="form-label">how large is your home or office in ft:</label>
-          <input type="home-size" id="home-size" name="home-size" class="form-control" required />
+          <input type="number" min="0" value="0" id="home-size" name="home-size" class="form-control" required />
         </div>
 
         <div class="mb-3 d-none" id="step-2">
           <label for="heating-type" class="form-label">how do you heat your home or office:</label>
           <select id="heating-type" name="heating-type" class="form-select" required>
             <option value="gas">Gas</option>
-            <option value="Electricity">Electricity</option>
             <option value="Oil">Oil</option>
             <option value="Wood">Wood</option>
-            <option value="Other">Other</option>
           </select>
         </div>
 
-        <!-- installation Information -->
-        <div id="heating-info" class="mb-3" style="display: none;">
-          <label for="other-name" class="form-label">Please provide the name of how you heat your house</label>
-          <textarea id="other-name" name="installation-details" class="form-control"></textarea>
-
-          <label for="heating-choice" class="form-label">Does it generate energy or use a resource</label>
-          <select id="heating-choice" name="heating-type" class="form-select" required>
-            <option value="use_resource">Use resource</option>
-            <option value="generate">Generate energy</option>
-          </select>
-
-          <div id="other-gen-container" style="display: none;">
-            <label for="other-gen" class="form-label">How much energy does it make on average in an hour:</label>
-            <textarea id="other-gen" name="energy-generation" class="form-control"></textarea>
-          </div>
+        <!-- appliances -->
+        <div class="mb-3 d-none" id="step-3">
+          <label for="appliances" class="form-label">How many appliances does your home or office have?</label>
+          <input type="number" min="0" value="0" id="appliances" name="appliances" class="form-control" required />
         </div>
+
+        <div class="mb-3 d-none" id="step-4">
+          <label for="laptops" class="form-label">How many laptops does your home or office have?</label>
+          <input type="number" min="0" value="0" id="laptops" name="laptops" class="form-control" required />
+        </div>
+
+        <div class="mb-3 d-none" id="step-5">
+          <label for="desktops" class="form-label">How many desktops does your home or office have?</label>
+          <input type="number" min="0" value="0" id="desktops" name="desktops" class="form-control" required />
+        </div>
+        <!-- car -->
+        <div class="mb-3 d-none" id="step-6">
+          <label for="car" class="form-label">Do you have a car?</label>
+          <select id="car" name="car" class="form-select" required>
+            <option value="yes">Yes</option>
+            <option value="no">No</option>
+          </select>
+        </div>
+
+        <div class="mb-3 d-none" id="step-7">
+          <label for="travel-over-5" class="form-label">When using your car, how often do you travel over 5 miles in a month?</label>
+          <input type="number" min="0" value="0" id="travel-over-5" name="travel-over-5" class="form-control" required />
+        </div>
+
+        <div class="mb-3 d-none" id="step-8">
+          <label for="travel-over-10" class="form-label">When using your car, how often do you travel over 10 miles in a month?</label>
+          <input type="number" min="0" value="0" id="travel-over-10" name="travel-over-10" class="form-control" required />
+        </div>
+        <!-- train -->
+        <div class="mb-3 d-none" id="step-9">
+          <label for="train" class="form-label">Do you travel by train?</label>
+          <select id="train" name="train" class="form-select" required>
+            <option value="yes">Yes</option>
+            <option value="no">No</option>
+          </select>
+        </div>
+
+        <div class="mb-3 d-none" id="step-10">
+          <label for="train-frequency" class="form-label">How often do you travel by train in a month?</label>
+          <input type="number" min="0" value="0" id="train-frequency" name="train-frequency" class="form-control" required />
+        </div>
+
+        <div class="mb-3 d-none" id="step-11">
+          <label for="train-duration" class="form-label">Are your train journeys over an hour on average?</label>
+          <select id="train-duration" name="train-duration" class="form-select" required>
+            <option value="yes">Yes</option>
+            <option value="no">No</option>
+          </select>
+        </div>
+
+
+        <!-- bus -->
+        <div class="mb-3 d-none" id="step-13">
+          <label for="bus" class="form-label">Do you travel by bus?</label>
+          <select id="bus" name="bus" class="form-select" required>
+            <option value="yes">Yes</option>
+            <option value="no">No</option>
+          </select>
+        </div>
+
+        <div class="mb-3 d-none" id="step-14">
+          <label for="bus-frequency" class="form-label">How often do you travel by bus in a month?</label>
+          <input type="number" min="0" value="0" id="bus-frequency" name="bus-frequency" class="form-control" required />
+        </div>
+
+        <div class="mb-3 d-none" id="step-15">
+          <label for="bus-duration" class="form-label">Are your bus journeys over an hour on average?</label>
+          <select id="bus-duration" name="bus-duration" class="form-select" required>
+            <option value="yes">Yes</option>
+            <option value="no">No</option>
+          </select>
+        </div>
+
+
 
         <!-- forward and back buttons -->
-        <button type="button" class="btn btn-secondary d-none" id="back-button">Back</button>
-        <button type="button" class="btn btn-primary" id="next-button">Next</button>
-        <button type="submit" class="btn btn-success d-none" id="submit-button">Calculate</button>
+        <button type="button" class="btn btn-secondary btn-lg d-none" id="back-button">Back</button>
+        <button type="button" class="btn btn-primary btn-lg" id="next-button">Next</button>
+        <button type="submit" class="btn btn-success btn-lg d-none" id="submit-button">Calculate</button>
       </form>
     </div>
-
-    <!-- Toggles visibility of other-info based on user selection -->
-    <script>
-      document.getElementById('heating-type').addEventListener('change', function () {
-        const installationInfo = document.getElementById('heating-info')
-        if (this.value === 'Other') {
-          installationInfo.style.display = 'block'
-        } else {
-          installationInfo.style.display = 'none'
-        }
-      
-        // Ensure heating type dropdown stays visible
-        this.style.display = 'block'
-      })
-    </script>
 
     <!-- forward and back button function -->
     <script>
@@ -103,23 +152,29 @@
       })
     </script>
 
-    <!-- Display the selected installation choice -->
     <script>
-      document.getElementById('heating-type').addEventListener('change', function () {
-        const choiceDisplay = document.getElementById('heating-type')
-        choiceDisplay.textContent = this.value
-      })
-    </script>
-
-    <!-- heating-choice script -->
-    <script>
-      document.getElementById('heating-choice').addEventListener('change', function () {
-        const otherGenContainer = document.getElementById('other-gen-container')
-        if (this.value === 'generate') {
-          otherGenContainer.style.display = 'block'
-        } else {
-          otherGenContainer.style.display = 'none'
-        }
+      document.addEventListener('DOMContentLoaded', function () {
+        // Track if any form values have been changed
+        let formChanged = false
+        const form = document.querySelector('form')
+      
+        // Get all form inputs and track changes
+        const inputs = form.querySelectorAll('input, select')
+        inputs.forEach((input) => {
+          input.addEventListener('change', function () {
+            if (this.value !== '0' && !(this.tagName === 'SELECT' && this.selectedIndex === 0)) {
+              formChanged = true
+            }
+          })
+        })
+      
+        // Add form submission handler
+        form.addEventListener('submit', function (event) {
+          if (!formChanged) {
+            event.preventDefault() // Prevent form submission
+            alert("You haven't changed any values from their defaults. Please update the form fields before submitting.")
+          }
+        })
       })
     </script>
   {% endblock %}

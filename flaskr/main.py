@@ -198,66 +198,68 @@ def calculations_choice_page():
 
 
 # carbon
-
 @app.route("/calculations-carbon", methods=["GET", "POST"])
 def calculations_carbon_page():
     if request.method == 'POST':
         try:
             # Collect inputs from the form
-            home_size = float(request.form['home_size'])  # Home size in ft²
-            heating_type = request.form['heating_type']  # Heating type
+            home_size = float(request.form.get('home-size', 0))  # Home size in ft²
+            heating_type = request.form.get('heating-type', 'Other')  # Heating type
             
-            num_appliances = int(request.form['num_appliances'])  # Number of appliances
-            num_laptops = int(request.form['num_laptops'])  # Number of laptops
-            num_desktops = int(request.form['num_desktops'])  # Number of desktops
+            num_appliances = int(request.form.get('appliances', 0))  # Number of appliances
+            num_laptops = int(request.form.get('laptops', 0))  # Number of laptops
+            num_desktops = int(request.form.get('desktops', 0))  # Number of desktops
             
-            has_car = request.form['has_car'] == 'yes'  # Do you have a car?
-            car_travel_5_miles = int(request.form['car_travel_5_miles']) if has_car else 0
-            car_travel_10_miles = int(request.form['car_travel_10_miles']) if has_car else 0
+            has_car = request.form.get('car', 'no') == 'yes'  # Do you have a car?
+            car_travel_5_miles = int(request.form.get('travel-over-5', 0)) if has_car else 0
+            car_travel_10_miles = int(request.form.get('travel-over-10', 0)) if has_car else 0
             
-            uses_train = request.form['uses_train'] == 'yes'  # Do you travel by train?
-            train_travel_count = int(request.form['train_travel_count']) if uses_train else 0
-            train_long_journeys = request.form['train_long_journeys'] == 'yes'
+            uses_train = request.form.get('train', 'no') == 'yes'  # Do you travel by train?
+            train_travel_count = int(request.form.get('train-frequency', 0)) if uses_train else 0
+            train_long_journeys = request.form.get('train-duration', 'no') == 'yes'
             
-            uses_bus = request.form['uses_bus'] == 'yes'  # Do you travel by bus?
-            bus_travel_count = int(request.form['bus_travel_count']) if uses_bus else 0
-            bus_long_journeys = request.form['bus_long_journeys'] == 'yes'
+            uses_bus = request.form.get('bus', 'no') == 'yes'  # Do you travel by bus?
+            bus_travel_count = int(request.form.get('bus-frequency', 0)) if uses_bus == 'yes' else 0
+            bus_long_journeys = request.form.get('bus-duration', 'no') == 'yes'
             
-            has_machinery = request.form['has_machinery'] == 'yes'  # Do you have heavy machinery?
-            machinery_usage_count = int(request.form['machinery_usage_count']) if has_machinery else 0
-            machinery_usage_hours = int(request.form['machinery_usage_hours']) if has_machinery else 0
-
-            # Carbon emission factors (example values, these can be adjusted)
+            # Corrected carbon emission factors (kg CO₂ per unit)
             heating_factors = {
-                "Gas": 0.2,
-                "Electricity": 0.5,
-                "Oil": 0.3,
-                "Wood": 0.1,
-                "Other": 0.15
+                "Gas": 1.53,  # kg CO₂ per ft²
+                "Oil": 2.2,
+                "Wood": 0.8,
             }
-            appliance_factor = 0.05  # Carbon per appliance
-            laptop_factor = 0.02  # Carbon per laptop
-            desktop_factor = 0.03  # Carbon per desktop
-            car_5_miles_factor = 0.1  # Carbon per 5-mile trip
-            car_10_miles_factor = 0.2  # Carbon per 10-mile trip
-            train_short_factor = 0.05  # Carbon per short train trip
-            train_long_factor = 0.1  # Carbon per long train trip
-            bus_short_factor = 0.03  # Carbon per short bus trip
-            bus_long_factor = 0.07  # Carbon per long bus trip
-            machinery_factor = 0.5  # Carbon per hour of machinery use
+            appliance_factor = 50  # kg per appliance
+            laptop_factor = 30  # kg per laptop
+            desktop_factor = 50  # kg per desktop
 
-            # Calculate total carbon usage
+            car_5_miles_factor = 0.4  # kg per trip
+            car_10_miles_factor = 0.8  # kg per trip
+            train_short_factor = 0.1  # kg per trip
+            train_long_factor = 0.3  # kg per trip
+            bus_short_factor = 0.2  # kg per trip
+            bus_long_factor = 0.5  # kg per trip
+
+            # Calculate total carbon usage for a year
             total_carbon = 0
-            total_carbon += home_size * heating_factors.get(heating_type, 0)
-            total_carbon += num_appliances * appliance_factor
-            total_carbon += num_laptops * laptop_factor
-            total_carbon += num_desktops * desktop_factor
-            total_carbon += car_travel_5_miles * car_5_miles_factor
-            total_carbon += car_travel_10_miles * car_10_miles_factor
-            total_carbon += train_travel_count * (train_long_factor if train_long_journeys else train_short_factor)
-            total_carbon += bus_travel_count * (bus_long_factor if bus_long_journeys else bus_short_factor)
-            total_carbon += machinery_usage_count * machinery_usage_hours * machinery_factor
+            # home
+            home_carbon += home_size * heating_factors.get(heating_type, 1.0)
+            appliance_carbon += num_appliances * appliance_factor
+            # appliances
+            laptop_carbon += num_laptops * laptop_factor
+            desktop_carbon += num_desktops * desktop_factor
+            # transport
+            car_5_carbon += car_travel_5_miles * car_5_miles_factor * 12  # Adjusted to monthly trips
+            
+            car_10_carbon += car_travel_10_miles * car_10_miles_factor * 12  # Adjusted to monthly trips
+            
+            train_carbon += train_travel_count * (train_long_factor if train_long_journeys else train_short_factor) * 12 # per year
+            
+            bus_carbon += bus_travel_count * (bus_long_factor if bus_long_journeys else bus_short_factor) * 12 #per year
 
+            # Convert total carbon usage to metric tons
+            total_carbon = home_carbon + appliance_carbon + laptop_carbon + desktop_carbon + car_5_carbon + car_10_carbon + train_carbon + bus_carbon
+            total_carbon / 1000  # Convert kg to tons
+            total_carbon_use = total_carbon
             # Redirect to results page with calculated carbon usage
             return redirect(url_for('calculations_results_carbon_page', total_carbon_use=total_carbon))
         except (ValueError, KeyError):
