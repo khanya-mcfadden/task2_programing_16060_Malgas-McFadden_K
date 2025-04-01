@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+
+{% extends "index.html" %}
+{% block title %}carbon calculation{% endblock %}
+
+{% block content %}
+<body>
+    <div class="container bg-success text-white text-center d-flex align-items-center justify-content-center vh-100" style="background: linear-gradient(0deg, rgba(0, 138, 0, 0.5) 0%, rgba(1, 238, 184, 0.5) 100%);">
+        <div>
+            <h1 style="font-size: 4rem;">cabon Usage Results</h1>
+            <p style="font-size: 3rem;">Here is your total cost and amount used for your carbon</p>
+            <div style="margin-top: 10px;">
+                <p style="font-size: 2rem;">Total carbon Used: {{total_carbon_use }} kWh</p>
+                <p style="font-size: 2rem;">Total Cost: ${{ total_carbon_cost }}</p>
+            </div>
+        </div>
+    </div>
+</body>
+   {% endblock %}

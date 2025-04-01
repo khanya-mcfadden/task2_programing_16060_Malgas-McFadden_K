@@ -35,6 +35,7 @@
               <option value="installation">installation</option>
             </select>
           </div>
+
           <!-- installation Information -->
           <div id="installation-info" class="mb-3" style="display: none;">
             <lable for="installation-choice" class="form-label">Please select the type of installation:</lable>
@@ -48,17 +49,6 @@
             <label for="installation-details" class="form-label">Please provide additional details for the installation:</label>
             <textarea id="installation-details" name="installation_details" class="form-control"></textarea>
           </div>
-
-          <script>
-            document.getElementById('installation').addEventListener('change', function () {
-              const installationInfo = document.getElementById('installation-info')
-              if (this.value === 'installation') {
-                installationInfo.style.display = 'block'
-              } else {
-                installationInfo.style.display = 'none'
-              }
-            })
-          </script>
 
           <!-- Personal Information -->
           <div class="mb-3">
@@ -112,31 +102,43 @@
       </script>
 
       <!-- number limit for installation -->
-    <script>
-      document.getElementById('installation-choice').addEventListener('change', function () {
-        const installationNumber = document.getElementById('installation-number')
-        if (this.value === 'ev chargers') {
-        installationNumber.max = 5
-        if (installationNumber.value > 5) {
-          installationNumber.value = 5
-        }
-        } else if (this.value === 'solar panels') {
-        installationNumber.max = 10
-        if (installationNumber.value > 10) {
-          installationNumber.value = 10
-        }
-        } else {
-        installationNumber.removeAttribute('max')
-        }
-      })
+      <script>
+        document.getElementById('installation-choice').addEventListener('change', function () {
+          const installationNumber = document.getElementById('installation-number')
+          if (this.value === 'ev chargers') {
+            installationNumber.max = 5
+            if (installationNumber.value > 5) {
+              installationNumber.value = 5
+            }
+          } else if (this.value === 'solar panels') {
+            installationNumber.max = 10
+            if (installationNumber.value > 10) {
+              installationNumber.value = 10
+            }
+          } else {
+            installationNumber.removeAttribute('max')
+          }
+        })
+        
+        document.getElementById('installation-number').addEventListener('input', function () {
+          const max = this.max
+          if (max && this.value > max) {
+            this.value = max
+          }
+        })
+      </script>
 
-      document.getElementById('installation-number').addEventListener('input', function () {
-        const max = this.max
-        if (max && this.value > max) {
-        this.value = max
-        }
-      })
-    </script>
+      <!-- Toggles visibility of installation-info based on user selection -->
+      <script>
+        document.getElementById('installation').addEventListener('change', function () {
+          const installationInfo = document.getElementById('installation-info')
+          if (this.value === 'installation') {
+            installationInfo.style.display = 'block'
+          } else {
+            installationInfo.style.display = 'none'
+          }
+        })
+      </script>
     </body>
   {% endblock %}
 </html>

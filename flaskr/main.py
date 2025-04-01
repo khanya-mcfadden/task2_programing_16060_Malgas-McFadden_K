@@ -183,42 +183,7 @@ def booking_choice_page():
             connection.close()
 
     return render_template("booking.html")
-    if "username" not in session:
-        return redirect(url_for("login_page"))
-    
-    if request.method == "POST":
-        first_name = request.form.get("first_name")
-        last_name = request.form.get("last_name")
-        is_installation = request.form.get("is_installation", "")
-        installation_choice = request.form.get("installation_choice", "")
-        installation_number = request.form.get("installation_number", 0)
-        installation_details = request.form.get("installation_details", "")
-        email = request.form.get("email")
-        phone = request.form.get("phone")
-        postcode = request.form.get("postcode")
-        message = request.form.get("message")
-        date = request.form.get("date")
-        time = request.form.get("time")
-
-        if not first_name or not last_name or not email or not phone or not postcode or not date or not time or not is_installation or not installation_choice or not installation_number:
-            return "Please fill out all fields", 400
-
-        connection = sqlite3.connect("users.db")
-        cursor = connection.cursor()
-
-        try:
-            # Insert the booking
-            cursor.execute(
-                "INSERT INTO Bookings (is_installation, installation_choice, installation_number, installation_details, first_name, last_name, email, phone, postcode, message, date, time) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
-            )
-            connection.commit()
-            return redirect("/booking_confirm")
-        except sqlite3.Error as e:
-            return f"Booking failed: {e}", 500
-        finally:
-            connection.close()
-
-    return render_template("booking.html")
+    # removed repeated booking function unclear when that was dupplicated
 
 
 @app.route("/booking_confirm")
@@ -234,18 +199,80 @@ def calculations_choice_page():
 
 # carbon
 
-@app.route("/calculations-carbon")
+@app.route("/calculations-carbon", methods=["GET", "POST"])
 def calculations_carbon_page():
+    if request.method == 'POST':
+        try:
+            # Collect inputs from the form
+            home_size = float(request.form['home_size'])  # Home size in ft²
+            heating_type = request.form['heating_type']  # Heating type
+            
+            num_appliances = int(request.form['num_appliances'])  # Number of appliances
+            num_laptops = int(request.form['num_laptops'])  # Number of laptops
+            num_desktops = int(request.form['num_desktops'])  # Number of desktops
+            
+            has_car = request.form['has_car'] == 'yes'  # Do you have a car?
+            car_travel_5_miles = int(request.form['car_travel_5_miles']) if has_car else 0
+            car_travel_10_miles = int(request.form['car_travel_10_miles']) if has_car else 0
+            
+            uses_train = request.form['uses_train'] == 'yes'  # Do you travel by train?
+            train_travel_count = int(request.form['train_travel_count']) if uses_train else 0
+            train_long_journeys = request.form['train_long_journeys'] == 'yes'
+            
+            uses_bus = request.form['uses_bus'] == 'yes'  # Do you travel by bus?
+            bus_travel_count = int(request.form['bus_travel_count']) if uses_bus else 0
+            bus_long_journeys = request.form['bus_long_journeys'] == 'yes'
+            
+            has_machinery = request.form['has_machinery'] == 'yes'  # Do you have heavy machinery?
+            machinery_usage_count = int(request.form['machinery_usage_count']) if has_machinery else 0
+            machinery_usage_hours = int(request.form['machinery_usage_hours']) if has_machinery else 0
+
+            # Carbon emission factors (example values, these can be adjusted)
+            heating_factors = {
+                "Gas": 0.2,
+                "Electricity": 0.5,
+                "Oil": 0.3,
+                "Wood": 0.1,
+                "Other": 0.15
+            }
+            appliance_factor = 0.05  # Carbon per appliance
+            laptop_factor = 0.02  # Carbon per laptop
+            desktop_factor = 0.03  # Carbon per desktop
+            car_5_miles_factor = 0.1  # Carbon per 5-mile trip
+            car_10_miles_factor = 0.2  # Carbon per 10-mile trip
+            train_short_factor = 0.05  # Carbon per short train trip
+            train_long_factor = 0.1  # Carbon per long train trip
+            bus_short_factor = 0.03  # Carbon per short bus trip
+            bus_long_factor = 0.07  # Carbon per long bus trip
+            machinery_factor = 0.5  # Carbon per hour of machinery use
+
+            # Calculate total carbon usage
+            total_carbon = 0
+            total_carbon += home_size * heating_factors.get(heating_type, 0)
+            total_carbon += num_appliances * appliance_factor
+            total_carbon += num_laptops * laptop_factor
+            total_carbon += num_desktops * desktop_factor
+            total_carbon += car_travel_5_miles * car_5_miles_factor
+            total_carbon += car_travel_10_miles * car_10_miles_factor
+            total_carbon += train_travel_count * (train_long_factor if train_long_journeys else train_short_factor)
+            total_carbon += bus_travel_count * (bus_long_factor if bus_long_journeys else bus_short_factor)
+            total_carbon += machinery_usage_count * machinery_usage_hours * machinery_factor
+
+            # Redirect to results page with calculated carbon usage
+            return redirect(url_for('calculations_results_carbon_page', total_carbon_use=total_carbon))
+        except (ValueError, KeyError):
+            return "Invalid input data", 400
     return render_template('calculations-carbon.html')
 
 
-@app.route("/carbon-interface", methods=["GET", "POST"])
-def carbon_interface():
-    curl = "https://www.carboninterface.com/api/v1/auth"
-    -H = "Authorization: Bearer API_KEY"
-    {
-    "message": "auth successful"
-    }
+
+@app.route("/calculations-results-carbon")
+def calculations_results_carbon_page():
+    total_carbon_use = request.args.get('total_carbon_use', type=float)
+    total_carbon_cost = request.args.get('total_carbon_cost', type=float)
+    return render_template('calculations-results-carbon.html', total_carbon_cost=total_carbon_cost, total_carbon_use=total_carbon_use)
+
+
 
 # energy
 
@@ -264,12 +291,12 @@ def calculations_energy_page():
             total_energy = home_kwh * 24 * avg_days_month * time_frame  
             
             # Calculate total cost (round to two digits )
-            total_cost = total_energy * energy_rates  
+            total_energy_cost = total_energy * energy_rates  
 
-            if total_cost < 0 or total_energy < 0:
+            if total_energy_cost < 0 or total_energy < 0:
                 return "Invalid input", 400
             else:
-                return redirect(url_for('calculations_results_energy_page', total_cost=total_cost, total_use=total_energy))
+                return redirect(url_for('calculations_results_energy_page', total_energy_cost=total_energy_cost, total_energy_use=total_energy))
         except (ValueError, KeyError):
             return "Invalid input data", 400
     return render_template('calculations-energy.html')
@@ -279,9 +306,9 @@ def calculations_energy_page():
 
 @app.route("/calculations-results-energy")
 def calculations_results_energy_page():
-    total_use = request.args.get('total_use', type=float)
-    total_cost = request.args.get('total_cost', type=float)
-    return render_template('calculations-results-energy.html', total_cost=total_cost, total_use=total_use)
+    total_energy_use = request.args.get('total_energy_use', type=float)
+    total_energy_cost = request.args.get('total_energy_cost', type=float)
+    return render_template('calculations-results-energy.html', total_energy_cost=total_energy_cost, total_energy_use=total_energy_use)
 
 
 
