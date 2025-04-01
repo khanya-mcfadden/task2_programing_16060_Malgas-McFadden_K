@@ -151,53 +151,30 @@
         updateButtons()
       })
     </script>
-    <!-- form validation -->
+    <!-- validation-->
     <script>
       document.addEventListener('DOMContentLoaded', function () {
-        // Track if any form values have been changed
-        let formChanged = false
-        const form = document.querySelector('form')
-      
-        // Get all form inputs and track changes
-        const inputs = form.querySelectorAll('input, select')
-        inputs.forEach((input) => {
-          input.addEventListener('change', function () {
-            if (this.value !== '0' && !(this.tagName === 'SELECT' && this.selectedIndex === 0)) {
-              formChanged = true
-            }
-          })
-        })
-      
-        // Add form submission handler
-        form.addEventListener('submit', function (event) {
-          if (!formChanged) {
-            event.preventDefault() // Prevent form submission
-            alert("You haven't changed any values from their defaults. Please update the form fields before submitting.")
-          }
-        })
-      })
-    </script>
-
-
-    <script>
-      document.addEventListener('DOMContentLoaded', function () {
+        const urlParams = new URLSearchParams(window.location.search);
+        const errorMessage = urlParams.get('error');
+        if (errorMessage) {
+          alert("Please fill in all the fields");
+        }
+    
+        // Add validation for incorrect values
         const form = document.querySelector('form');
         form.addEventListener('submit', function (event) {
-          const requiredFields = form.querySelectorAll('input[required], select[required]');
-          let allValid = true;
-
-          requiredFields.forEach(field => {
-            if (!field.value || (field.tagName === 'SELECT' && field.selectedIndex === 0)) {
-              allValid = false;
-              field.classList.add('is-invalid'); // Add a visual indicator for invalid fields
-            } else {
-              field.classList.remove('is-invalid');
+          const inputs = form.querySelectorAll('input, select');
+          let isValid = true;
+    
+          inputs.forEach(input => {
+            if (input.type === 'number' && input.value < 0) {
+              isValid = false;
+              alert(`Invalid value in field: ${input.name}. Please enter a non-negative number.`);
             }
           });
-
-          if (!allValid) {
+    
+          if (!isValid) {
             event.preventDefault(); // Prevent form submission
-            alert("Please fill in all the required fields correctly.");
           }
         });
       });

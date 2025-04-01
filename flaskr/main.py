@@ -258,13 +258,14 @@ def calculations_carbon_page():
 
             # Convert total carbon usage to metric tons
             total_carbon =( home_carbon + appliance_carbon + laptop_carbon + desktop_carbon + car_5_carbon + car_10_carbon + train_carbon + bus_carbon) *12
-            total_carbon = total_carbon / 1000  # Convert kg to tons
+            total_carbon = round(total_carbon / 1000, 2)  # Convert kg to tons and round to 2 decimal places
             total_carbon_use = total_carbon
 
             # Redirect to results page with calculated carbon usage
             return redirect(url_for('calculations_results_carbon_page', total_carbon_use=total_carbon_use))
         except (ValueError, KeyError):
-            return "Invalid input data", 400
+            error_message = "Please fill in all the fields or ensure values are correct."
+            return redirect(url_for('calculations_carbon_page', error=error_message))
     return render_template('calculations-carbon.html')
 
 
