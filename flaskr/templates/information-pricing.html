@@ -17,18 +17,24 @@
           border-radius: 8px;
           padding: 20px;
           box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+          height: 600px;
+          width: auto;
+          background-color:rgb(241, 241, 241);
         }
         .price {
           font-size: 2rem;
           font-weight: bold;
-          color: #007bff;
+          color:rgb(28, 204, 145);
         }
         .features {
           list-style: none;
           padding: 0;
+          color: rgb(3, 77, 63);
         }
         .features li {
           margin: 5px 0;
+          font-size: 32px;
+
         }
       </style>
     </head>
@@ -44,49 +50,51 @@
         <div class="row">
           <!-- Basic Plan -->
           <div class="col-md-4">
-            <div class=" pricing-card text-center d-flex flex-column" style="height: 500px;">
-              <h3>Basic</h3>
+            <div class="pricing-card text-center d-flex flex-column" >
+              <h1>Basic</h1>
               <p class="price">£10/month</p>
               <ul class="features">
-                <li>Feature 1</li>
-                <li>Feature 2</li>
-                <li>Feature 3</li>
+                <li>5 free carbon and energy calculations per month</li>
+                <li>2% discount on installations</li>
+                <li>5 free personalised carbon footprint evalulations</li>
               </ul>
               <div class="mt-auto">
-                <button class="btn btn-primary mt-3">Choose Enterprise</button>
+                <button class="btn mt-3"><img src="/static/images/icons/Subscribbe-now.png" alt=" Subscribe now button" /></button>
               </div>
+            </div>
           </div>
 
           <!-- Premium Plan -->
           <div class="col-md-4">
-            <div class=" pricing-card text-center d-flex flex-column" style="height: 500px;">
-              <h3>Premium</h3>
+            <div class="pricing-card text-center d-flex flex-column" >
+              <h1>Premium</h1>
               <p class="price">£30/month</p>
               <ul class="features">
-                <li>Feature 1</li>
-                <li>Feature 2</li>
-                <li>Feature 3</li>
-                <li>Feature 4</li>
+                <li>10 free carbon and energy calculations per month</li>
+                <li>5% discount on installations</li>
+                <li>10 free personalised carbon footprint evaluations</li>
+                <li>Priority customer support</li>
               </ul>
               <div class="mt-auto">
-                <button class="btn btn-primary mt-3">Choose Enterprise</button>
+                <button class="btn mt-3"><img src="/static/images/icons/Subscribbe-now.png" alt=" Subscribe now button" /></button>
               </div>
+            </div>
           </div>
 
           <!-- Enterprise Plan -->
           <div class="col-md-4">
-            <div class="pricing-card text-center d-flex flex-column" style="height: 500px;">
-              <h3>Enterprise</h3>
+            <div class="pricing-card text-center d-flex flex-column" style="height: auto;">
+              <h1 style="text-decoration: underline">Enterprise</h1>
               <p class="price">£50/month</p>
-              <ul class="features">
-                <li>Feature 1</li>
-                <li>Feature 2</li>
-                <li>Feature 3</li>
-                <li>Feature 4</li>
-                <li>Feature 5</li>
+              <ul class="features" style="color:rgba(238, 86, 102, 1); font-weight: bold; font-size: 28px;">
+                <li>Unlimited carbon and energy calculations</li>
+                <li>10% discount on installations</li>
+                <li>Unlimited personalised carbon footprint evaluations</li>
+                <li>Dedicated account manager</li>
+                <li>Access to exclusive webinars and resources</li>
               </ul>
               <div class="mt-auto">
-                <button class="btn btn-primary mt-3">Choose Enterprise</button>
+                <button class="btn mt-3" href ="/unfinished"><img src="/static/images/icons/Subscribbe-now.png" alt=" Subscribe now button" /></button>
               </div>
             </div>
           </div>

@@ -120,6 +120,29 @@ def information_page_article():
 def projects_page():
     return render_template('projects-page.html')
 
+@app.route("/contact")
+def contact_page():
+    return render_template('contact.html')
+
+@app.route("/faq")
+def faq_page():
+    return render_template('faq.html')
+
+@app.route("/terms")
+def terms_page():
+    return render_template('terms.html')
+
+@app.route("/privacy")
+def privacy_page():
+    return render_template('privacy.html')
+
+@app.route("/unfinished")
+def unfinished_page():
+    return render_template('unfinished.html')
+
+
+
+
 # funtinality page routes(pages that have backend functionality)
 
 
@@ -186,9 +209,9 @@ def booking_choice_page():
     # removed repeated booking function unclear when that was dupplicated
 
 
-@app.route("/booking_confirm")
+@app.route("/booking-confirm")
 def booking_confirm_page():
-    return render_template('booking_confirm.html')
+    return render_template('booking-confirm.html')
 
 
 # calculations
@@ -267,19 +290,12 @@ def calculations_carbon_page():
             error_message = "Please fill in all the fields or ensure values are correct."
             return redirect(url_for('calculations_carbon_page', error=error_message))
     return render_template('calculations-carbon.html')
-
-
-
 @app.route("/calculations-results-carbon")
 def calculations_results_carbon_page():
     total_carbon_use = request.args.get('total_carbon_use', type=float)
     return render_template('calculations-results-carbon.html', total_carbon_use=total_carbon_use)
 
-
-
 # energy
-
-
 @app.route("/calculations-energy", methods=["GET", "POST"])
 def calculations_energy_page():
     if request.method == 'POST':
@@ -303,21 +319,13 @@ def calculations_energy_page():
         except (ValueError, KeyError):
             return "Invalid input data", 400
     return render_template('calculations-energy.html')
-
-
-
-
 @app.route("/calculations-results-energy")
 def calculations_results_energy_page():
     total_energy_use = request.args.get('total_energy_use', type=float)
     total_energy_cost = request.args.get('total_energy_cost', type=float)
     return render_template('calculations-results-energy.html', total_energy_cost=total_energy_cost, total_energy_use=total_energy_use)
 
-
-
-
 # login, logout and register
-
 @app.route("/login", methods=["GET", "POST"])
 def login_page():
     if request.method == 'POST':
@@ -347,9 +355,6 @@ def login_page():
             return "Invalid username or password", 400
 
     return render_template("login.html")
-
-
-
 
 @app.route("/register" , methods=["GET", "POST"])
 def register_page():
@@ -427,10 +432,27 @@ def page_not_found(_):
     app.logger.error(f"Page not found: {request.url}")
     return render_template("404.html"), 404
 
+@app.errorhandler(500)
+def internal_server_error(_):
+    app.logger.error(f"Server error: {request.url}")
+    return render_template("500.html"), 500
 
 
+@app.route("/admin")
+def admin_page():
+    if "username" not in session:
+        return redirect(url_for("login_page"))
+    if not session.get("admin", False):
+        return redirect(url_for("index_page"))
+    return render_template("admin.html")
 
+@app.route("/404")
+def page_not_found():
+    return render_template("404.html")
 
+@app.route("/500")
+def internal_server_error():
+    return render_template("500.html")
 
 
 
