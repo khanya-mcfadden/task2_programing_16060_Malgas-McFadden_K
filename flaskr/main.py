@@ -122,7 +122,39 @@ def projects_page():
 
 @app.route("/contact")
 def contact_page():
-    return render_template('contact.html')
+    if "username" not in session:
+        return redirect(url_for("login_page"))
+    
+    if request.method == "POST":
+        is_error = request.form.get("is_error")
+        email = request.form.get("email")
+        what_error = request.form.get("what-error")
+        error_details = request.form.get("error_details")
+        is_feedback = request.form.get("is_feedback")
+        error_message = request.form.get("error_message")
+        feedback_message = request.form.get("feedback_message")
+        is_contacted = request.form.get("is_contacted")
+        
+
+        connection = sqlite3.connect("users.db")
+        cursor = connection.cursor()
+
+        try:
+            # Insert the contact
+            cursor.execute("""
+                INSERT INTO contact ( is_error, is_feedback, error_message, feedback_message, is_contacted
+                ) 
+                VALUES (?, ?, ?, ?, ?)
+                """)
+            connection.commit()
+            return redirect("/contact_confirm")
+        except sqlite3.Error as e:
+            return f"contact failed: {e}", 500
+        finally:
+            connection.close()
+
+    return render_template("contact.html")
+
 
 @app.route("/faq")
 def faq_page():
