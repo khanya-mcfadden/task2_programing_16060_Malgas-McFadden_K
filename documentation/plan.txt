@@ -16,29 +16,34 @@
 [] added auth features for when a user is loged in
 
 
+02/04/2025
+need to figur out why users cant login now even with correct inputs 
 
-need to redo all the css (apart form on the login and registraion), do functinality only now
+visuals are mostly compleat
+need to update the assest log and organise the test log
+
+need to spend a while doing every type of testing
 
 # what needs to be done#
 -must be done-
 home page 
     [half-done] 1. development of front end 
     [done] 2. creation of navigation system
-    [] 3. development of functinality of home page 
-    [] 4. testing of home page functinality and checking for errors
+    [done] 3. development of functinality of home page 
+    [done] 4. testing of home page functinality and checking for errors
 calculations page 
-    [] 1. development of front end 
-    [] 2. allow for users to choose what they want to calculations they want 
-    [] 3. intergrations of calculations Api's
-    [] 4. testing of page functinality and checking for errors
-    [] 4. testing of functinality with the rest of program
+    [done] 1. development of front end 
+    [done] 2. allow for users to choose what they want to calculations they want 
+    [done] 3. intergrations of calculations Api's
+    [done] 4. testing of page functinality and checking for errors
+    [done] 4. testing of functinality with the rest of program
 
 booking page 
-    [] 1. development of front end 
-    [] 2. creation of booking backed(database) system
-    [] 3. development of functinality of booking page page 
-    [] 4. testing of booking page functinality and checking for errors
-    [] 5. testing of functinality with the rest of program
+    [done] 1. development of front end 
+    [done] 2. creation of booking backed(database) system
+    [done] 3. development of functinality of booking page page 
+    [done] 4. testing of booking page functinality and checking for errors
+    [done] 5. testing of functinality with the rest of program
 
 policy and terms and conditions pages
     [] 1. development of front end
@@ -48,17 +53,17 @@ policy and terms and conditions pages
     [] 5. testing of functinality with the rest of program
 login and registraion pages
     [done] 1. create front end design
-    [] 2. creat backed functinality
-    [] 3. test backed functinality
-    [] 4. test modules intergrations with rest of program
+    [done] 2. creat backed functinality
+    [re-doing] 3. test backed functinality
+    [re-doing] 4. test modules intergrations with rest of program
 
     
 -extras/less important-
 infomation page 
-    [] 1. development of front end 
-    [] 2. creation of navigation system
-    [] 3. development of functinality of home page 
-    [] 4. testing of home page functinality and checking for errors
+    [done] 1. development of front end 
+    [done] 2. creation of navigation system
+    [done] 3. development of functinality of home page 
+    [done] 4. testing of home page functinality and checking for errors
 projects page 
     [] 1. development of front end 
     [] 2. creation of card info system
