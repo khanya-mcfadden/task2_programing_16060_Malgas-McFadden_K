@@ -38,8 +38,8 @@
               <option value="other">other</option>
             </select>
 
-            <label for="error-info" class="form-label">Please describ what happened befor the <span id="error-choice-display"></span> error</label>
-            <textarea id="error-info" name="error-info" class="form-control"></textarea>
+            <label for="error-message" class="form-label">Please describ what happened befor the <span id="error-choice-display"></span> error</label>
+            <textarea id="error-message" name="error-message" class="form-control"></textarea>
 
             <label for="error-details" class="form-label">Please provide any additional details about the error:</label>
             <textarea id="error-details" name="error_details" class="form-control"></textarea>
@@ -81,7 +81,7 @@
       </script>
 
 
-      <!-- Toggles visibility of error-info based on user selection -->
+      <!-- Toggles visibility of error-message based on user selection -->
       <script>
         document.getElementById('is_error').addEventListener('change', function () {
           const errorInfo = document.getElementById('what-error')

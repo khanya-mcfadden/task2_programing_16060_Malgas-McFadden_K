@@ -120,20 +120,17 @@ def information_page_article():
 def projects_page():
     return render_template('projects-page.html')
 
-@app.route("/contact")
+@app.route("/contact", methods=["GET", "POST"])
 def contact_page():
-    if "username" not in session:
-        return redirect(url_for("login_page"))
+
     
     if request.method == "POST":
         is_error = request.form.get("is_error")
         email = request.form.get("email")
-        what_error = request.form.get("what-error")
-        error_details = request.form.get("error_details")
-        is_feedback = request.form.get("is_feedback")
-        error_message = request.form.get("error_message")
-        feedback_message = request.form.get("feedback_message")
-        is_contacted = request.form.get("is_contacted")
+        what_error = request.form.get("error_choice")
+        error_message = request.form.get("error-message")
+        feedback_message = request.form.get("feedback-message")
+        is_contacted = request.form.get("is-contacted")
         
 
         connection = sqlite3.connect("users.db")
@@ -142,12 +139,12 @@ def contact_page():
         try:
             # Insert the contact
             cursor.execute("""
-                INSERT INTO contact ( is_error, is_feedback, error_message, feedback_message, is_contacted
+                INSERT INTO contact ( is_error, error_message,  feedback_message, email, what_error, is_contacted
                 ) 
-                VALUES (?, ?, ?, ?, ?)
-                """)
+                VALUES (?, ?, ?, ?, ?, ?)
+                """, ( is_error, error_message,  feedback_message, email, what_error, is_contacted))
             connection.commit()
-            return redirect("/contact_confirm")
+            return redirect("/contact-confirm")
         except sqlite3.Error as e:
             return f"contact failed: {e}", 500
         finally:
@@ -155,6 +152,9 @@ def contact_page():
 
     return render_template("contact.html")
 
+@app.route("/contact-confirm")
+def contact_confirm_page():
+    return render_template('contact-confirm.html')
 
 @app.route("/faq")
 def faq_page():
@@ -171,6 +171,7 @@ def privacy_page():
 @app.route("/unfinished")
 def unfinished_page():
     return render_template('unfinished.html')
+
 
 
 
@@ -231,7 +232,7 @@ def booking_choice_page():
                 ),
             )
             connection.commit()
-            return redirect("/booking_confirm")
+            return redirect("/booking-confirm")
         except sqlite3.Error as e:
             return f"Booking failed: {e}", 500
         finally:
