@@ -78,6 +78,24 @@ CREATE TABLE IF NOT EXISTS Bookings (
 
 
 
+@app.before_request
+def manage_session():
+    session.permanent = True
+    app.permanent_session_lifetime = timedelta(minutes=30)
+
+    if "username" in session:
+        # Check if session has expired
+        last_activity = session.get("last_activity")
+        if last_activity:
+            current_time = datetime.now()
+            time_difference = current_time - last_activity.replace(tzinfo=None)
+            if time_difference.total_seconds() > 1800:  # 30 minute
+                session.clear()
+                return redirect(url_for("login"))
+
+    # Update the last activity timestamp for the session
+    session["last_activity"] = datetime.now()
+
 
 @app.context_processor
 def inject_user():
@@ -85,12 +103,11 @@ def inject_user():
         "authenticated": "username" in session,
         "admin": session.get("admin", False),
     }
-    
+
+
+
 def inject_user():
     return {"is_authenticated": "username" in session}
-
-
-
 
 
 
@@ -101,7 +118,11 @@ def inject_user():
 # non funtinality page routes (pages that do not require backend functionality)
 @app.route("/")
 def index_page():
+    username = session.get("username")
     return render_template('index.html')
+
+
+
 @app.route("/about")
 def about_page():
     return render_template('about.html')
@@ -247,6 +268,11 @@ def booking_confirm_page():
     return render_template('booking-confirm.html')
 
 
+
+
+
+
+
 # calculations
 @app.route("/calculations-choice")
 def calculations_choice_page():
@@ -323,6 +349,7 @@ def calculations_carbon_page():
             error_message = "Please fill in all the fields or ensure values are correct."
             return redirect(url_for('calculations_carbon_page', error=error_message))
     return render_template('calculations-carbon.html')
+
 @app.route("/calculations-results-carbon")
 def calculations_results_carbon_page():
     total_carbon_use = request.args.get('total_carbon_use', type=float)
@@ -352,40 +379,54 @@ def calculations_energy_page():
         except (ValueError, KeyError):
             return "Invalid input data", 400
     return render_template('calculations-energy.html')
+
 @app.route("/calculations-results-energy")
 def calculations_results_energy_page():
     total_energy_use = request.args.get('total_energy_use', type=float)
     total_energy_cost = request.args.get('total_energy_cost', type=float)
     return render_template('calculations-results-energy.html', total_energy_cost=total_energy_cost, total_energy_use=total_energy_use)
 
+
+
+
+
+
+
 # login, logout and register
 @app.route("/login", methods=["GET", "POST"])
 def login_page():
-    if request.method == 'POST':
-        username = request.form['username']
-        email = request.form['email']
-        password = request.form['password']
+    if request.method == "POST":
+        # Get form data
+        username = request.form.get("username")
+        email = request.form.get("email")
+        password = request.form.get("password")
+
+        # Validate input lengths
         if len(username) > 200 or len(password) > 200 or len(email) > 200:
             return "Input exceeds character limit", 400
 
-        connection = sqlite3.connect('users.db')
+        # Check if the user exists in the database
+        connection = sqlite3.connect("users.db")
         cursor = connection.cursor()
+
+        # Fetch user by username and email only
         cursor.execute(
-            "SELECT username, password, email, admin FROM users WHERE username = ?",
-            (username,),
+            "SELECT username, password, email, admin FROM users WHERE username = ? AND email = ?",
+            (username, email),
         )
         user = cursor.fetchone()
         connection.close()
 
-        if user is None:
-            return "Invalid username or password", 400
+        print(f"Debug: User fetched from database: {user}")  # Debugging
 
-        if check_password_hash(user[1], password):
-            session["username"] = username
-            session["admin"] = False
-            return redirect(url_for("index_page"))
-        else:
-            return "Invalid username or password", 400
+        if user:
+            # Use check_password_hash to verify the password
+            if check_password_hash(user[1], password):  # user[1] is the hashed password
+                session["username"] = username
+                session["admin"] = user[3]  # user[3] is the admin status
+                return redirect(url_for("profile"))
+
+        return "Invalid username or password", 400
 
     return render_template("login.html")
 
@@ -396,6 +437,7 @@ def register_page():
             email = request.form['email']
             password = request.form['password']
             password_confirm = request.form['password-confirm']
+            
             # have a input validation
             if not username or not email or not password or not password_confirm:
                 return "All fields must be filled", 400
@@ -452,7 +494,13 @@ def register_page():
                 connection.close()
     
         return render_template('register.html')
-    
+  
+@app.route("/profile")
+def profile():
+    if "username" not in session:
+        return redirect(url_for("login_page"))
+    return render_template("profile.html", username=session["username"])
+  
 @app.route("/logout", methods=["GET", "POST"])
 def logout():
     session.clear()
