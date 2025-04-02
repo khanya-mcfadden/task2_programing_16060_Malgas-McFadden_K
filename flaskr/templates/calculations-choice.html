@@ -1,30 +1,60 @@
 <!DOCTYPE html>
 <html lang="en">
-
-{% extends "index.html" %}
-{% block title %}calculations choice{% endblock %}
-
-{% block content %}
-
-<body>
-    <h1 class="text-center">Choose what you want to Calculation</h1>
-
-
-    <div class="container mt-5">
-        <div class="row">
-            <div class="col-md-6 assessment-section text-left">
-                <h2>Carbon Assessment</h2>
-                <a href="#" class="btn btn-primary">Book NOW</a>
+  {% extends 'index.html' %}
+  {% block title %}
+    calculations choice
+  {% endblock %}
+  <style>
+    .centered-text {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      text-align: center;
+      color: #08392e;
+      font-size: 96px;
+      font-family: 'Source Serif Pro', serif;
+      font-weight: 400;
+      text-decoration: underline;
+      text-transform: capitalize;
+      word-wrap: break-word;
+    }
+    
+    .bottom-button {
+      position: absolute;
+      bottom: 10%;
+      left: 50%;
+      transform: translateX(-50%);
+      width: auto;
+      height: auto;
+    }
+  </style>
+  {% block content %}
+    <body>
+      <div class="container-fluid mt-1 text-center">
+        <div class="row justify-content-center">
+          <!-- Carbon Assessment -->
+          <div class="col-md-5 bg" style="background-image: url('/static/images/backgrounds/booking-1.png');  width: 50%; height: 800px;">
+            <div class="centered-text" style="text-align: center; color: #08392E; font-size: 96px; font-family: Source Serif Pro; font-weight: 400; text-decoration: underline; text-transform: capitalize; word-wrap: break-word">
+              carbon <br />assessment
             </div>
-            <div class="col-md-6 assessment-section text-right">
-                <h2>Energy Usage Assessment</h2>
-                <a href="#" class="btn btn-primary">Book NOW</a>
+            <a href="#" class="btn bottom-button"><img src="/static/images/icons/book-now-button.png" alt="book-now-button" /></a>
+          </div>
+          <!-- page divider -->
+
+          <!-- Energy use -->
+          <div class="col-md-5 bg" style="background-image: url('/static/images/backgrounds/booking-1.png');  width: 50%; height: 800px;">
+            <div class="centered-text" style="text-align: center; color: #08392E; font-size: 96px; font-family: Source Serif Pro; font-weight: 400; text-decoration: underline; text-transform: capitalize; word-wrap: break-word">
+              energy usage <br />assessment
             </div>
+            <a href="#" class="btn bottom-button"><img src="/static/images/icons/book-now-button.png" alt="book-now-button" /></a>
+          </div>
         </div>
-    </div>
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+      </div>
 
-{% endblock %}
-</body>
+      <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+      <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+      <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    </body>
+  {% endblock %}
+</html>
