@@ -16,7 +16,8 @@ import requests
 from werkzeug.security import generate_password_hash, check_password_hash
 import re
 app = Flask(__name__, template_folder='Templates')
-app.secret_key = os.urandom(24)  # Set a unique and secret key for session management
+app.secret_key = "hello"
+# os.urandom(24)   Set a unique and secret key for session management
 
 # page link structure
 
@@ -39,7 +40,7 @@ CREATE TABLE IF NOT EXISTS users (
     FirstName VARCHAR,
     LastName VARCHAR,
     Email VARCHAR NOT NULL,
-    Password VARCHAR(20) NOT NULL,
+    Password VARCHAR NOT NULL,
     PaymentDetails INTEGER,
     AddressId INTEGER,
     admin BOOLEAN DEFAULT 0,
