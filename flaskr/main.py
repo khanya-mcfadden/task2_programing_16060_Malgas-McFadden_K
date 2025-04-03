@@ -97,7 +97,7 @@ def manage_session():
     # Update the last activity timestamp for the session
     session["last_activity"] = datetime.now()
 
-
+# defines what happens when the user is logged in and what is authernticated and   admin
 @app.context_processor
 def inject_user():
     return {
@@ -107,8 +107,7 @@ def inject_user():
 
 
 
-def inject_user():
-    return {"is_authenticated": "username" in session}
+
 
 
 
@@ -188,7 +187,12 @@ def terms_page():
 
 @app.route("/privacy")
 def privacy_page():
-    return render_template('privacy.html')
+    return render_template('privacy-policy.html')
+@app.route("/terms-and-conditions")
+def terms_and_conditions_page():
+    return render_template('terms-and-conditions.html')
+
+
 
 @app.route("/unfinished")
 def unfinished_page():

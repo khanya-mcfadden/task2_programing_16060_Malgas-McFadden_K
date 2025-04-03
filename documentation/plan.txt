@@ -13,8 +13,7 @@
 
 28/03/2025 
 [done] remove styleing form everything but the nave and footer
-[] added auth features for when a user is loged in
-
+[?] added auth features for when a user is loged in
 
 02/04/2025
 need to figur out why users cant login now even with correct inputs 
@@ -23,6 +22,35 @@ visuals are mostly compleat
 need to update the assest log and organise the test log
 
 need to spend a while doing every type of testing
+
+03/04/2025 
+users couldnt login due to a password length limit i set up when i made the database that lead to the password hashes corupting
+
+only pages left to create content for are 
+the projects / ev map page 
+the policy's pages 
+the terms and conditions pages
+impliment a cookie pop up
+
+the profile page 
+-user need to be able to see past resaults( do as a graph ) of the carbon and the energy use , could togal between the cost and the use 
+-they need to be able to change the contrast
+-they need to be able to change their password
+
+and the admin pages
+a page for the cosultation notes
+page for the installations 
+mangaing database page
+add a new article page
+
+i also want to add 
+ the intro body from my design to the home page
+ edit the styleing of the nav bar 
+ add backgrounds to various areas
+ add a error page if a template is not found
+ need to fix some of the verifications methods e.g. the tick boxes and mandatory data
+ add table linking for some of the features
+
 
 # what needs to be done#
 -must be done-
@@ -54,8 +82,10 @@ policy and terms and conditions pages
 login and registraion pages
     [done] 1. create front end design
     [done] 2. creat backed functinality
-    [re-doing] 3. test backed functinality
-    [re-doing] 4. test modules intergrations with rest of program
+    [done] 1. create front end design
+    [done] 3. test backed functinality
+    [done] 1. create front end design
+    [done] 4. test modules intergrations with rest of program
 
     
 -extras/less important-
@@ -64,6 +94,11 @@ infomation page
     [done] 2. creation of navigation system
     [done] 3. development of functinality of home page 
     [done] 4. testing of home page functinality and checking for errors
+
+-secret page
+    []not going to spoil it 
+    []check the footer
+
 projects page 
     [] 1. development of front end 
     [] 2. creation of card info system
