@@ -1,15 +1,77 @@
 <!DOCTYPE html>
 <html lang="en">
-{% extends "index.html" %}
-{% block title %}profile{% endblock %}
+  {% extends 'index.html' %}
+  {% block title %}
+    profile
+  {% endblock %}
 
+  {% block content %}
+    <style>
+      .title-text {
+        width: 100%;
+        height: 100%;
+        text-align: center;
+        color: white;
+        font-size: 93px;
+        font-family: Source Serif Pro;
+        font-weight: 400;
+        text-transform: capitalize;
+        word-wrap: break-word;
+      }
+      .update-text {
+        color: #fff;
+        text-align: center;
+        font-family: 'Source Serif Pro';
+        font-size: 36px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: normal;
+        text-transform: capitalize;
+      }
+    </style>
+    <body>
+      <div class="containter text-center" style="width: 100%; height: 100%; background: #07503E">
+        <div class="nav-divider"></div>
 
-{% block content %}
-<body>
-    <div class="containter">
-        <div class="privacy-policy">
-            <h1>Privacy Policy</h1>
-            <p>Last updated: 2023-10-01</p>
-            <p>This Privacy Policy describes Our policies and procedures on the collection, use, and disclosure of Your information when You use the Service and tells You about Your privacy rights and how the law protects You.</p>
-            <p>By using the Service, You agree to the collection and use of information in accordance with this Privacy Policy. If you do not agree with this policy, please do not use our service.</p>
+        <h1 class="title-text">Privacy policy & terms and conditions</h1>
+        <div class="update-text">
+          <p>created on: 2025-04-2025</p>
+          <p>Last updated: 2025-04-2025</p>
+          <h6>This Privacy Policy describes Our policies and procedures on the collection, use, and disclosure of Your information when You use the Service and tells You about Your privacy rights and how the law protects You.</h6>
         </div>
+      </div>
+
+      <div class="text-center">
+        <div class="nav-divider"></div>
+        <!-- opening -->
+        <h1 class="body-title-text text-center">1. General</h1>
+        <div class="body-text text-center">
+          <p>Rosa, a company operating under the trade name Rosa technolagys, processes your personal data to help you improve your ecological impact, taking care of the health of the planet and that of your data. Personal data refers to any information likely to identify you directly (e.g. your name) or indirectly (e.g. your IP address) ("Personal Data"). This privacy policy ("Privacy Policy") explains how we process your Personal Data when you ("you") browse the greenly.earth website ("Greenly Website"). We therefore invite you to read the Privacy Policy carefully.</p>
+        </div>
+
+        <h1 class="body-title-text text-center">2. What are the sources of your Personal Data?</h1>
+        <div class="body-text text-center">
+          <p>a. Personal Data you provide directly to us We process Personal Data that you may communicate directly to us, for example when you subscribe to a demo or to our newsletter, when you contact us in writing via our chatbot on the Greenly Website, or when you download one of our resources in the "Resources" section of the Greenly Website (the "Greenly Resources").</p>
+          <p>b. Personal Data that you indirectly provide to us We also process your Personal Data shared by external service providers when you browse the Greenly Website, for example your IP address collected by audience measurement cookies.</p>
+        </div>
+
+
+        <h1 class="body-title-text text-center">3. Characteristics of the processing of your Personal Data</h1>
+        <div class="body-text text-center">
+            <p>For the purposes of this Privacy Policy :
+                ·      a "Prospect" refers to any individual who expresses an interest in the Greenly Services (as defined below) by visiting the Greenly Website, for example by (i) formulating questions via the chatbot of the Greenly Website, (ii)subscribing to a demo or to our newsletter and/or (iii) downloading one of the Greenly Resources, without creating a customer account;
+                ·      an "Internet user" refers to the individual browsing the Greenly Website, without expressing interest in the Greenly Services.
+                ·      the "Greenly Services" refer to the services provided via the Greenly Corporate SaaS platform, intended for companies.</p>
+        </div>
+
+        <h1 class="body-title-text text-center">[ETC]</h1>
+        <div class="body-text text-center">
+          <p>in the full product the other privacy infomation would go bellow</p>
+        </div>
+
+
+
+      </div>
+    </body>
+  {% endblock %}
+</html>
