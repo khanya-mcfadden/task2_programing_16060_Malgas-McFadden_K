@@ -78,7 +78,7 @@ CREATE TABLE IF NOT EXISTS Bookings (
 
 
 
-
+# time out system - this will log the user out after 30 minutes of inactivity
 @app.before_request
 def manage_session():
     session.permanent = True
@@ -90,7 +90,7 @@ def manage_session():
         if last_activity:
             current_time = datetime.now()
             time_difference = current_time - last_activity.replace(tzinfo=None)
-            if time_difference.total_seconds() > 1800:  # 30 minute
+            if time_difference.total_seconds() > 1800:  # the timer for when logut happen, it checks the time difference between the currant time and the last action the user has done
                 session.clear()
                 return redirect(url_for("login"))
 
