@@ -10,15 +10,19 @@
 
 	height: auto;
 	max-width: 50%;
-	
+
 
 	padding: 20px;
 	align-content: column;
 }
-h1, div {
-    margin: 0;
-    padding: 0;
+
+h1,
+div {
+	margin: 0;
+	padding: 0;
 }
+
+
 .register-container h1 {
 	text-align: center;
 	color: #00FFC5;
