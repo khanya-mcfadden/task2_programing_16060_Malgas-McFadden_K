@@ -1,150 +1,160 @@
 <!DOCTYPE html>
-<head>
-  <title>
-    {% block title %}
-      Home Page
-    {% endblock %}
-  </title>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=0" />
-  <link rel="stylesheet" type="text/css" href="/static/main.css" />
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-</head>
+<html>
+  <head>
+    <title>
+      {% block title %}
+        Home Page
+      {% endblock %}
+    </title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=0" />
+    <link rel="stylesheet" type="text/css" href="/static/main.css" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  </head>
 
-<body style="background-color:rgba(119, 253, 175, 0.02);">
-  
-  <nav class="navbar navbar-expand-lg navbar-light bg-light" style="width: 100%; height: 100%; outline: 1px rgba(0, 0, 0, 0.25) solid; outline-offset: -0.50px; margin-bottom: 5rem;">
-    <a class="navbar-brand"><img style="width: auto; height: auto;" src="/static/images/icons/logo.png" alt="logo" /></a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"><span class="navbar-toggler-icon"></span></button>
+  <body style="background-color:rgba(119, 253, 175, 0.02);">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light" style="width: 100%; height: 100%; outline: 1px rgba(0, 0, 0, 0.25) solid; outline-offset: -0.50px; margin-bottom: 5rem;">
+      <a class="navbar-brand"><img style="width: auto; height: auto;" src="/static/images/icons/logo.png" alt="Logo" /></a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"><span class="navbar-toggler-icon"></span></button>
 
-    <div class="collapse navbar-collapse" id="navbarNav">
-      <ul class="navbar-nav">
-        <li class="nav-item nav-custom-spacing">
-          <a class="nav-link" href="/"><img style="width: auto; height: auto;" src="/static/images/icons/home.png" alt="Home" /></a>
-        </li>
-        <li class="nav-item nav-custom-spacing">
-          <a class="nav-link" style="font-size: 3.125rem" href="/booking">Booking</a>
-        </li>
-        <li class="nav-item nav-custom-spacing">
-          <a class="nav-link" style="font-size: 3.125rem" href="/infomation-page-pricing">Pricing</a>
-        </li>
-
-        <li class="nav-item nav-custom-spacing">
-          <a class="nav-link" style="font-size: 3.125rem" href="/calculations-choice">Calculations</a>
-        </li>
-        <li class="nav-item Recources-custom-spacing">
-          <a class="nav-link" style="font-size: 3.125rem " href="/information-page-article">Recources</a>
-        </li>
-        {% if authenticated %}
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav">
           <li class="nav-item nav-custom-spacing">
-            <a class="nav-link" style="font-size: 3.125rem" href="/logout">logout</a>
+            <a class="nav-link" href="/"><img style="width: auto; height: auto;" src="/static/images/icons/home.png" alt="Home" /></a>
+          </li>
+          <li class="nav-item nav-custom-spacing">
+            <a class="nav-link" style="font-size: 3.125rem" href="/booking">Booking</a>
+          </li>
+          <li class="nav-item nav-custom-spacing">
+            <a class="nav-link" style="font-size: 3.125rem" href="/infomation-page-pricing">Pricing</a>
           </li>
 
-          {% if admin %}
+          <li class="nav-item nav-custom-spacing">
+            <a class="nav-link" style="font-size: 3.125rem" href="/calculations-choice">Calculations</a>
+          </li>
+          <li class="nav-item Recources-custom-spacing">
+            <a class="nav-link" style="font-size: 3.125rem " href="/information-page-article">Recources</a>
+          </li>
+          {% if authenticated %}
             <li class="nav-item nav-custom-spacing">
-              <a class="nav-link" style="font-size: 3.125rem" href="/usersinfo">user info</a>
+              <a class="nav-link" style="font-size: 3.125rem" href="/logout">Logout</a>
             </li>
+
+            {% if admin %}
+              <li class="nav-item nav-custom-spacing">
+                <a class="nav-link" style="font-size: 3.125rem" href="/usersinfo">User Info</a>
+              </li>
+              <li class="nav-item nav-custom-spacing">
+                <a class="nav-link" style="font-size: 3.125rem" href="/test">Test Page</a>
+              </li>
+            {% endif %}
+          {% else %}
             <li class="nav-item nav-custom-spacing">
-              <a class="nav-link" style="font-size: 3.125rem" href="/test">test page</a>
+              <a class="nav-link" style="font-size: 3.125rem" href="/register">Register</a>
+            </li>
+            <li class="nav-item custom-postion">
+              <a class="nav-link" style="font-size: 3.125rem;" href="/login">Login</a>
             </li>
           {% endif %}
-        {% else %}
-          <li class="nav-item nav-custom-spacing">
-            <a class="nav-link" style="font-size: 3.125rem" href="/register">Register</a>
-          </li>
-          <li class="nav-item custom-postion">
-            <a class="nav-link" style="font-size: 3.125rem;" href="/login">Login</a>
-          </li>
-        {% endif %}
-      </ul>
-    </div>
-  </nav>
+        </ul>
+      </div>
+    </nav>
 
-  {% block content %}
-    <div class="container-fluid px-1 d-flex justify-content-center align-items-center" style="color: white; background: linear-gradient(0deg, #08392E 9%, #41B271 100%);height: 30rem;border-radius: 10px; margin: 2.5rem; margin-bottom: 10rem; width: 95%;">
-      <div class="row">
-        <!-- Main Text Section -->
-        <div class="col-md-6" style="margin-top: 1rem; margin-left: 1rem; ">
-          <div class="row">
-            <img style="width: auto; height: auto;" src="/static/images/icons/highlited text home.png" alt="START NOW" />
-          </div>
-
-          <div class="row">
-            <h1 class="display-4 fw-bold text-capitalize">Insert text here insert text</h1>
-          </div>
-
-          <div class="row">
-            <h1 class="display-4 fw-bold text-capitalize">Here insert text here insert text here</h1>
-          </div>
-
-          <div class="row">
-            <p class="fs-4 fw-bold text-capitalize">Cut reporting time by %, using industry-leading data, and gain continuous and expert guidance from our dedicated Climate Expert team.</p>
-          </div>
-        </div>
-
-        <!-- Stats Section -->
-        <div class="col-md-6" style="width: fit-content; margin: 0px;">
-          <div class="row mt-2">
-            <div class="col-md-12">
-              <div class="bg-white rounded p-3 shadow mb-3 stat-text">
-                <h3 class="text-center text-dark">We have installed:</h3>
-                <h2 class="text-center text-danger">100,000+</h2>
-                <h3 class="text-center">Solar panels and batteries</h3>
-              </div>
+    {% block content %}
+      <div class="container-fluid px-1 d-flex justify-content-center align-items-center" style="color: white; background: linear-gradient(0deg, #08392E 9%, #41B271 100%);height: 30rem;border-radius: 10px; margin: 2.5rem; margin-bottom: 10rem; width: 95%;">
+        <div class="row">
+          <!-- Main Text Section -->
+          <div class="col-md-6" style="margin-top: 1rem; margin-left: 1rem; ">
+            <div class="row">
+              <img style="width: auto; height: auto;" src="/static/images/icons/highlited text home.png" alt="START NOW" />
             </div>
-            <div class="col-md-12">
-              <div class="bg-white rounded p-3 shadow stat-text">
-                <h3 class="text-center text-dark">Our customers have saved:</h3>
-                <h2 class="text-center text-danger">100,000+</h2>
-                <h3 class="text-center">Tons of Carbon</h3>
+
+            <div class="row">
+              <h1 class="display-4 fw-bold text-capitalize">Insert Text Here Insert Text</h1>
+            </div>
+
+            <div class="row">
+              <h1 class="display-4 fw-bold text-capitalize">Here Insert Text Here Insert Text Here</h1>
+            </div>
+
+            <div class="row">
+              <p class="fs-4 fw-bold text-capitalize">Cut Reporting Time By %, Using Industry-Leading Data, And Gain Continuous And Expert Guidance From Our Dedicated Climate Expert Team.</p>
+            </div>
+          </div>
+
+          <!-- Stats Section -->
+          <div class="col-md-6" style="width: fit-content; margin: 0px;">
+            <div class="row mt-2">
+              <div class="col-md-12">
+                <div class="bg-white rounded p-3 shadow mb-3 stat-text">
+                  <h3 class="text-center text-dark">We Have Installed:</h3>
+                  <h2 class="text-center text-danger">100,000+</h2>
+                  <h3 class="text-center">Solar Panels And Batteries</h3>
+                </div>
+              </div>
+              <div class="col-md-12">
+                <div class="bg-white rounded p-3 shadow stat-text">
+                  <h3 class="text-center text-dark">Our Customers Have Saved:</h3>
+                  <h2 class="text-center text-danger">100,000+</h2>
+                  <h3 class="text-center">Tons Of Carbon</h3>
+                </div>
               </div>
             </div>
           </div>
         </div>
       </div>
-    </div>
 
-    <!-- Header -->
-    <div class="row text-center mb-4">
-      <div class="col-12">
-        <h1 class="text-black mb-0" style="font-family: 'Source Serif Pro'; font-size: 6rem;">What Going Solar Does for You</h1>
-        <p class="text-danger fw-bold mb-2" style="font-family: 'Source Serif Pro'; font-size: 2rem;">And Why Should You Care?</p>
+      <!-- Header For Info Page -->
+      <div class="row text-center mb-4">
+        <div class="col-12">
+          <h1 class="text-black mb-0" style="font-family: 'Source Serif Pro'; font-size: 6rem;">What Going Solar Does For You</h1>
+          <p class="text-danger fw-bold mb-2" style="font-family: 'Source Serif Pro'; font-size: 2rem;">And Why Should You Care?</p>
+        </div>
       </div>
-    </div>
-    <div class="test" style="width: 100%;"> 
+
       <!-- Main Content Section -->
       <div class="row">
-        <!-- Content Box 1 -->
+        <!-- Save Money Content Box -->
         <div class="col-md-4 mb-3">
-          <div class="shadow p-4 bg-white rounded solar-info-box">
-            <h2 class="text-center text-decoration-underline mb-3" style="font-family: 'Source Serif Pro'; font-size: 3rem;">Save Money</h2>
-            <p class="mb-0" style="font-family: 'Source Serif Pro'; font-size: 2.25rem;">By installing solar panels, you can cut down your energy bill by 60%.</p>
+          <div class="shadow p-4 bg-white rounded solar-info-box" style="width: 100%; height: 100%;">
+            <div class="d-flex align-items-center justify-content-right">
+              <img class="home-image" src="/static/images/icons/bank icon.svg" />
+              <h2 class="text-center text-decoration-underline mb-3 ms-2" style="font-family: 'Source Serif Pro'; font-size: 3rem;">Save Money</h2>
+            </div>
+            <p class="mb-0" style="font-family: 'Source Serif Pro'; font-size: 2.25rem;">By Installing Solar Panels, You Can Cut Down Your Energy Bill By 60%.</p>
           </div>
         </div>
 
         <!-- Content Box 2 -->
         <div class="col-md-4 mb-3">
-          <div class="shadow p-4 bg-white rounded solar-info-box">
-            <h2 class="text-center text-decoration-underline mb-3" style="font-family: 'Source Serif Pro'; font-size: 2.5rem;">Reduce Carbon Footprint</h2>
-            <p class="mb-0" style="font-family: 'Source Serif Pro'; font-size: 2.25rem;">Take a step towards eco-friendliness and reduce your carbon footprint.</p>
+          <div class="shadow p-4 bg-white rounded solar-info-box" style="width: 100%; height: 100%;">
+            <div class="d-flex align-items-center justify-content-right">
+              <img class="home-image" src="/static/images/icons/leaf.svg" />
+              <h2 class="text-center text-decoration-underline mb-3 ms-2" style="font-family: 'Source Serif Pro'; font-size: 3rem;">Eco-Friendly</h2>
+            </div>
+            <p class="mb-0" style="font-family: 'Source Serif Pro'; font-size: 2.25rem;">Switch To Renewable Energy And Contribute To A Greener Planet.</p>
           </div>
         </div>
 
-        <!-- Content Box 3 -->
+        <!-- Take Control Content Box -->
         <div class="col-md-4 mb-3">
-          <div class="shadow p-4 bg-white rounded solar-info-box">
-            <h2 class="text-center text-decoration-underline mb-3" style="font-family: 'Source Serif Pro'; font-size: 2.5rem;">Prepare for the Future</h2>
-            <p class="mb-0" style="font-family: 'Source Serif Pro'; font-size: 2.25rem;">Stay ahead with sustainable energy solutions.</p>
+          <div class="shadow p-4 bg-white rounded solar-info-box" style="height: 100%;">
+            <div class="d-flex align-items-center justify-content-right">
+              <img class="home-image" src="/static/images/icons/Filter_Off.svg" />
+              <h2 class="text-center text-decoration-underline mb-3 ms-2" style="font-family: 'Source Serif Pro'; font-size: 3rem;">Gives You Control</h2>
+            </div>
+            <p class="mb-0 text-wrap" style="font-family: 'Source Serif Pro'; font-size: 2.25rem; word-wrap: break-word;">Take Charge Of Your Energy Needs And Reduce Dependency On Traditional Power Sources.</p>
           </div>
         </div>
       </div>
-      <!-- Call-to-Action Section -->
+
+      <!-- Call-To-Action Section -->
       <div class="row text-center mt-4">
         <div class="col-12">
           <div class="d-flex justify-content-center">
             <div class="center d-flex flex-column align-items-center justify-content-center text-center mx-auto" style="background-image: url('/static/images/backgrounds/join-now.png'); font-family: 'Source Serif Pro'; font-size: 3rem; color: white; width: 50.875rem; height: 17.9375rem">
-              Join Now to Help Against Pollution<div class="mt-3">
+              Join Now To Help Against Pollution<div class="mt-3">
                 <button class="btn p-0"><img src="/static/images/icons/book-now-button.png" /></button>
               </div>
             </div>
@@ -152,61 +162,60 @@
         </div>
       </div>
 
-      <div class="row" >
-        <!-- Prepare for the Future Content Box -->
-        <div class="col-md-4 mb-3">
+      <div class="row">
+        <!-- Prepare For The Future Content Box -->
+        <div class="col-md-6 mb-3" style="height: 100%;">
           <div class="shadow p-4 bg-white rounded solar-info-box">
-            <h2 class="text-center text-decoration-underline mb-3" style="font-family: 'Source Serif Pro'; font-size: 2.5rem;">Prepare for the Future</h2>
-            <p class="mb-0" style="font-family: 'Source Serif Pro'; font-size: 2.25rem;">Stay ahead with sustainable energy solutions.</p>
+            <div class="d-flex align-items-center justify-content-right">
+              <img class="home-image" src="/static/images/icons/star.svg" />
+              <h2 class="text-center text-decoration-underline mb-3" style="font-family: 'Source Serif Pro'; font-size: 2.5rem;">Prepare For The Future</h2>
+            </div>
+            <p class="mb-0" style="font-family: 'Source Serif Pro'; font-size: 2.25rem; text-align: center;">Stay Ahead With Sustainable Energy Solutions And Generate Your Own Power.</p>
           </div>
         </div>
 
-        <!-- Reduce Carbon Footprint Content Box -->
-        <div class="col-md-4 mb-3">
+        <!-- Life Time Content Box -->
+        <div class="col-md-6 mb-3" style="height: 100%;">
           <div class="shadow p-4 bg-white rounded solar-info-box">
-            <h2 class="text-center text-decoration-underline mb-3" style="font-family: 'Source Serif Pro'; font-size: 2.5rem;">Reduce Carbon Footprint</h2>
-            <p class="mb-0" style="font-family: 'Source Serif Pro'; font-size: 2.25rem;">Take a step towards eco-friendliness and reduce your carbon footprint.</p>
-          </div>
-        </div>
-
-        <!-- Content Box -->
-        <div class="col-md-4 mb-3">
-          <div class="shadow p-4 bg-white rounded solar-info-box">
-            <h2 class="text-center text-decoration-underline mb-3" style="font-family: 'Source Serif Pro'; font-size: 2.5rem;">Reduce Carbon Footprint</h2>
-            <p class="mb-0" style="font-family: 'Source Serif Pro'; font-size: 2.25rem;">Take a step towards eco-friendliness and reduce your carbon footprint.</p>
+            <div class="d-flex align-items-center justify-content-right">
+              <img class="home-image" src="/static/images/icons/warenty icon.svg" />
+              <h2 class="text-center text-decoration-underline mb-3" style="font-family: 'Source Serif Pro'; font-size: 2.5rem;">Lifetime Guarantee</h2>
+            </div>
+            <p class="mb-0" style="font-family: 'Source Serif Pro'; font-size: 2.25rem; text-align: center;">Take A Step Towards Eco-Friendliness And Reduce Your Carbon Footprint.</p>
           </div>
         </div>
       </div>
-  {% endblock %}
+    {% endblock %}
 
-  <!-- Footer Section -->
-  <footer class="container-fluid position-relative py-5" style="width: 100%; height: 100%; outline: 1px rgba(0, 0, 0, 0.1) solid; outline-offset: -0.50px ;margin-top: 5rem">
-    <!-- Footer Content -->
-    <div class="row mt-5">
-      <div class="col-md-6 text-start">
-        <p class="text-muted" style="font-size: 0.875rem;">© 2025 Rosa Tech. All rights reserved</p>
+    <!-- Footer Section -->
+    <footer class="container-fluid position-relative py-5" style="width: 100%; height: 100%; outline: 1px rgba(0, 0, 0, 0.1) solid; outline-offset: -0.50px ;margin-top: 5rem">
+      <!-- Footer Content -->
+      <div class="row mt-5">
+        <div class="col-md-6 text-start">
+          <p class="text-muted" style="font-size: 0.875rem;">© 2025 Rosa Tech. All Rights Reserved</p>
+        </div>
+
+        <div class="col-md-6 text-end">
+          <a href="/terms" class="text-muted me-3" style="font-size: 0.875rem;">Terms Of Service</a>
+          <a href="/secret" class="me-3" style="font-size: 0.875rem; color:rgb(0, 255, 0);">|</a>
+          <a href="/privacy" class="text-muted" style="font-size: 0.875rem;">Privacy Policy</a>
+        </div>
       </div>
 
-      <div class="col-md-6 text-end">
-        <a href="/terms" class="text-muted me-3" style="font-size: 0.875rem;">Terms of Service</a>
-        <a href="/secret" class="me-3" style="font-size: 0.875rem; color:rgb(0, 255, 0);">|</a>
-        <a href="/privacy" class="text-muted" style="font-size: 0.875rem;">Privacy Policy</a>
+      <!-- Discover Section -->
+      <hr class="my-4" style="opacity: 0.2; border: 0.0625rem solid #0A142F;" />
+      <div class="d-flex justify-content-start mb-4">
+        <p class="me-4" style="font-size: 1rem; font-family: 'Helvetica Neue'; color: #0A142F;">About Us</p>
+        <p class="me-4" style="font-size: 1rem; font-family: 'Helvetica Neue'; color: #0A142F;">Discover</p>
+        <p class="me-4" style="font-size: 1rem; font-family: 'Helvetica Neue'; color: #0A142F;">Explore</p>
+        <p style="font-size: 1rem; font-family: 'Helvetica Neue'; color: #0A142F;">Books</p>
       </div>
-    </div>
 
-    <!-- Discover Section -->
-    <hr class="my-4" style="opacity: 0.2; border: 0.0625rem solid #0A142F;" />
-    <div class="d-flex justify-content-start mb-4">
-      <p class="me-4" style="font-size: 1rem; font-family: 'Helvetica Neue'; color: #0A142F;">About us</p>
-      <p class="me-4" style="font-size: 1rem; font-family: 'Helvetica Neue'; color: #0A142F;">Discover</p>
-      <p class="me-4" style="font-size: 1rem; font-family: 'Helvetica Neue'; color: #0A142F;">Explore</p>
-      <p style="font-size: 1rem; font-family: 'Helvetica Neue'; color: #0A142F;">Books</p>
-    </div>
-
-    <!-- Social Icons Section -->
-    <div class="d-flex justify-content-end">
-      <img src="https://placehold.co/23x23" alt="Social Icon" class="rounded-circle" />
-      <img src="https://placehold.co/23x23" alt="Social Icon" class="rounded-circle" />
-    </div>
-  </footer>
-</body>
+      <!-- Social Icons Section -->
+      <div class="d-flex justify-content-end">
+        <img src="https://placehold.co/23x23" alt="Social Icon" class="rounded-circle" />
+        <img src="https://placehold.co/23x23" alt="Social Icon" class="rounded-circle" />
+      </div>
+    </footer>
+  </body>
+</html>
