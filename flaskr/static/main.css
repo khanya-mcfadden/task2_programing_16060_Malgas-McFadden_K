@@ -2,15 +2,17 @@
     font-family: Source Serif Pro;
 }
 
-
+body {
+    background-color: #6ffc7b;
+}
 
 .mini-image {
     width: 7rem;
-    height: 6.375rem;
-    border: 2px solid #000000;
+    height: 7rem;
+    border: 2px solid #0000005d;
     border-radius: 0.5rem;
-    object-fit: cover;
-    margin-right: 1rem;
+
+
 }
 
 
