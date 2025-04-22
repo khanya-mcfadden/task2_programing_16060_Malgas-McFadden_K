@@ -63,63 +63,47 @@
   <div class="nav-divider"></div>
 
   {% block content %}
-    <div class="home-background" style="width: 88.40969rem; height: 38.125rem; flex-shrink: 0;">
-      <meta charset="UTF-8" />
-      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-      <title>Mockup Page</title>
-      <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet" />
-      <style>
-        .key-point {
-          background-color: #00e5ff;
-          padding: 10px;
-          font-weight: bold;
-        }
-        .main-text {
-          font-size: 2rem;
-          font-weight: bold;
-        }
-        .client-logos {
-          border-left: 1px solid #000;
-          padding-left: 10px;
-        }
-        .scroll-indicator {
-          writing-mode: vertical-rl;
-          text-orientation: mixed;
-        }
-        .stats-box {
-          border: 1px solid #000;
-          padding: 10px;
-          margin: 10px 0;
-        }
-      </style>
+    <div class="container-fluid px-3" style="background: linear-gradient(0deg, #08392E 9%, #41B271 100%); border-radius: 10px; margin-bottom: 10rem;">
+      <!-- main text and stats Elements -->
+      <div class="container text-white">
+        <div class="row">
+          <!-- Main Text Section -->
+          <div class="col-md-6">
+            <div class="row">
+              <img style="width: auto; height: auto;" src="/static/images/icons/logo.png" alt="START NOW" />
+            </div>
 
-      <div class="container-fluid bg-success text-white">
-        <div class="row">
-          <div class="col-12 key-point">Key Point</div>
-        </div>
-        <div class="row">
-          <div class="col-12 main-text">Insert Text Here Insert Text Here Insert Text Here Insert Text Here</div>
-        </div>
-        <div class="row">
-          <div class="col-12">Cut Reporting Time By %, Using Industry-Leading Data, And Gain Continuous And Expert Guidance From Our Dedicated Climate Expert Team.</div>
-        </div>
-        <div class="row">
-          <div class="col-9">{Num}+ People Use Us To Help Reduce Their Carbon Footprint. Join The Movement.</div>
-          <div class="col-3 client-logos">
-            <div>Client Logo Here</div>
-            <div>Client Logo Here</div>
-            <div>Client Logo Here</div>
-            <div>Client Logo Here</div>
-            <div>Client Logo Here</div>
-            <div class="scroll-indicator">Scroll</div>
+            <div class="row">
+              <h1 class="display-4 fw-bold text-capitalize">Insert text here insert text</h1>
+            </div>
+
+            <div class="row">
+              <h1 class="display-4 fw-bold text-capitalize">Here insert text here insert text here</h1>
+            </div>
+
+            <div class="row">
+              <p class="fs-4 fw-bold text-capitalize">Cut reporting time by %, using industry-leading data, and gain continuous and expert guidance from our dedicated Climate Expert team.</p>
+            </div>
           </div>
-        </div>
-        <div class="row">
-          <div class="col-6 stats-box">
-            We Have Installed <span style="color: red;">100,000+</span> Solar Panels And Battery's
-          </div>
-          <div class="col-6 stats-box">
-            Our Customers Have Saved: <span style="color: red;">100,000+</span> Tons Of Carbon
+
+          <!-- Stats Section -->
+          <div class="col-md-6">
+            <div class="row mt-4">
+              <div class="col-md-12">
+                <div class="bg-white rounded p-3 shadow mb-3">
+                  <h3 class="text-center text-dark">We have installed:</h3>
+                  <h4 class="text-center text-danger">100,000+</h4>
+                  <p class="text-center">Solar panels and batteries</p>
+                </div>
+              </div>
+              <div class="col-md-12">
+                <div class="bg-white rounded p-3 shadow">
+                  <h3 class="text-center text-dark">Our customers have saved:</h3>
+                  <h4 class="text-center text-danger">100,000+</h4>
+                  <p class="text-center">Tons of Carbon</p>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
