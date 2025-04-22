@@ -4,7 +4,14 @@
 
 
 
-
+.mini-image {
+    width: 7rem;
+    height: 6.375rem;
+    border: 2px solid #000000;
+    border-radius: 0.5rem;
+    object-fit: cover;
+    margin-right: 1rem;
+}
 
 
 .nav-custom-spacing {
