@@ -1,15 +1,26 @@
-*{
- font-family: Source Serif Pro;   
+* {
+    font-family: Source Serif Pro;
 }
 
-.nav-custom-spacing{
+body {
+    width: fit-content;
+    margin: 0 auto;
+}
+
+.nav-custom-spacing {
     margin-right: 1.25rem;
 }
-.Recources-custom-spacing{
+
+.Recources-custom-spacing {
     margin-right: 11rem;
 }
 
-.custom-postion{
+.custom-postion {
     margin-right: 0rem;
 }
 
+.stat-text {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: #000000;
+}
