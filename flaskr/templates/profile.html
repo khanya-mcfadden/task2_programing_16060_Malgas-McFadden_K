@@ -90,29 +90,28 @@
                 </section> -->
 
                 <!-- Course Logging -->
-                <section id="bookings">
-                    <h3>Your Bookings</h3>
-                    {% if bookings %}
-                    <table>
-                        <thead>
-                            <tr>
-                                <th>Course</th>
-                                <th>Date</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {% for booking in bookings %}
-                            <tr>
-                                <td>{{ booking[0] }}</td>
-                                <td>{{ booking[1] }}</td>
-                            </tr>
-                            {% endfor %}
-                        </tbody>
-                    </table>
-                    {% else %}
-                    <p>No bookings found.</p>
-                    {% endif %}
-                </section>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Date</th>
+                            <th>Time</th>
+                            <th>Type</th>
+                            <th>Installation Amount</th>
+                            <th>Message</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for booking in bookings %}
+                        <tr>
+                            <td>{{ booking.date }}</td>
+                            <td>{{ booking.time }}</td>
+                            <td>{{ booking.type }}</td>
+                            <td>{{ installation_number }}</td>
+                            <td>{{ booking.message }}</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
 
             </main>
         </div>

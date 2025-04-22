@@ -206,6 +206,37 @@ def unfinished_page():
 
 
 # booking
+
+@app.route("/booking_info")
+def get_booking_info():
+    conn = sqlite3.connect("users.db")
+    cursor = conn.cursor()
+    
+    # Fetch booking details from the Bookings table
+    cursor.execute("""
+        SELECT 
+            date, 
+            time, 
+            is_installation, 
+            installation_choice, 
+            installation_number, 
+            message 
+        FROM Bookings
+    """)
+    bookings = [
+        {
+            "date": row[0],
+            "time": row[1],
+            "type": "Installation: " + row[3] if row[2] else "Consultation",
+            "installation_amount": row[4] if row[2] else "N/A",
+            "message": row[5]
+        }
+        for row in cursor.fetchall()
+    ]
+    conn.close()
+    
+    return render_template("profile.html", bookings=bookings)
+
 @app.route("/booking", methods=["GET", "POST"])
 def booking_choice_page():
     if "username" not in session:
