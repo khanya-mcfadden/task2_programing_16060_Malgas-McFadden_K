@@ -59,12 +59,7 @@
                 </section>
 
                 <!-- Theme Settings -->
-                <section id="themes">
-                    <h3>Theme Settings</h3>
-                    <form action="/theme" method="POST"></form>
-                    <h2>Toggle Dark/Light Mode</h2>
-                    <button onclick="toggleDarkMode()">Toggle dark mode</button>
-                </section>
+
                 <!-- Clear Cookies -->
                 <section id="clear-cookies">
                     <h3>Clear Cookies</h3>
@@ -195,27 +190,7 @@
         function updateTextSize(value) {
             document.getElementById('text-size-display').textContent = value + 'px';
         }
-        function toggleDarkMode() {
-            var elements = document.querySelectorAll('body, .sidebar, .content');
-            elements.forEach(element => {
-                element.classList.toggle("dark-mode");
-            });
 
-            if (elements[0].classList.contains("dark-mode")) {
-                localStorage.setItem("theme", "dark");
-            } else {
-                localStorage.setItem("theme", "light");
-            }
-        }
-
-        window.onload = function () {
-            if (localStorage.getItem("theme") === "dark") {
-                var elements = document.querySelectorAll('body, .sidebar, .content');
-                elements.forEach(element => {
-                    element.classList.add("dark-mode");
-                });
-            }
-        }
         function clearCookies() {
             var cookies = document.cookie.split(";");
     
