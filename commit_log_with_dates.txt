@@ -1,0 +1,80 @@
+2025-04-23 fianl version 0.6
+2025-04-23 added ai chatbot
+2025-04-23 updated profile and register pages
+2025-04-22 edited profile content
+2025-04-22 edited bookings table to link to users table
+2025-04-22 Add unfinished page template and updated pricing page content and styles
+2025-04-22 changed booking page styles and improve layout; update button with image
+2025-04-22 Add images to  to home page info cards for improved visuals
+2025-04-22 Fix typos and improve wording in documentation; update styles and layout in various templates and CSS files
+2025-04-22 re-added compleated html files and edited choice of images
+2025-04-22 finished styling for home page
+2025-04-22 edited main body text on the index page
+2025-04-22 edited main body text on the index page
+2025-04-22 Refactor index.html layout for improved structure and add new highlighted image
+2025-04-22 edited the styling of the main.css and added content to the index page
+2025-04-22 Refactor CSS styles for improved layout and spacing; restore carbon calculation functionality in new test file
+2025-04-03 Refactor index.html layout and enhance button design for improved user engagement
+2025-04-03 edited indexx css
+2025-04-03 Add terms and conditions page and update asset log with licensing information
+2025-04-03 created policy page
+2025-04-03 addded policy page and terms and conditions page links, expanded the plan doc
+2025-04-03 created a folder for finished pages
+2025-04-03 Fix logout link in index page template
+2025-04-03 Update users table to allow variable-length passwords
+2025-04-02 added notes to plan doc
+2025-04-02 Enhance user session management and add profile page; update login logic to use hashed passwords and display username on index page.
+2025-04-02 finished contact backend
+2025-04-02 created contact page backend, testing needs to happen
+2025-04-02 Add contact and error pages with updated templates and routing
+2025-04-02 Refactor information templates with enhanced layout, styling, and new pricing structure
+2025-04-02 edited imgages
+2025-04-02 Remove outdated information-pricing template and add new articles template with improved layout and styling
+2025-04-02 Revamp calculations choice template with enhanced layout, styling, and new background image
+2025-04-01 Enhance calculations choice template with improved layout and styling for assessments
+2025-04-01 finished backend for carbon footprint
+2025-04-01 Refactor carbon calculations logic for improved accuracy and update form validation
+2025-04-01 Add carbon calculation results template and refactor calculation logic for improved accuracy
+2025-04-01 Refactor carbon interface and update booking template; remove unused files and enhance script functionality
+2025-04-01 Add carbon interface authentication and response handling
+2025-03-31 Add calculations functionality and update navigation links
+2025-03-31 fished backed for booking system
+2025-03-31 Add new information pricing and article templates; update routing and booking table structure
+2025-03-31 changed font
+2025-03-31 added the visuals to the booking page
+2025-03-28 Refactor CSS and HTML structure for improved layout and styling
+2025-03-28 editing css to be django
+2025-03-28 Refactor user authentication context processor and clean up database table definitions
+2025-03-28 edited folder structure added 404 page
+2025-03-28 Refactor database creation logic and update booking form action URL
+2025-03-28 Refactor calculations choice page layout and clean up HTML structure
+2025-03-28 removed all syling apart from on the nav and footer
+2025-03-28 Add CSS styles for calculations choice and login/register pages; create booking page template
+2025-03-28 Update calculations choice page layout and add carbon assessment section with form
+2025-03-27 Fix typo in calculations route and add new calculations choice page with styling
+2025-03-27 all pages have been added to folder
+2025-03-27 added calculations pages updated readme added routs for new pages
+2025-03-27 updated readme and added comments to main.py
+2025-03-27 Add user registration and booking functionality with database setup
+2025-03-27 version 1 of login and registration
+2025-03-27 finished login and registraion css and started backend for the login and registraion systems
+2025-03-26 Refactor login page layout and improve CSS styles for better readability
+2025-03-26 Fix route for booking choice and enhance layout styles in HTML and CSS
+2025-03-26 added routes for other pages
+2025-03-26 fisnished seperation of footer syling
+2025-03-26 moved image files
+2025-03-26 Add star SVG graphic and update index.html for improved visual elements
+2025-03-26 Add SVG graphic for enhanced visual design
+2025-03-26 added solar background
+2025-03-26 compleated nav bare and home body
+2025-03-25 Add background styles and refactor index.html for improved layout
+2025-03-25 Refactor CSS for footer layout and update index.html for improved structure and responsiveness
+2025-03-25 Refactor CSS and HTML structure; update navigation and footer layout for improved responsiveness and styling
+2025-03-25 Add main CSS file and refactor index.html to remove inline styles; implement footer structure
+2025-03-25 added logo edited booking to have text and edited index
+2025-03-25 Add booking route and update navigation in index.html
+2025-03-25 Refactor HTML structure and styles; remove unused CSS, add new templates
+2025-03-25 added sytle sheet and page functianlity
+2025-03-25 Remove obsolete files and add initial Flask application structure
+2025-03-25 added readme requierments and plan files
+2025-03-25 Add initial files for Flask application structure

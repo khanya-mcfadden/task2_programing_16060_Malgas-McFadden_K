@@ -3,6 +3,7 @@ import os
 import sqlite3
 from flask import (
     Flask,
+    make_response,
     redirect,
     render_template,
     request,
@@ -662,7 +663,11 @@ def ai_data_page():
                 "note": "As I am an AI, I can be wrong and you should always check trusted and well-known sources.",
             }
         )
-                    
+@app.route("/set_cookie", methods=["POST"])
+def set_cookie():
+    response = make_response(redirect(url_for("index")))
+    response.set_cookie("cookie_consent", "true", max_age=60 * 60 * 24 * 365)  # 1 year
+    return response                    
             
 if __name__ == '__main__':
     app.run(debug=True)

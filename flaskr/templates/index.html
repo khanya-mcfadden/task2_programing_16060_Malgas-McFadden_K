@@ -68,7 +68,7 @@
 
     {% block content %}
       <div class="container-fluid px-1 d-flex justify-content-center align-items-center" style="background-image: url('/static/images/backgrounds/background-shape.png'); background-size: cover; background-position: center; background-repeat: no-repeat; color: white;  height: 30rem; border-radius: 10px; margin: 2.5rem; margin-bottom: 10rem; width: 95%;">
-        <div class="row" >
+        <div class="row">
           <!-- Main Text Section -->
           <div class="col-md-6" style="margin-top: 1rem; margin-left: 1rem; ">
             <div class="row">
@@ -83,7 +83,7 @@
               <h1 class="display-4 fw-bold text-capitalize">Here Insert Text Here Insert Text Here</h1>
             </div>
 
-            <div class="row" >
+            <div class="row">
               <p class="fs-4 fw-bold text-capitalize">Cut Reporting Time By %, Using Industry-Leading Data, And Gain Continuous And Expert Guidance From Our Dedicated Climate Expert Team.</p>
             </div>
           </div>
@@ -211,6 +211,20 @@
           </div>
         </div>
       </div>
+      {% if not request.cookies.get('cookie_consent') %}
+        <div id="cookie-consent" class="cookie-consent position-fixed top-0 start-0 w-100 h-100 d-flex align-items-center justify-content-center bg-light bg-opacity-75" style="z-index: 1000;">
+          <div class="bg-white p-4 rounded shadow">
+            <p class="text-center mb-3">
+              We use cookies to improve your experience.
+              <br />
+              By using our site, you agree to our use of cookies.
+            </p>
+            <form method="post" action="/set_cookie" class="text-center">
+              <button type="submit" class="btn btn-primary">Accept</button>
+            </form>
+          </div>
+        </div>
+      {% endif %}
     {% endblock %}
 
     <!-- Footer Section -->
@@ -277,8 +291,8 @@
             document.getElementById('loading').style.display = 'none' // Hide loading indicator
             const response1 = data.response1 ? data.response1.replace(/\*/g, '') : 'No response1 available'
             document.getElementById('ai-response').innerHTML = `
-                  <p>${response1}</p>
-                `
+                        <p>${response1}</p>
+                      `
           })
           .catch((error) => {
             console.error('Error fetching AI data:', error)
