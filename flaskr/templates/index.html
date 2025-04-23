@@ -67,8 +67,8 @@
     </nav>
 
     {% block content %}
-      <div class="container-fluid px-1 d-flex justify-content-center align-items-center" style="color: white; background: linear-gradient(0deg, #08392E 9%, #41B271 100%);height: 30rem;border-radius: 10px; margin: 2.5rem; margin-bottom: 10rem; width: 95%;">
-        <div class="row">
+      <div class="container-fluid px-1 d-flex justify-content-center align-items-center" style="background-image: url('/static/images/backgrounds/background-shape.png'); background-size: cover; background-position: center; background-repeat: no-repeat; color: white;  height: 30rem; border-radius: 10px; margin: 2.5rem; margin-bottom: 10rem; width: 95%;">
+        <div class="row" >
           <!-- Main Text Section -->
           <div class="col-md-6" style="margin-top: 1rem; margin-left: 1rem; ">
             <div class="row">
@@ -83,7 +83,7 @@
               <h1 class="display-4 fw-bold text-capitalize">Here Insert Text Here Insert Text Here</h1>
             </div>
 
-            <div class="row">
+            <div class="row" >
               <p class="fs-4 fw-bold text-capitalize">Cut Reporting Time By %, Using Industry-Leading Data, And Gain Continuous And Expert Guidance From Our Dedicated Climate Expert Team.</p>
             </div>
           </div>
@@ -110,27 +110,25 @@
         </div>
       </div>
       <!-- AI Section -->
-      <div id="Ai_title" class="Ai_title" style="height: auto; width: 50%">
-        <h1>questions ai :</h1>
-        note: As this is a AI, It can be wrong and you should always check trusted and well-known sources.
-      </div>
-      <div id="ai-response" class="ai-response" style="font-size: larger"></div>
-      <!-- ai -->
-      <div class="container" style="height: auto; width: 50%; background-color: #fff;">
-        <h2>questions chat bot</h2>
-        <div id="loading" style="display: none; text-align: center;">
-          <p>Loading...</p>
+      <div class="container-fluid d-flex justify-content-center align-items-center mx-auto" style="color: white; background: linear-gradient(0deg,rgb(6, 117, 93) 9%, #41B271 100%); height: 30rem; border-radius: 10px; margin: 2.5rem auto; margin-bottom: 10rem; width: 80%;">
+        <div class="d-flex flex-column align-items-center">
+          <div id="Ai_title" class="text-center mb-4 Ai_title">
+            <h1>Questions AI:</h1>
+            <p style="font-size: large;">Note: As this is an AI, it can be wrong, and you should always check trusted and well-known sources.</p>
+          </div>
+
+          <form action="/ai-data" method="Post" class="d-flex flex-column align-items-center mb-4">
+            <input type="text" id="ai-question" name="ai-question" class="form-control mb-3" placeholder="Ask a question..." style="width: 50rem" />
+            <button type="submit" class="btn btn-primary">Ask</button>
+          </form>
+
+          <div id="ai-response" class="ai-response mb-4" style="font-size: larger"></div>
+          <div id="loading" style="display: none; text-align: center;" class="mb-3">
+            <p>Loading...</p>
+          </div>
         </div>
-
-        <form action="/ai-data" method="Post">
-          <input type="text" id="ai-question" name="ai-question" placeholder="Ask a question..." style="bottom: 0;" />
-
-          <button type="submit" style="padding: 10px;">Ask</button>
-        </form>
-
-
-
       </div>
+
       <!-- Header For Info Page -->
       <div class="row text-center mb-4">
         <div class="col-12">
@@ -246,53 +244,48 @@
       </div>
     </footer>
 
-    <!-- script for the ai-->
+    <!-- script for the ai -->
     <script>
-      const submitButton = document.querySelector('button[type="submit"]');
-      submitButton.addEventListener("click", function (event) {
-        event.preventDefault();
-        const question = document.getElementById("ai-question").value.trim();
+      const submitButton = document.querySelector('button[type="submit"]')
+      submitButton.addEventListener('click', function (event) {
+        event.preventDefault()
+        const question = document.getElementById('ai-question').value.trim()
         if (!question) {
-          document.getElementById("ai-response").innerHTML =
-            "<p>You must type something in to get a response</p>";
-          return;
+          document.getElementById('ai-response').innerHTML = '<p>You must type something in to get a response</p>'
+          return
         }
-        if (question.toLowerCase().includes("code")) {
-          document.getElementById("ai-response").innerHTML =
-            "<p>Sorry, I can't assist with code-related questions.</p>";
-          return;
+        if (question.toLowerCase().includes('code')) {
+          document.getElementById('ai-response').innerHTML = "<p>Sorry, I can't assist with code-related questions.</p>"
+          return
         }
-        document.getElementById("loading").style.display = "block"; // Show loading indicator
-        fetch("/ai-data", {
-          method: "POST",
+        document.getElementById('loading').style.display = 'block' // Show loading indicator
+        fetch('/ai-data', {
+          method: 'POST',
           headers: {
-            "Content-Type": "application/json",
+            'Content-Type': 'application/json'
           },
-          body: JSON.stringify({ question: question }),
+          body: JSON.stringify({ question: question })
         })
           .then((response) => {
             if (!response.ok) {
-              throw new Error("Network response was not ok");
+              throw new Error('Network response was not ok')
             }
-            return response.json();
+            return response.json()
           })
           .then((data) => {
-            console.log("AI data received:", data); // Log the data received
-            document.getElementById("loading").style.display = "none"; // Hide loading indicator
-            const response1 = data.response1
-              ? data.response1.replace(/\*/g, "")
-              : "No response1 available";
-            document.getElementById("ai-response").innerHTML = `
-            <p>${response1}</p>
-          `;
+            console.log('AI data received:', data) // Log the data received
+            document.getElementById('loading').style.display = 'none' // Hide loading indicator
+            const response1 = data.response1 ? data.response1.replace(/\*/g, '') : 'No response1 available'
+            document.getElementById('ai-response').innerHTML = `
+                  <p>${response1}</p>
+                `
           })
           .catch((error) => {
-            console.error("Error fetching AI data:", error);
-            document.getElementById("loading").style.display = "none"; // Hide loading indicator
-            document.getElementById("ai-response").innerHTML =
-              "<p>Failed to load AI response</p>";
-          });
-      });
+            console.error('Error fetching AI data:', error)
+            document.getElementById('loading').style.display = 'none' // Hide loading indicator
+            document.getElementById('ai-response').innerHTML = '<p>Failed to load AI response</p>'
+          })
+      })
     </script>
   </body>
 </html>
