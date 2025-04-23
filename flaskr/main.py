@@ -207,35 +207,74 @@ def unfinished_page():
 
 # booking
 
-@app.route("/booking_info")
-def get_booking_info():
-    conn = sqlite3.connect("users.db")
-    cursor = conn.cursor()
+
+# @app.route("/booking", methods=["GET", "POST"])
+# def booking_choice_page():
+#     if "username" not in session:
+#         return redirect(url_for("login_page"))
     
-    # Fetch booking details from the Bookings table
-    cursor.execute("""
-        SELECT 
-            date, 
-            time, 
-            is_installation, 
-            installation_choice, 
-            installation_number, 
-            message 
-        FROM Bookings
-    """)
-    bookings = [
-        {
-            "date": row[0],
-            "time": row[1],
-            "type": "Installation: " + row[3] if row[2] else "Consultation",
-            "installation_amount": row[4] if row[2] else "N/A",
-            "message": row[5]
-        }
-        for row in cursor.fetchall()
-    ]
-    conn.close()
-    
-    return render_template("profile.html", bookings=bookings)
+#     if request.method == "POST":
+#         first_name = request.form.get("first_name")
+#         last_name = request.form.get("last_name")
+#         is_installation = request.form.get("is_installation", "")
+#         installation_choice = request.form.get("installation_choice", "")
+#         installation_number = request.form.get("installation_number", 0)
+#         installation_details = request.form.get("installation_details", "")
+#         email = request.form.get("email")
+#         phone = request.form.get("phone")
+#         postcode = request.form.get("postcode")
+#         message = request.form.get("message")
+#         date = request.form.get("date")
+#         time = request.form.get("time")
+
+#         if not first_name or not last_name or not email or not phone or not postcode or not date or not time or not is_installation:
+#             return "Please fill out all fields", 400
+
+#         # Get the user_id of the logged-in user
+#         connection = sqlite3.connect("users.db")
+#         cursor = connection.cursor()
+#         cursor.execute("SELECT id FROM users WHERE username = ?", (session["username"],))
+#         user = cursor.fetchone()
+#         if not user:
+#             return "User not found", 400
+#         user_id = user[0]
+
+#         try:
+#             # Insert the booking
+#             cursor.execute(
+#                 """
+#                 INSERT INTO Bookings (
+#                     is_installation, installation_choice, installation_number, 
+#                     installation_details, first_name, last_name, email, phone, 
+#                     postcode, message, date, time,  user_id
+#                 ) 
+#                 VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+#                 """,
+#                 (
+#                     is_installation == "installation",  # Convert to boolean
+#                     installation_choice,
+#                     installation_number,
+#                     installation_details,
+#                     first_name,
+#                     last_name,
+#                     email,
+#                     phone,
+#                     postcode,
+#                     message,
+#                     date,
+#                     time,
+#                     user_id, 
+#                 ),
+#             )
+#             connection.commit()
+#             return redirect("/booking-confirm")
+#         except sqlite3.Error as e:
+#             return f"Booking failed: {e}", 500
+#         finally:
+#             connection.close()
+
+#     return render_template("booking.html")
+#     # removed repeated booking function unclear when that was dupplicated
 
 @app.route("/booking", methods=["GET", "POST"])
 def booking_choice_page():
@@ -259,19 +298,25 @@ def booking_choice_page():
         if not first_name or not last_name or not email or not phone or not postcode or not date or not time or not is_installation:
             return "Please fill out all fields", 400
 
+        # Get the user_id of the logged-in user
         connection = sqlite3.connect("users.db")
         cursor = connection.cursor()
+        cursor.execute("SELECT id FROM users WHERE username = ?", (session["username"],))
+        user = cursor.fetchone()
+        if not user:
+            return "User not found", 400
+        user_id = user[0]
 
         try:
-            # Insert the booking
+            # Insert the booking with the user_id
             cursor.execute(
                 """
                 INSERT INTO Bookings (
                     is_installation, installation_choice, installation_number, 
                     installation_details, first_name, last_name, email, phone, 
-                    postcode, message, date, time
+                    postcode, message, date, time, user_id
                 ) 
-                VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+                VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
                 """,
                 (
                     is_installation == "installation",  # Convert to boolean
@@ -286,6 +331,7 @@ def booking_choice_page():
                     message,
                     date,
                     time,
+                    user_id,
                 ),
             )
             connection.commit()
@@ -296,8 +342,6 @@ def booking_choice_page():
             connection.close()
 
     return render_template("booking.html")
-    # removed repeated booking function unclear when that was dupplicated
-
 
 @app.route("/booking-confirm")
 def booking_confirm_page():
@@ -474,6 +518,10 @@ def register_page():
             password = request.form['password']
             password_confirm = request.form['password-confirm']
             
+            # Prevents usernames with variations of "admin" or "test"
+            if re.search(r"(?i)(admin|test)", username):
+                return "Username cannot contain 'admin' or 'test'", 400
+            
             # have a input validation
             if not username or not email or not password or not password_confirm:
                 return "All fields must be filled", 400
@@ -535,7 +583,42 @@ def register_page():
 def profile():
     if "username" not in session:
         return redirect(url_for("login_page"))
-    return render_template("profile.html", username=session["username"])
+    
+    connection = sqlite3.connect("users.db")
+    cursor = connection.cursor()
+    
+    # Get the user_id of the logged-in user
+    cursor.execute("SELECT id FROM users WHERE username = ?", (session["username"],))
+    user = cursor.fetchone()
+    if not user:
+        return "User not found", 400
+    user_id = user[0]
+
+    # Fetch bookings for the logged-in user
+    cursor.execute("""
+        SELECT 
+            date, 
+            time, 
+            is_installation, 
+            installation_choice, 
+            installation_number, 
+            message 
+        FROM Bookings
+        WHERE user_id = ?
+    """, (user_id,))
+    bookings = [
+        {
+            "date": row[0],
+            "time": row[1],
+            "type": "Installation: " + row[3] if row[2] else "Consultation",
+            "installation_amount": row[4] if row[2] else "N/A",
+            "message": row[5]
+        }
+        for row in cursor.fetchall()
+    ]
+    connection.close()
+    
+    return render_template("profile.html", username=session["username"], bookings=bookings)
   
 @app.route("/logout", methods=["GET", "POST"])
 def logout():

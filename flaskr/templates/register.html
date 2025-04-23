@@ -16,7 +16,6 @@
     <form method="post" action="/register">
       <h1>Registration</h1>
       <h2>welcom to the Registration page please input your details bellow</h2>
-
       <label for="username" class="input-title">Username</label>
       <input
         type="text"
@@ -25,8 +24,12 @@
         class="input-box"
         maxlength="15"
         minlength="3"
+        oninput="checkUsername(this)"
         required
       />
+      <div id="username-error" style="color: red; display: none;">Username cannot contain 'admin' or 'test'</div>
+
+
       <!-- email -->
       <label for="email" class="input-title">email</label>
       <input
@@ -51,7 +54,7 @@
       class="input-box"
       maxlength="20"
       minlength="8"
-      pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&*()_\-+=<>?.,]).{8,}"
+      pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^*()_\-+=<>?.,]).{8,}"
       title="Password must contain at least 8 characters, including uppercase, lowercase, digits, and special characters"
       required
     />
@@ -70,5 +73,20 @@
       </button>
     </form>
   </div>
+  <!-- may want ot add mor band terms-->
+  <script>
+    function checkUsername(input) {
+      const forbiddenPatterns = /(admin|test)/i;
+      const errorDiv = document.getElementById('username-error');
+      const submitButton = document.querySelector('button[type="submit"]');
+      if (forbiddenPatterns.test(input.value)) {
+        errorDiv.style.display = 'block';
+        submitButton.disabled = true;
+      } else {
+        errorDiv.style.display = 'none';
+        submitButton.disabled = false;
+      }
+    }
+  </script>
 {% endblock %}
 </body>
