@@ -109,7 +109,7 @@
           </div>
         </div>
       </div>
-      <!-- AI Section -->
+      <!--  AI Section -->
       <div class="container-fluid d-flex justify-content-center align-items-center mx-auto" style="color: white; background: linear-gradient(0deg,rgb(6, 117, 93) 9%, #41B271 100%); height: 30rem; border-radius: 10px; margin: 2.5rem auto; margin-bottom: 10rem; width: 80%;">
         <div class="d-flex flex-column align-items-center">
           <div id="Ai_title" class="text-center mb-4 Ai_title">
@@ -127,7 +127,7 @@
             <p>Loading...</p>
           </div>
         </div>
-      </div>
+      </div> 
 
       <!-- Header For Info Page -->
       <div class="row text-center mb-4">
@@ -225,6 +225,49 @@
           </div>
         </div>
       {% endif %}
+      <!-- script for the ai -->
+      <script>
+        const submitButton = document.querySelector('button[type="submit"]')
+        submitButton.addEventListener('click', function (event) {
+          event.preventDefault()
+          const question = document.getElementById('ai-question').value.trim()
+          if (!question) {
+            document.getElementById('ai-response').innerHTML = '<p>You must type something in to get a response</p>'
+            return
+          }
+          if (question.toLowerCase().includes('code')) {
+            document.getElementById('ai-response').innerHTML = "<p>Sorry, I can't assist with code-related questions.</p>"
+            return
+          }
+          document.getElementById('loading').style.display = 'block' // Show loading indicator
+          fetch('/ai-data', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ question: question })
+          })
+            .then((response) => {
+              if (!response.ok) {
+                throw new Error('Network response was not ok')
+              }
+              return response.json()
+            })
+            .then((data) => {
+              console.log('AI data received:', data) // Log the data received
+              document.getElementById('loading').style.display = 'none' // Hide loading indicator
+              const response1 = data.response1 ? data.response1.replace(/\*/g, '') : 'No response1 available'
+              document.getElementById('ai-response').innerHTML = `
+                                <p>${response1}</p>
+                              `
+            })
+            .catch((error) => {
+              console.error('Error fetching AI data:', error)
+              document.getElementById('loading').style.display = 'none' // Hide loading indicator
+              document.getElementById('ai-response').innerHTML = '<p>Failed to load AI response</p>'
+            })
+        })
+      </script>
     {% endblock %}
 
     <!-- Footer Section -->
@@ -257,49 +300,5 @@
         <img src="https://placehold.co/23x23" alt="Social Icon" class="rounded-circle" />
       </div>
     </footer>
-
-    <!-- script for the ai -->
-    <script>
-      const submitButton = document.querySelector('button[type="submit"]')
-      submitButton.addEventListener('click', function (event) {
-        event.preventDefault()
-        const question = document.getElementById('ai-question').value.trim()
-        if (!question) {
-          document.getElementById('ai-response').innerHTML = '<p>You must type something in to get a response</p>'
-          return
-        }
-        if (question.toLowerCase().includes('code')) {
-          document.getElementById('ai-response').innerHTML = "<p>Sorry, I can't assist with code-related questions.</p>"
-          return
-        }
-        document.getElementById('loading').style.display = 'block' // Show loading indicator
-        fetch('/ai-data', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json'
-          },
-          body: JSON.stringify({ question: question })
-        })
-          .then((response) => {
-            if (!response.ok) {
-              throw new Error('Network response was not ok')
-            }
-            return response.json()
-          })
-          .then((data) => {
-            console.log('AI data received:', data) // Log the data received
-            document.getElementById('loading').style.display = 'none' // Hide loading indicator
-            const response1 = data.response1 ? data.response1.replace(/\*/g, '') : 'No response1 available'
-            document.getElementById('ai-response').innerHTML = `
-                        <p>${response1}</p>
-                      `
-          })
-          .catch((error) => {
-            console.error('Error fetching AI data:', error)
-            document.getElementById('loading').style.display = 'none' // Hide loading indicator
-            document.getElementById('ai-response').innerHTML = '<p>Failed to load AI response</p>'
-          })
-      })
-    </script>
   </body>
 </html>

@@ -447,10 +447,6 @@ def register_page():
             password = request.form['password']
             password_confirm = request.form['password-confirm']
             
-            # Prevents usernames with variations of "admin" or "test"
-            if re.search(r"(?i)(admin|test)", username):
-                return "Username cannot contain 'admin' or 'test'", 400
-            
             # have a input validation
             if not username or not email or not password or not password_confirm:
                 return "All fields must be filled", 400
@@ -501,12 +497,14 @@ def register_page():
                     (username, email, password_hash),
                 )
                 connection.commit()
+                return redirect(url_for("login_page"))
             except sqlite3.IntegrityError:
                 return "Username or email already is registered", 400
             finally:
                 connection.close()
     
         return render_template('register.html')
+  
   
 @app.route("/profile")
 def profile():
