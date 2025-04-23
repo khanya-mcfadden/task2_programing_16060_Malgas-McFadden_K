@@ -665,7 +665,7 @@ def ai_data_page():
         )
 @app.route("/set_cookie", methods=["POST"])
 def set_cookie():
-    response = make_response(redirect(url_for("index")))
+    response = make_response(redirect(url_for("index_page")))
     response.set_cookie("cookie_consent", "true", max_age=60 * 60 * 24 * 365)  # 1 year
     return response                    
             
