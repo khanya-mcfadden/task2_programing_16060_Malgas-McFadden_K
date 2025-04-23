@@ -24,7 +24,6 @@
         class="input-box"
         maxlength="15"
         minlength="3"
-        oninput="checkUsername(this)"
         required
       />
       <div id="username-error" style="color: red; display: none;">Username cannot contain 'admin' or 'test'</div>
@@ -37,10 +36,8 @@
         name="email"
         id="email"
         class="input-box"
-        for="email"
-        class="input-title"
-        pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"
-        title="Please enter a valid email address with @ and .com"
+        pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}"
+        title="Please enter a valid email address with @ and a domain"
         minlength="7"
         maxlength="50"
         required
@@ -54,7 +51,7 @@
       class="input-box"
       maxlength="20"
       minlength="8"
-      pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^*()_\-+=<>?.,]).{8,}"
+      pattern="(?=.*\\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^*()_\\-+=<>?.,]).{8,}"
       title="Password must contain at least 8 characters, including uppercase, lowercase, digits, and special characters"
       required
     />
@@ -73,20 +70,5 @@
       </button>
     </form>
   </div>
-  <!-- may want ot add mor band terms-->
-  <script>
-    function checkUsername(input) {
-      const forbiddenPatterns = /(admin|test)/i;
-      const errorDiv = document.getElementById('username-error');
-      const submitButton = document.querySelector('button[type="submit"]');
-      if (forbiddenPatterns.test(input.value)) {
-        errorDiv.style.display = 'block';
-        submitButton.disabled = true;
-      } else {
-        errorDiv.style.display = 'none';
-        submitButton.disabled = false;
-      }
-    }
-  </script>
 {% endblock %}
 </body>
