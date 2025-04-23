@@ -3,18 +3,16 @@ import os
 import sqlite3
 from flask import (
     Flask,
-    jsonify,
-    make_response,
     redirect,
     render_template,
     request,
-    send_from_directory,
     session,
     url_for,
+    jsonify,
 )
-import requests
 from werkzeug.security import generate_password_hash, check_password_hash
 import re
+import google.generativeai as genai
 app = Flask(__name__, template_folder='Templates')
 app.secret_key = "hello"
 # os.urandom(24)   Set a unique and secret key for session management
@@ -206,76 +204,6 @@ def unfinished_page():
 
 
 # booking
-
-
-# @app.route("/booking", methods=["GET", "POST"])
-# def booking_choice_page():
-#     if "username" not in session:
-#         return redirect(url_for("login_page"))
-    
-#     if request.method == "POST":
-#         first_name = request.form.get("first_name")
-#         last_name = request.form.get("last_name")
-#         is_installation = request.form.get("is_installation", "")
-#         installation_choice = request.form.get("installation_choice", "")
-#         installation_number = request.form.get("installation_number", 0)
-#         installation_details = request.form.get("installation_details", "")
-#         email = request.form.get("email")
-#         phone = request.form.get("phone")
-#         postcode = request.form.get("postcode")
-#         message = request.form.get("message")
-#         date = request.form.get("date")
-#         time = request.form.get("time")
-
-#         if not first_name or not last_name or not email or not phone or not postcode or not date or not time or not is_installation:
-#             return "Please fill out all fields", 400
-
-#         # Get the user_id of the logged-in user
-#         connection = sqlite3.connect("users.db")
-#         cursor = connection.cursor()
-#         cursor.execute("SELECT id FROM users WHERE username = ?", (session["username"],))
-#         user = cursor.fetchone()
-#         if not user:
-#             return "User not found", 400
-#         user_id = user[0]
-
-#         try:
-#             # Insert the booking
-#             cursor.execute(
-#                 """
-#                 INSERT INTO Bookings (
-#                     is_installation, installation_choice, installation_number, 
-#                     installation_details, first_name, last_name, email, phone, 
-#                     postcode, message, date, time,  user_id
-#                 ) 
-#                 VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
-#                 """,
-#                 (
-#                     is_installation == "installation",  # Convert to boolean
-#                     installation_choice,
-#                     installation_number,
-#                     installation_details,
-#                     first_name,
-#                     last_name,
-#                     email,
-#                     phone,
-#                     postcode,
-#                     message,
-#                     date,
-#                     time,
-#                     user_id, 
-#                 ),
-#             )
-#             connection.commit()
-#             return redirect("/booking-confirm")
-#         except sqlite3.Error as e:
-#             return f"Booking failed: {e}", 500
-#         finally:
-#             connection.close()
-
-#     return render_template("booking.html")
-#     # removed repeated booking function unclear when that was dupplicated
-
 @app.route("/booking", methods=["GET", "POST"])
 def booking_choice_page():
     if "username" not in session:
@@ -472,7 +400,7 @@ def calculations_results_energy_page():
 
 
 
-# login, logout and register
+# users data e.g login, logout and register
 @app.route("/login", methods=["GET", "POST"])
 def login_page():
     if request.method == "POST":
@@ -626,7 +554,7 @@ def logout():
     return redirect(url_for("login_page"))
 
 
-# error handling
+# error handling and other
 @app.errorhandler(404)
 def page_not_found(_):
     app.logger.error(f"Page not found: {request.url}")
@@ -654,8 +582,88 @@ def page_not_found():
 def internal_server_error():
     return render_template("500.html")
 
+@app.route("/ai-data", methods=["GET", "POST"])
+def ai_data_page():
 
+    genai.configure(api_key="AIzaSyDC8TaqSgpDw2Emfkd7-1njplpLgd5dRxI")
 
+    model = genai.GenerativeModel("gemini-1.5-flash")
+    chat = model.start_chat(
+        history=[
+            {"role": "user", "parts": "Hello"},
+            {
+                "role": "model",
+                "parts": "Great to meet you. What would you like to know?",
+            },
+        ]
+    )
+
+    # ai-question = request.form["ai-question"]
+
+    data = request.get_json()
+    question = data.get("question")
+
+    response = chat.send_message(question)
+    response_text = response.text
+
+    def is_relevant_response(response):
+        eco_freindly_keywords = [
+            "eco-friendly",
+            "sustainable",
+            "green energy",
+            "environmentally friendly",
+            "renewable energy",
+            "carbon footprint",
+            "energy-efficient",
+            "recycling",
+            "conservation",
+            "solar energy",
+            "wind energy",
+            "heating",
+            "insulation",
+            "energy consumption",
+            "energy-saving",
+            "energy efficiency",
+            "energy bills",
+            "energy costs",
+            "energy usage",
+            "carbon emissions",
+            "carbon offset",
+            "carbon neutral",
+            "carbon credits",
+            "carbon reduction",
+            "carbon capture",
+            "carbon sequestration",
+        ]
+        return any(keyword in response.lower() for keyword in eco_freindly_keywords)
+
+    # Filter the response
+    if is_relevant_response(response_text):
+        # Check if the question specifies a longer response
+        if "detailed" in question.lower() or "long" in question.lower():
+            return jsonify(
+                {
+                    "response1": response_text,
+                }
+            )
+        else:
+            # Return a few short sentences
+            short_response = " ".join(response_text.split(".")[:5]) + "."
+            return jsonify(
+                {
+                    "response1": short_response,
+                    "note": "As I am an AI, I can be wrong and you should always check trusted and well-known sources.",
+                }
+            )
+    else:
+        return jsonify(
+            {
+                "response1": "I'm sorry, but your question doesn't seem to be related to eco-friendly or sustainable topics. Please try asking something relevant.",
+                "note": "As I am an AI, I can be wrong and you should always check trusted and well-known sources.",
+            }
+        )
+                    
+            
 if __name__ == '__main__':
     app.run(debug=True)
     

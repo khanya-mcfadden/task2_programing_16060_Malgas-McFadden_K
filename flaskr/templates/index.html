@@ -11,7 +11,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=0" />
     <link rel="stylesheet" type="text/css" href="/static/main.css" />
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
-    <link rel="icon" href="/static/images/icons/web-icon.png" type="image/x-icon"/>
+    <link rel="icon" href="/static/images/icons/web-icon.png" type="image/x-icon" />
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
   </head>
@@ -109,7 +109,28 @@
           </div>
         </div>
       </div>
+      <!-- AI Section -->
+      <div id="Ai_title" class="Ai_title" style="height: auto; width: 50%">
+        <h1>questions ai :</h1>
+        note: As this is a AI, It can be wrong and you should always check trusted and well-known sources.
+      </div>
+      <div id="ai-response" class="ai-response" style="font-size: larger"></div>
+      <!-- ai -->
+      <div class="container" style="height: auto; width: 50%; background-color: #fff;">
+        <h2>questions chat bot</h2>
+        <div id="loading" style="display: none; text-align: center;">
+          <p>Loading...</p>
+        </div>
 
+        <form action="/ai-data" method="Post">
+          <input type="text" id="ai-question" name="ai-question" placeholder="Ask a question..." style="bottom: 0;" />
+
+          <button type="submit" style="padding: 10px;">Ask</button>
+        </form>
+
+
+
+      </div>
       <!-- Header For Info Page -->
       <div class="row text-center mb-4">
         <div class="col-12">
@@ -224,5 +245,54 @@
         <img src="https://placehold.co/23x23" alt="Social Icon" class="rounded-circle" />
       </div>
     </footer>
+
+    <!-- script for the ai-->
+    <script>
+      const submitButton = document.querySelector('button[type="submit"]');
+      submitButton.addEventListener("click", function (event) {
+        event.preventDefault();
+        const question = document.getElementById("ai-question").value.trim();
+        if (!question) {
+          document.getElementById("ai-response").innerHTML =
+            "<p>You must type something in to get a response</p>";
+          return;
+        }
+        if (question.toLowerCase().includes("code")) {
+          document.getElementById("ai-response").innerHTML =
+            "<p>Sorry, I can't assist with code-related questions.</p>";
+          return;
+        }
+        document.getElementById("loading").style.display = "block"; // Show loading indicator
+        fetch("/ai-data", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ question: question }),
+        })
+          .then((response) => {
+            if (!response.ok) {
+              throw new Error("Network response was not ok");
+            }
+            return response.json();
+          })
+          .then((data) => {
+            console.log("AI data received:", data); // Log the data received
+            document.getElementById("loading").style.display = "none"; // Hide loading indicator
+            const response1 = data.response1
+              ? data.response1.replace(/\*/g, "")
+              : "No response1 available";
+            document.getElementById("ai-response").innerHTML = `
+            <p>${response1}</p>
+          `;
+          })
+          .catch((error) => {
+            console.error("Error fetching AI data:", error);
+            document.getElementById("loading").style.display = "none"; // Hide loading indicator
+            document.getElementById("ai-response").innerHTML =
+              "<p>Failed to load AI response</p>";
+          });
+      });
+    </script>
   </body>
 </html>

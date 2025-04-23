@@ -44,3 +44,23 @@ body {
     margin-bottom: 0rem;
 
 }
+
+.Ai_title {
+    box-sizing: border-box;
+    max-width: 900px;
+    border: 1px solid #0098db;
+    display: flex;
+    justify-content: flex-start;
+    height: auto;
+    width: 50%;
+    margin-bottom: 0px;
+    flex-direction: column;
+    background-color: #39b5e8;
+    text-align: center;
+  }
+  
+  .ai-advice-container {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+  }
