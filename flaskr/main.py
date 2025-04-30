@@ -667,5 +667,6 @@ def set_cookie():
     response.set_cookie("cookie_consent", "true", max_age=60 * 60 * 24 * 365)  # 1 year
     return response                    
             
+            
 if __name__ == '__main__':
     app.run(debug=True, host="0.0.0.0")    
