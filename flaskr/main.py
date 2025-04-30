@@ -14,7 +14,7 @@ from flask import (
 from werkzeug.security import generate_password_hash, check_password_hash
 import re
 import google.generativeai as genai
-app = Flask(__name__, template_folder='Templates')
+app = Flask(__name__, template_folder='templates')
 app.secret_key = "hello"
 # os.urandom(24)   Set a unique and secret key for session management
 
